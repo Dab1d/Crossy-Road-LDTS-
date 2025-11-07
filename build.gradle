@@ -1,7 +1,11 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
+application {
+    mainClass.set("Application")
+}
 group = 'com.goncalopinto1.GameProj'
 version = '1.0-SNAPSHOT'
 
@@ -13,6 +17,7 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation group: 'com.googlecode.lanterna', name: 'lanterna', version: '3.1.1'
 }
 
 test {
