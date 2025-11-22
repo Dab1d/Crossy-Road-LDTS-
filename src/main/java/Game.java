@@ -8,8 +8,8 @@ import java.io.IOException;
 
 public class Game {
     private Screen screen;
-    private int largura;
-    private int altura;
+    private int width;
+    private int height;
 
     public Game() throws IOException {
         Terminal terminal = new DefaultTerminalFactory().createTerminal(); //crate the terminal window
@@ -20,9 +20,17 @@ public class Game {
         screen.doResizeIfNecessary();
 
         //getting the terminal sizes and setting min values
-        TerminalSize tamanho = screen.getTerminalSize();
-        this.largura = Math.max(20, tamanho.getColumns());
-        this.altura = Math.max(20, tamanho.getRows());
+        TerminalSize size = screen.getTerminalSize();
+        this.width = Math.max(20, size.getColumns());
+        this.height = Math.max(20, size.getRows());
+    }
+
+    /** mock testing constructor */
+    public Game(Screen screen) {
+        this.screen = screen;
+        TerminalSize size = screen.getTerminalSize();
+        this.width = Math.max(20, size.getColumns());
+        this.height = Math.max(20, size.getRows());
     }
 
     public void draw() throws IOException {
@@ -31,14 +39,28 @@ public class Game {
         screen.refresh(); //update the screen with the new info
 
     }
+    
     public void run() throws IOException {
         while (true) {
             draw();
             try {
                 Thread.sleep(50); // 20fps cpu won't need to run 100%
-            } catch (InterruptedException e) {
+            } catch (InterruptedException e) { //thread interruption
                 e.printStackTrace();
             }
         }
+    }
+
+    /** Getters */
+
+    public Screen getScreen() {
+        return screen;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+    public int getHeight() {
+        return height;
     }
 }
