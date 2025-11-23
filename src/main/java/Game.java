@@ -1,16 +1,21 @@
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.swing.TerminalScrollController;
 
 import java.io.IOException;
+import java.security.Key;
 
 public class Game {
     private Screen screen;
     private int width;
     private int height;
+    private boolean running = true;
 
     private Space space;
 
@@ -30,9 +35,12 @@ public class Game {
         this.space = new Space(width, height); // create the game space
     }
 
-    /** mock testing constructor */
+    /**
+     * mock testing constructor
+     */
     public Game(Screen screen) {
         this.screen = screen;
+        screen.setCursorPosition(null);//hide the cursor
         TerminalSize size = screen.getTerminalSize();
         this.width = Math.max(20, size.getColumns());
         this.height = Math.max(20, size.getRows());
@@ -42,7 +50,6 @@ public class Game {
 
     public void draw() throws IOException {
         screen.clear(); // cleans the screen buffer
-
         TextGraphics textGraphics = screen.newTextGraphics(); // create TextGraphics that will be passed to the space
 
         TerminalSize newSize = screen.doResizeIfNecessary(); // returns null if screen did not change dimensios
@@ -51,24 +58,37 @@ public class Game {
             space.setWidth(size.getColumns());
             space.setHeight(size.getRows());
         }
-
         space.draw(textGraphics); //draw the game space
 
         screen.refresh(); //update the screen with the new info
     }
-    
+
+    private void processKey(KeyStroke key) {
+        System.out.println("Recebi tecla: " + key); // DEBUG
+        space.processKey(key);
+        if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q')
+            running = false;
+    }
+
+
     public void run() throws IOException {
-        while (true) {
+        while (running) {
+            KeyStroke key = screen.readInput();
+            processKey(key);
             draw();
             try {
-                Thread.sleep(50); // 20fps cpu won't need to run 100%
+                Thread.sleep(5); // 20fps cpu won't need to run 100%
             } catch (InterruptedException e) { //thread interruption
                 e.printStackTrace();
             }
         }
+        screen.stopScreen();
+
     }
 
-    /** Getters */
+    /**
+     * Getters
+     */
 
     public Screen getScreen() {
         return screen;
@@ -77,6 +97,7 @@ public class Game {
     public int getWidth() {
         return width;
     }
+
     public int getHeight() {
         return height;
     }
