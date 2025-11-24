@@ -13,6 +13,6 @@ public class Wall extends Element {
     @Override
     public void draw(TextGraphics graphics) throws IOException {
         graphics.setForegroundColor(TextColor.Factory.fromString("#808080"));
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "#");
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()), " ");
     }
 }

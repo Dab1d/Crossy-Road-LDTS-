@@ -34,8 +34,6 @@ public class Space {
         chicken.draw(graphics);
         /** Walls*/
         for (Wall wall : walls) wall.draw(graphics);
-
-        graphics.putString(5, 5, "*_*"); // teste provisório
     }
 
     private List<Wall> creatWalls() {
@@ -68,7 +66,7 @@ public class Space {
     }
 
     public boolean canChickenMove(Position position) {
-        boolean inside = position.getX() >= 0 && position.getX() + 1 < width && position.getY() >= 0 && position.getY() < height;
+        boolean inside = position.getX() >= min_x && position.getX() <= max_x && position.getY() > 0 && position.getY() < height;
         for (Wall parede : walls) {
             Position wp = parede.getPosition();
             if (wp.equals(position) || wp.equals(new Position(position.getX() + 1, position.getY()))) return false;

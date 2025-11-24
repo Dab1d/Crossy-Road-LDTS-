@@ -73,11 +73,15 @@ public class Game {
 
     public void run() throws IOException {
         while (running) {
-            KeyStroke key = screen.readInput();
-            processKey(key);
+            KeyStroke key = screen.pollInput(); // does not block if does not get a key
+            if (key != null) { //if a key is pressed process it
+                processKey(key);
+            }
+
             draw();
+
             try {
-                Thread.sleep(5); // 20fps cpu won't need to run 100%
+                Thread.sleep(50); // 20fps cpu won't need to run 100%
             } catch (InterruptedException e) { //thread interruption
                 e.printStackTrace();
             }
