@@ -1,8 +1,9 @@
-import com.googlecode.lanterna.graphics.TextGraphics;
-import java.io.IOException;
+package CrossyRoad.model.game.elements;
 
-public abstract class Element {
-    protected Position position;
+import CrossyRoad.model.Position;
+
+public class Element {
+    private Position position;
 
     //constructor
     public Element(int x, int y) {
@@ -14,6 +15,4 @@ public abstract class Element {
     public Position getPosition() {
         return position;
     }
-    //default
-    public abstract void draw(TextGraphics graphics) throws IOException;
 }
