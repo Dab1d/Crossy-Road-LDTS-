@@ -1,3 +1,5 @@
+package CrossyRoad.model;
+
 public class Position {
     private int x_;
     private int y_;
@@ -5,6 +7,22 @@ public class Position {
     public Position(int x, int y) {
         this.x_ = x;
         this.y_ = y;
+    }
+
+    public Position getLeft() {
+        return new Position(x_ - 1, y_);
+    }
+
+    public Position getRigth(){
+        return new Position(x_ + 1, y_);
+    }
+
+    public Position getUp(){
+        return new Position(x_, y_ - 1);
+    }
+
+    public Position getDown(){
+        return new Position(x_, y_ + 1);
     }
 
     public int getX() {
@@ -20,7 +38,7 @@ public class Position {
 
         if (o == null) return false; // checks if the other bject is null
 
-        if (getClass() != o.getClass()) return false; // checks if both are Position objects
+        if (getClass() != o.getClass()) return false; // checks if both are CrossyRoad.model.Position objects
 
         Position p = (Position) o; // casts o to position (it already is)
         return x_ == p.getX() && y_ == p.getY(); //checks if the positions are the same.
