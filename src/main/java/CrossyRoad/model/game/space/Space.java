@@ -19,8 +19,10 @@ public class Space {
 
     private Chicken chicken;
     private List<Bush> bushes;
-    private List<Truck> truckes;
+    private List<Truck> trucks;
     private List<Car> cars;
+    private List<River> river;
+    private List<Log> logs;
 
     private List<Wall> walls;
 
@@ -42,15 +44,49 @@ public class Space {
         return chicken;
     }
 
-    public void setChicken(Chicken chicken) { this.chicken = chicken;}
+    public void setChicken(Chicken chicken) {
+        this.chicken = chicken;
+    }
 
-    public List<Bush> getBushes() { return bushes;}
+    public List<Bush> getBushes() {
+        return bushes;
+    }
 
-    public void setBushes(List<Bush> bush){this.bushes = bush;}
+    public void setBushes(List<Bush> bush) {
+        this.bushes = bush;
+    }
 
-    public List<Car> getCars() {return cars;}
+    public List<Car> getCars() {
+        return cars;
+    }
 
-    public void setCars(List<Car> cars){this.cars = cars;}
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
+    }
+
+    public List<Truck> getTruck() {
+        return trucks;
+    }
+
+    public void setTrucks(List<Truck> trucks) {
+        this.trucks = trucks;
+    }
+
+    public List<River> getRiver() {
+        return river;
+    }
+
+    public void setRiver(List<River> river) {
+        this.river = river;
+    }
+
+    public List<Log> getLogs() {
+        return logs;
+    }
+
+    public void setLogs(List<Log> logs) {
+        this.logs = logs;
+    }
 
     public List<Wall> getWalls() {
         return walls;

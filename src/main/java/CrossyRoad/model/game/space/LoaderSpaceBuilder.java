@@ -2,7 +2,9 @@ package CrossyRoad.model.game.space;
 
 
 
+import CrossyRoad.model.game.elements.Bush;
 import CrossyRoad.model.game.elements.Chicken;
+import CrossyRoad.model.game.elements.River;
 import CrossyRoad.model.game.elements.Wall;
 
 import java.io.BufferedReader;
@@ -69,6 +71,33 @@ public class LoaderSpaceBuilder extends SpaceBuilder{
             }
         }
         throw new IllegalStateException("No chicken found in level " + level);
+    }
+
+    @Override
+    protected List<Bush> createBushes() {
+        List<Bush> bushes = new ArrayList<>();
+
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++){
+                if (line.charAt(x) == '@') bushes.add(new Bush(x, y));
+            }
+        }
+        return bushes;
+    }
+
+
+    @Override
+    protected List<River> createRiver() {
+        List<River> river = new ArrayList<>();
+
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++){
+                if (line.charAt(x) == '-') river.add(new River(x, y));
+            }
+        }
+        return river;
     }
 
 }
