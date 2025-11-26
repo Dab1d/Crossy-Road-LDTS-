@@ -2,6 +2,7 @@ package CrossyRoad;
 
 import CrossyRoad.gui.LanternaGUI;
 import CrossyRoad.model.game.elements.Bush;
+import CrossyRoad.model.game.elements.River;
 import CrossyRoad.model.game.space.LoaderSpaceBuilder;
 import CrossyRoad.model.game.space.Space;
 import CrossyRoad.model.game.elements.Wall;
@@ -38,9 +39,9 @@ public class Game {
                 gui.drawBush(bush.getPosition());
             }
 
-            /* for (River river : space.getRiver()) {
+            for (River river : space.getRiver()) {
                 gui.drawRiver(river.getPosition());
-            } */
+            } 
 
             gui.refresh();
 
