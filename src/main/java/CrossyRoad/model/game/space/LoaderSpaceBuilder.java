@@ -4,6 +4,7 @@ package CrossyRoad.model.game.space;
 
 import CrossyRoad.model.game.elements.Bush;
 import CrossyRoad.model.game.elements.Chicken;
+import CrossyRoad.model.game.elements.River;
 import CrossyRoad.model.game.elements.Wall;
 
 import java.io.BufferedReader;
@@ -86,7 +87,7 @@ public class LoaderSpaceBuilder extends SpaceBuilder{
     }
 
 
-    /*@Override
+    @Override
     protected List<River> createRiver() {
         List<River> river = new ArrayList<>();
 
@@ -97,6 +98,6 @@ public class LoaderSpaceBuilder extends SpaceBuilder{
             }
         }
         return river;
-    }*/
+    }
 
 }

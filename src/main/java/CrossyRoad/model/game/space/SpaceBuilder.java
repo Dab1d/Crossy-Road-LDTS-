@@ -2,6 +2,7 @@ package CrossyRoad.model.game.space;
 
 import CrossyRoad.model.game.elements.Bush;
 import CrossyRoad.model.game.elements.Chicken;
+import CrossyRoad.model.game.elements.River;
 import CrossyRoad.model.game.elements.Wall;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public abstract class SpaceBuilder {
         space.setChicken(createChicken());
         space.setWalls(createWalls());
         space.setBushes(createBushes());
+        space.setRiver(createRiver());
         return space;
     }
 
@@ -26,5 +28,5 @@ public abstract class SpaceBuilder {
 
     protected abstract List<Bush> createBushes();
 
-    //protected abstract List<River> createRiver();
+    protected abstract List<River> createRiver();
 }

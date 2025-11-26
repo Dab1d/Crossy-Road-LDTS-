@@ -19,11 +19,11 @@ public class Space {
 
     private Chicken chicken;
     private List<Bush> bushes;
+    private List<Wall> walls;
+    private List<River> river;
+
     private List<Truck> truckes;
     private List<Car> cars;
-
-    private List<Wall> walls;
-
 
     public Space(int width, int height) {
         this.width = width;
@@ -47,6 +47,11 @@ public class Space {
     public List<Bush> getBushes() { return bushes;}
 
     public void setBushes(List<Bush> bush){this.bushes = bush;}
+
+    public List<River> getRiver() {return river;}
+
+    public void setRiver(List<River> river) {this.river = river;}
+
 
     public List<Car> getCars() {return cars;}
 
