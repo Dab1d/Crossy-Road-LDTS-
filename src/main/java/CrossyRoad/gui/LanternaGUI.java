@@ -110,14 +110,17 @@ public class LanternaGUI implements GUI {
         graphics.setForegroundColor(TextColor.Factory.fromString(color));
         graphics.putString(x, y, "" + c);
     }
+
     @Override
     public void drawTruck(Position position) {
         drawCharacter(position.getX(), position.getY(), 'T', "#FFFF00");
     }
+
     @Override
     public void drawBush(Position position) {
         drawCharacter(position.getX(), position.getY(), 'W', "#97D077");
     }
+
     @Override
     public void drawCar(Position position) {
         drawCharacter(position.getX(), position.getY(), '+', "#C4A480");
@@ -126,6 +129,16 @@ public class LanternaGUI implements GUI {
     public void drawRiver(Position position) {
         drawCharacter(position.getX(), position.getY(), '-', "#7EA6E0");
     }*/
+
+    @Override
+    public void drawLog(Position position) {
+        drawCharacter(position.getX(), position.getY(), 'L', "#FF00FF");
+    }
+
+    @Override
+    public void drawRiver(Position position) {
+        drawCharacter(position.getX(), position.getY(), '-', "#7EA6E0");
+    }
 
     @Override
     public void clear() {
