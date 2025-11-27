@@ -4,9 +4,9 @@ import CrossyRoad.gui.LanternaGUI;
 import CrossyRoad.model.game.elements.Bush;
 import CrossyRoad.model.game.elements.Log;
 import CrossyRoad.model.game.elements.River;
+import CrossyRoad.model.game.elements.*;
 import CrossyRoad.model.game.space.LoaderSpaceBuilder;
 import CrossyRoad.model.game.space.Space;
-import CrossyRoad.model.game.elements.Wall;
 
 import java.awt.*;
 import java.io.IOException;
@@ -46,6 +46,15 @@ public class Game {
             for (Log log : space.getLogs()) {
                 gui.drawLog(log.getPosition());
             }
+
+            for (Car car : space.getCars()) {
+                gui.drawCar(car.getPosition());
+            }
+
+            for (Truck truck : space.getTrucks()) {
+                gui.drawTruck(truck.getPosition());
+            }
+
             gui.refresh();
 
             try {

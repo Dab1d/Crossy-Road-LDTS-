@@ -1,7 +1,7 @@
 package CrossyRoad.view.game;
 
-
 import CrossyRoad.gui.GUI;
+import CrossyRoad.model.game.elements.Bush;
 import CrossyRoad.model.game.elements.River;
 
 public class RiverViewer implements ElementViewer<River> {

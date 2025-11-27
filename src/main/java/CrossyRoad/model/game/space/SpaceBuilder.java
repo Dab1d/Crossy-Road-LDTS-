@@ -15,6 +15,9 @@ public abstract class SpaceBuilder {
         space.setBushes(createBushes());
         space.setLogs(createLog());
         space.setRiver(createRiver());
+        space.setRiver(createRiver());
+        space.setCars(createCar());
+        space.setTrucks(createTruck());
         return space;
     }
 
@@ -31,4 +34,8 @@ public abstract class SpaceBuilder {
     protected abstract List<River> createRiver();
 
     protected abstract List<Log> createLog();
+  
+    protected abstract List<Car> createCar();
+
+    protected abstract List<Truck> createTruck();
 }

@@ -2,14 +2,7 @@ package CrossyRoad.model.game.space;
 
 import CrossyRoad.model.game.elements.*;
 import CrossyRoad.model.Position;
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.input.KeyStroke;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Space {
@@ -25,7 +18,10 @@ public class Space {
     private List<Log> logs;
 
     private List<Wall> walls;
+    private List<River> river;
 
+    private List<Truck> trucks;
+    private List<Car> cars;
 
     public Space(int width, int height) {
         this.width = width;
@@ -59,6 +55,10 @@ public class Space {
     public List<Car> getCars() {
         return cars;
     }
+    public List<River> getRiver() {return river;}
+
+    public void setRiver(List<River> river) {this.river = river;}
+
 
     public void setCars(List<Car> cars) {
         this.cars = cars;
@@ -87,6 +87,10 @@ public class Space {
     public void setLogs(List<Log> logs) {
         this.logs = logs;
     }
+
+    public void setTrucks(List<Truck> trucks) {this.trucks = trucks;}
+
+    public List<Truck> getTrucks() {return trucks;}
 
     public List<Wall> getWalls() {
         return walls;
