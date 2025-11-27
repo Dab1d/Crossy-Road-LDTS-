@@ -110,4 +110,17 @@ public class LoaderSpaceBuilder extends SpaceBuilder{
         return car;
     }
 
+    @Override
+    protected List<Truck> createTruck() {
+        List<Truck> trucks = new ArrayList<>();
+
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++){
+                if (line.charAt(x) == 'Y') trucks.add(new Truck(x, y));
+            }
+        }
+        return trucks;
+    }
+
 }
