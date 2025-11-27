@@ -16,7 +16,9 @@ public class Space {
     private List<Car> cars;
     private List<River> river;
     private List<Log> logs;
+    private List<EndLine> endlines;
     private List<Wall> walls;
+
     public Space(int width, int height) {
         this.width = width;
         this.height = height;
@@ -77,6 +79,14 @@ public class Space {
 
     public List<Truck> getTrucks() {
         return trucks;
+    }
+
+    public void setEndLines(List<EndLine> endlines) {
+        this.endlines =  endlines;
+    }
+
+    public List<EndLine> getEndlines(){
+        return endlines;
     }
 
     public List<Wall> getWalls() {

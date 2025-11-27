@@ -137,6 +137,9 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
+    public void drawEndLine(Position position) {drawCharacter(position.getX(), position.getY(), 'E', "#FF0000");}
+
+    @Override
     public void clear() {
         screen.clear();
     }

@@ -55,6 +55,10 @@ public class Game {
                 gui.drawTruck(truck.getPosition());
             }
 
+            for (EndLine endLine : space.getEndlines()) {
+                gui.drawEndLine(endLine.getPosition());
+            }
+
             gui.refresh();
 
             try {

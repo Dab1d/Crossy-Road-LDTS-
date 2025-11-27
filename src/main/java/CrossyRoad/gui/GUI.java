@@ -22,6 +22,8 @@ public interface GUI {
 
     void drawLog(Position position);
 
+    void drawEndLine (Position position);
+
     void drawText(Position position, String text, String color);
 
     void clear();
