@@ -52,7 +52,6 @@ public class Space {
 
     public void setRiver(List<River> river) {this.river = river;}
 
-
     public List<Car> getCars() {return cars;}
 
     public void setCars(List<Car> cars){this.cars = cars;}

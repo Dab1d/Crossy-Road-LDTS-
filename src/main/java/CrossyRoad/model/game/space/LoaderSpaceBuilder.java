@@ -2,10 +2,7 @@ package CrossyRoad.model.game.space;
 
 
 
-import CrossyRoad.model.game.elements.Bush;
-import CrossyRoad.model.game.elements.Chicken;
-import CrossyRoad.model.game.elements.River;
-import CrossyRoad.model.game.elements.Wall;
+import CrossyRoad.model.game.elements.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -98,6 +95,19 @@ public class LoaderSpaceBuilder extends SpaceBuilder{
             }
         }
         return river;
+    }
+
+    @Override
+    protected List<Car> createCar() {
+        List<Car> car = new ArrayList<>();
+
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++){
+                if (line.charAt(x) == 'Ç') car.add(new Car(x, y));
+            }
+        }
+        return car;
     }
 
 }
