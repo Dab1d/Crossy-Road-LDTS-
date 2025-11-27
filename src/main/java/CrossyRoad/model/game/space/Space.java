@@ -16,13 +16,7 @@ public class Space {
     private List<Car> cars;
     private List<River> river;
     private List<Log> logs;
-
     private List<Wall> walls;
-    private List<River> river;
-
-    private List<Truck> trucks;
-    private List<Car> cars;
-
     public Space(int width, int height) {
         this.width = width;
         this.height = height;
@@ -55,10 +49,10 @@ public class Space {
     public List<Car> getCars() {
         return cars;
     }
-    public List<River> getRiver() {return river;}
 
     public void setRiver(List<River> river) {this.river = river;}
 
+    public List<River> getRiver(){return river;}
 
     public void setCars(List<Car> cars) {
         this.cars = cars;
@@ -68,17 +62,6 @@ public class Space {
         return trucks;
     }
 
-    public void setTrucks(List<Truck> trucks) {
-        this.trucks = trucks;
-    }
-
-    public List<River> getRiver() {
-        return river;
-    }
-
-    public void setRiver(List<River> river) {
-        this.river = river;
-    }
 
     public List<Log> getLogs() {
         return logs;
@@ -88,9 +71,13 @@ public class Space {
         this.logs = logs;
     }
 
-    public void setTrucks(List<Truck> trucks) {this.trucks = trucks;}
+    public void setTrucks(List<Truck> trucks) {
+        this.trucks = trucks;
+    }
 
-    public List<Truck> getTrucks() {return trucks;}
+    public List<Truck> getTrucks() {
+        return trucks;
+    }
 
     public List<Wall> getWalls() {
         return walls;
