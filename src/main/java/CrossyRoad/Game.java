@@ -1,6 +1,9 @@
 package CrossyRoad;
 
 import CrossyRoad.gui.LanternaGUI;
+import CrossyRoad.model.game.elements.Bush;
+import CrossyRoad.model.game.elements.Log;
+import CrossyRoad.model.game.elements.River;
 import CrossyRoad.model.game.elements.*;
 import CrossyRoad.model.game.space.LoaderSpaceBuilder;
 import CrossyRoad.model.game.space.Space;
@@ -39,6 +42,9 @@ public class Game {
 
             for (River river : space.getRiver()) {
                 gui.drawRiver(river.getPosition());
+            }
+            for (Log log : space.getLogs()) {
+                gui.drawLog(log.getPosition());
             }
 
             for (Car car : space.getCars()) {

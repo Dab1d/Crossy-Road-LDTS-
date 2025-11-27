@@ -1,7 +1,6 @@
 package CrossyRoad.model.game.space;
 
 
-
 import CrossyRoad.model.game.elements.*;
 
 import java.io.BufferedReader;
@@ -11,7 +10,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoaderSpaceBuilder extends SpaceBuilder{
+public class LoaderSpaceBuilder extends SpaceBuilder {
     private final int level;
     private final List<String> lines;
 
@@ -61,7 +60,7 @@ public class LoaderSpaceBuilder extends SpaceBuilder{
     protected Chicken createChicken() {
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
-            for (int x = 0; x < line.length(); x++){
+            for (int x = 0; x < line.length(); x++) {
                 if (line.charAt(x) == 'C') {
                     return new Chicken(x, y);
                 }
@@ -76,7 +75,7 @@ public class LoaderSpaceBuilder extends SpaceBuilder{
 
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
-            for (int x = 0; x < line.length(); x++){
+            for (int x = 0; x < line.length(); x++) {
                 if (line.charAt(x) == '@') bushes.add(new Bush(x, y));
             }
         }
@@ -90,11 +89,22 @@ public class LoaderSpaceBuilder extends SpaceBuilder{
 
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
-            for (int x = 0; x < line.length(); x++){
+            for (int x = 0; x < line.length(); x++) {
                 if (line.charAt(x) == '-') river.add(new River(x, y));
             }
         }
         return river;
+    }
+
+    protected List<Log> createLog() {
+        List<Log> log = new ArrayList<>();
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++) {
+                if (line.charAt(x) == 'L') log.add(new Log(x, y));
+            }
+        }
+        return log;
     }
 
     @Override
@@ -103,7 +113,7 @@ public class LoaderSpaceBuilder extends SpaceBuilder{
 
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
-            for (int x = 0; x < line.length(); x++){
+            for (int x = 0; x < line.length(); x++) {
                 if (line.charAt(x) == 'Ç') car.add(new Car(x, y));
             }
         }
@@ -113,14 +123,14 @@ public class LoaderSpaceBuilder extends SpaceBuilder{
     @Override
     protected List<Truck> createTruck() {
         List<Truck> trucks = new ArrayList<>();
-
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
-            for (int x = 0; x < line.length(); x++){
+            for (int x = 0; x < line.length(); x++) {
                 if (line.charAt(x) == 'Y') trucks.add(new Truck(x, y));
             }
         }
         return trucks;
+
     }
 
 }
