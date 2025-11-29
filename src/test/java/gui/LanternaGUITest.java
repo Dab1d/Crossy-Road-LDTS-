@@ -3,14 +3,24 @@ package gui;
 import CrossyRoad.gui.LanternaGUI;
 
 import CrossyRoad.model.Position;
+import CrossyRoad.model.game.elements.Car;
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
+import com.googlecode.lanterna.screen.TerminalScreen;
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.virtual.VirtualTerminal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LanternaGUITest {
 
@@ -49,6 +59,30 @@ class LanternaGUITest {
 
         Mockito.verify(tg, Mockito.times(1))
                 .putString(2, 2, "#");
+    }
+
+    @Test
+    void testDrawCar() {
+        final String CAR_CHAR = "+";
+        final String CAR_COLOR = "#C4A480";
+
+        Position[] positions = {
+                new Position(3, 3),
+                new Position(5, 2),
+                new Position(0, 0)
+        };
+
+        for (Position pos : positions) {
+            gui.drawCar(pos);
+
+            Mockito.verify(tg, Mockito.atLeastOnce())
+                    .setForegroundColor(TextColor.Factory.fromString(CAR_COLOR));
+
+            Mockito.verify(tg, Mockito.atLeastOnce())
+                    .putString(pos.getX(), pos.getY(), CAR_CHAR);
+
+            Mockito.reset(tg);
+        }
     }
 
     @Test

@@ -114,7 +114,7 @@ public class LoaderSpaceBuilder extends SpaceBuilder {
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++) {
-                if (line.charAt(x) == 'Ç') car.add(new Car(x, y));
+                if (line.charAt(x) == '+') car.add(new Car(x, y));
             }
         }
         return car;
