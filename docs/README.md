@@ -7,7 +7,7 @@ Each successful step brings the chicken closer to the final goal, testing your t
 The variety of levels will have increased difficulty, with faster vehicles, wider lakes, and trickier paths that require
 strategy and precision.
 
-This project was developed by Dário Amaral, David Ferreira and Gonçalo Pinto for LDTS 2025-26.
+This project was developed by Dário Amaral , David Ferreira and Gonçalo Pinto for LDTS 2025-26.
 
 ## Implemented Features
 
