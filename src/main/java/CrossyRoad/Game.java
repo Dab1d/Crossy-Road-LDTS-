@@ -7,6 +7,10 @@ import CrossyRoad.model.game.elements.River;
 import CrossyRoad.model.game.elements.*;
 import CrossyRoad.model.game.space.LoaderSpaceBuilder;
 import CrossyRoad.model.game.space.Space;
+import CrossyRoad.state.GameState;
+import CrossyRoad.state.State;
+import CrossyRoad.view.Viewer;
+import CrossyRoad.view.game.GameViewer;
 
 import java.awt.*;
 import java.io.IOException;
@@ -14,53 +18,26 @@ import java.net.URISyntaxException;
 
 public class Game {
     private final LanternaGUI gui;
-    private final Space space;
+    private State state;
 
     public Game() throws IOException, URISyntaxException, FontFormatException {
-        this.space = new LoaderSpaceBuilder(1).createSpace();
-        this.gui = new LanternaGUI(space.getWidth(), space.getHeight());
+        this.gui = new LanternaGUI(20, 32);
+        this.state = new GameState(new LoaderSpaceBuilder(1).createSpace());
     }
 
     public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException {
         new Game().start();
     }
 
+    //well be used by the controller to chance between menu and game state
+    public void setState(State state) {
+        this.state = state;
+    }
+
     public void start() throws IOException {
-        while (true) {
-            gui.clear();
+        while (state != null) {
 
-            gui.drawChicken(space.getChicken().getPosition());
-
-            for (Wall wall : space.getWalls()) {
-                gui.drawWalls(wall.getPosition());
-            }
-
-
-            for (Bush bush : space.getBushes()) {
-                gui.drawBush(bush.getPosition());
-            }
-
-            for (River river : space.getRiver()) {
-                gui.drawRiver(river.getPosition());
-            }
-            for (Log log : space.getLogs()) {
-                gui.drawLog(log.getPosition());
-            }
-
-            for (Car car : space.getCars()) {
-                gui.drawCar(car.getPosition());
-            }
-
-            for (Truck truck : space.getTrucks()) {
-                gui.drawTruck(truck.getPosition());
-            }
-
-            for (EndLine endLine : space.getEndlines()) {
-                gui.drawEndLine(endLine.getPosition());
-            }
-
-            gui.refresh();
-
+            state.step(this, gui);
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {

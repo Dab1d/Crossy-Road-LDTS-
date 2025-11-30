@@ -89,55 +89,17 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawChicken(Position position) {
-        drawCharacter(position.getX(), position.getY(), 'C', "#FF00FF");
-    }
-
-    @Override
-    public void drawWalls(Position position) {
-        drawCharacter(position.getX(), position.getY(), '#', "#FFFFFF");
-    }
-
-    @Override
     public void drawText(Position position, String text, String color) {
         TextGraphics tg = screen.newTextGraphics();
         tg.setForegroundColor(TextColor.Factory.fromString(color));
         tg.putString(position.getX(), position.getY(), text);
     }
 
-    private void drawCharacter(int x, int y, char c, String color) {
+    public void drawCharacter(int x, int y, char c, String color) {
         TextGraphics graphics = screen.newTextGraphics();
         graphics.setForegroundColor(TextColor.Factory.fromString(color));
         graphics.putString(x, y, "" + c);
     }
-
-    @Override
-    public void drawTruck(Position position) {
-        drawCharacter(position.getX(), position.getY(), 'T', "#FFFF00");
-    }
-
-    @Override
-    public void drawBush(Position position) {
-        drawCharacter(position.getX(), position.getY(), '█', "#97D077");
-    }
-
-    @Override
-    public void drawCar(Position position) {
-        drawCharacter(position.getX(), position.getY(), '+', "#C4A480");
-    }
-
-    @Override
-    public void drawRiver(Position position) {
-        drawCharacter(position.getX(), position.getY(), '~', "#7EA6E0");
-    }
-
-    @Override
-    public void drawLog(Position position) {
-        drawCharacter(position.getX(), position.getY(), '-', "#905923");
-    }
-
-    @Override
-    public void drawEndLine(Position position) {drawCharacter(position.getX(), position.getY(), '=', "#F00000");}
 
     @Override
     public void clear() {

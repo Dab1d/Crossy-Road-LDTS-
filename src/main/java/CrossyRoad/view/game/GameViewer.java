@@ -16,18 +16,21 @@ public class GameViewer extends Viewer<Space> {
     @Override
     public void drawElements(GUI gui) {
         drawElements(gui,getModel().getBushes(),new BushViewer());
+        drawElements(gui, getModel().getCars(), new CarViewer());
+        drawElements(gui, getModel().getLogs(), new LogViewer());
+        drawElements(gui, getModel().getEndlines(), new EndLineViewer());
         drawElements(gui,getModel().getRiver(),new RiverViewer());
         drawElements(gui, getModel().getTruck(),new TruckViewer());
         drawElements(gui, getModel().getWalls(), new WallViewer());
         drawElement(gui, getModel().getChicken(), new ChickenViewer());
     }
 
-    private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {
+    protected <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {
         for (T element : elements)
             drawElement(gui, element, viewer);
     }
 
-    private <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer) {
+    protected <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer) {
         viewer.draw(element, gui);
     }
 }

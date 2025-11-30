@@ -7,6 +7,6 @@ import CrossyRoad.model.game.elements.River;
 public class RiverViewer implements ElementViewer<River> {
     @Override
     public void draw(River river, GUI gui) {
-        gui.drawRiver(river.getPosition());
+        gui.drawCharacter(river.getPosition().getX(), river.getPosition().getY(), '~', "#7EA6E0");
     }
 }

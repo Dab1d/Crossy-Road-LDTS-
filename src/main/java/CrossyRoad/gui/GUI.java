@@ -8,21 +8,7 @@ public interface GUI {
 
     ACTION getNextAction() throws IOException;
 
-    void drawChicken(Position position);
-
-    void drawWalls(Position position);
-
-    void drawTruck(Position position);
-
-    void drawCar(Position position);
-
-    void drawBush(Position position);
-
-    void drawRiver(Position position);
-
-    void drawLog(Position position);
-
-    void drawEndLine (Position position);
+    void drawCharacter(int x, int y, char c, String color);
 
     void drawText(Position position, String text, String color);
 

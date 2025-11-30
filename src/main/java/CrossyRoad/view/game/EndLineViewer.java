@@ -6,6 +6,6 @@ import CrossyRoad.model.game.elements.EndLine;
 public class EndLineViewer implements ElementViewer<EndLine> {
     @Override
     public void draw(EndLine endLine, GUI gui) {
-        gui.drawEndLine(endLine.getPosition());
+        gui.drawCharacter(endLine.getPosition().getX(), endLine.getPosition().getY(), '=', "#F00000");
     }
 }

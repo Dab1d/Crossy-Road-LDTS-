@@ -7,6 +7,6 @@ import CrossyRoad.model.game.elements.Log;
 public class LogViewer implements ElementViewer<Log> {
     @Override
     public void draw(Log log, GUI gui) {
-        gui.drawLog(log.getPosition());
+        gui.drawCharacter(log.getPosition().getX(), log.getPosition().getY(), '-', "#905923");
     }
 }
