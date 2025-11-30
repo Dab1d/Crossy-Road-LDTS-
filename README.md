@@ -29,7 +29,7 @@ The following screenshots ilustrate the general look of our game, as well as the
   <img src=docs/images/cover.png>
 </p>
 <p align ="center">
-    <b><i>Start Menu<i><b>
+    <b><i>Start Menu</i>i></b>b>
 <br>
 <br>
 <p>
