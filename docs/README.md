@@ -144,9 +144,9 @@ The use of the Facade Pattern in the current design allows the following benefit
 
 
 ### Mutation testing
-[Mutation test report](http://localhost:63342/GameProj/build/reports/pitest/index.html?_ijt=72blmlp9eiugqu0itqfvo9qvf&_ij_reload=RELOAD_ON_SAVE)
-
-> There is a bug here and the link will only open successfully on Google Chrome
+<p align="center">
+<img src="images/pitest.png">
+</p>
 ## Self-evaluation
 ***
 
