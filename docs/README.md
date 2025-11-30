@@ -31,7 +31,6 @@ strategy and precision.
 - **Interactive Menu** - A start menu with options to play, view instructions, or exit the game.
 
 ## Design
-***
 
 <p align="center" justify="center">
   <img src="/docs/images/fullUML.png"/>
@@ -39,7 +38,7 @@ strategy and precision.
 <p align="center">
   <b><i>Fig 1. UML Classes</i></b>
 </p>
-***
+
 ### General Structure
 #### Problem in Context:
 The main concern was how to structure a game with multiple states
@@ -133,20 +132,22 @@ The use of the Facade Pattern in the current design allows the following benefit
 
 ### Test with Coverage 
 <p align="center">
-<img src="/docs/images/coverage.png">
+<img src="/docs/images/cover_1.jpeg">
+<p align="center">
+<b><i>Fig 4. Coverage Testing </i></b>
 </p>
 
-> Our coverage testing is having a bug which doesn't show in the image above how the tests perform in the model directory so we used the coverage info provided on the sidebar presented on the image bellow.
-
+<p align="center" justify="center">
+  <img src="/docs/images/Coverage_2.jpeg"/>
+</p>
 <p align="center">
-<img src="images/fullCoverage.png">
+  <b><i>Fig 5. Coverage Testing </i></b>
 </p>
 
 
 ### Mutation testing
 [Mutation test report](http://localhost:63342/GameProj/build/reports/pitest/index.html?_ijt=72blmlp9eiugqu0itqfvo9qvf&_ij_reload=RELOAD_ON_SAVE)
 
-> For some reason we didn't figure it out this url is only working on Google Chrome.
 ## Self-evaluation
 ***
 
