@@ -1,39 +1,56 @@
 # LDTS_T04_G07 - Crossy Road
 
-##Game Description
+## Game Description
 
 Crossy Road is a game where you control a chicken trying to cross busy roads, rivers, and bushes.
 Each successful step brings the chicken closer to the final goal, testing your timing and reflexes at every turn.
 The variety of levels will have increased difficulty, with faster vehicles, wider lakes, and trickier paths that require
 strategy and precision.
 
-This project was developed by Dário Amaral , David Ferreira and Gonçalo Pinto for LDTS 2025-26.
+This project was developed by Dário Amaral (up202405681@edu.fe.up.pt), David Ferreira (up202406798@edu.fe.up.pt) and Gonçalo Pinto (up202310411@edu.fe.up.pt) for LDTS 2025-26.
 
 ## Implemented Features
 
-- Player Movement - Move the chicken up, down, left, and right across obstacles.
-- Obstacle Avoidance - Avoid cars, trucks, bushes, and other hazards that can end the game.
-- Water Hazards - Jump across lakes using safe spots or logs without falling in.
-- Different Levels - Roads get busier, lakes get wider, and obstacles appear more frequently as the game progresses.
-- Goal Achievement - Reach the final destination to complete a level.
-- Collisions Detection - Detect collisions with cars, trucks and water hazards.
-- Scoring System - Track progress based on distance traveled or obstacles avoided.
-- Interactive Menu - A start menu with options to play, view instructions, or exit the game.
+- **Player Movement** - Move the chicken up, down, left, and right across obstacles.
+- **Obstacle Avoidance** - Avoid cars, trucks, bushes, and other hazards that can end the game.
+- **Water Hazards** - Jump across lakes using safe spots or logs without falling in.
+- **Different Levels** - Roads get busier, lakes get wider, and obstacles appear more frequently as the game progresses.
+- **Goal Achievement** - Reach the final destination to complete a level.
+- **Collisions Detection** - Detect collisions with cars, trucks and water hazards.
+- **Scoring System** - Track progress based on distance traveled or obstacles avoided.
+- **Interactive Menu** - A start menu with options to play, view instructions, or exit the game.
 
 
 ## Planned Features
 
--> TO DO
+The main goal is to extend the base game by adding new features while ensuring code quality through systematic testing. The key features I implemented/am implementing include:
 
-##Design
+- **Game Controller** - Manages the main game loop, handles user input, and updates the Chicken state.
 
-###General Structure
-####Problem in Context:
+- **Grafics for Elements** - Improves the visual representation of characters and game objects to avoid confusion.
+
+- **Scoreboard** - Tracks the best results to measure player progress.
+
+- **Win/Lose Screen** - Displays clear feedback when the player wins or loses.
+
+- **Pause Menu** - Allows the player to temporarily stop the game.
+
+- **Manual** - Explains how the game works and the rules.
+
+- **Additional Levels** - With increasing difficulty: new levels that progressively raise the speed of obstacles, traffic density, and overall gameplay complexity.
+
+- **Dependency Tests** - Tests focused on validating interactions between different modules, ensuring that dependent components behave correctly and that no regressions appear as the project evolves.
+
+
+## Design
+
+### General Structure
+#### Problem in Context:
 The main concern was how to structure a game with multiple states
 (menus (not implemented yet), gameplay, and pause (not implemented yet)).
 The code needed to be organized, maintainable, and allow easy expansion for future features.
 
-####The Pattern:
+#### The Pattern:
 We applied the Model-View-Controller (MVC) architectural pattern to separate game data,
 logic, and presentation. Additionally, the State Pattern was used to manage different game states,
 allowing the chicken and menus to behave differently depending on the current state.
@@ -42,9 +59,19 @@ allowing the chicken and menus to behave differently depending on the current st
 Model classes store game data, like chicken position and score (not implemented yet).
 Controller classes (not implemented yet) handle game logic, movement, collision checks, and level progression.
 View classes render the game visuals and menus on the screen.
-->Colocar imagem do UML
+<br>
+<p align="center" justify="center">
+  <img src="docs/images/UML.png"/>
+</p>
+<p align ="center">
+    <b><i>Fig 1. UML Model</i></b>
+</p>
+<br>
+<p align = "center"><p>
+<br>
 
-####Consequences:
+
+#### Consequences:
 Code is well-organized and follows the ->QUAIS DOS PRINCIPIOS SOLID.
 New features can be added with minimal impact on existing code.
 
