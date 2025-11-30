@@ -61,7 +61,7 @@ Controller classes (not implemented yet) handle game logic, movement, collision 
 View classes render the game visuals and menus on the screen.
 <br>
 <p align="center" justify="center">
-  <img src="docs/images/UML.png"/>
+  <img src= "docs/images/game.png">
 </p>
 <p align ="center">
     <b><i>Fig 1. UML Model</i></b>
