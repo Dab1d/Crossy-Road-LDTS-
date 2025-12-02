@@ -1,16 +1,11 @@
 package CrossyRoad;
 
 import CrossyRoad.gui.LanternaGUI;
-import CrossyRoad.model.game.elements.Bush;
-import CrossyRoad.model.game.elements.Log;
-import CrossyRoad.model.game.elements.River;
 import CrossyRoad.model.game.elements.*;
-import CrossyRoad.model.game.space.LoaderSpaceBuilder;
-import CrossyRoad.model.game.space.Space;
-import CrossyRoad.state.GameState;
+import CrossyRoad.state.MenuState;
 import CrossyRoad.state.State;
-import CrossyRoad.view.Viewer;
-import CrossyRoad.view.game.GameViewer;
+import CrossyRoad.model.menu.Menu;
+
 
 import java.awt.*;
 import java.io.IOException;
@@ -22,7 +17,7 @@ public class Game {
 
     public Game() throws IOException, URISyntaxException, FontFormatException {
         this.gui = new LanternaGUI(20, 32);
-        this.state = new GameState(new LoaderSpaceBuilder(1).createSpace());
+        this.state = new MenuState(new Menu());
     }
 
     public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException {
