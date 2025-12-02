@@ -1,5 +1,6 @@
 package CrossyRoad.state;
 
+import CrossyRoad.Controler.Controller;
 import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.view.Viewer;
@@ -9,24 +10,25 @@ import java.io.IOException;
 public abstract class State<T> {
     private T model;
     private Viewer<T> viewer;
-    //falta adicionar o controller que ainda nao esta definido
+    private Controller<T> controller;
 
     public State(T model) {
         this.model = model;
         this.viewer = getViewer();
+        this.controller = getController();
     }
 
     public abstract Viewer<T> getViewer();
 
-    //falta o getController
+    public abstract Controller<T> getController();
 
     public T getModel() {
         return model;
     }
 
-    public void step(Game game, GUI gui) throws IOException {
+    public void step(Game game, GUI gui, long startTime) throws IOException {
         GUI.ACTION action = gui.getNextAction(); //detects user input
-        //missing controller call to handle input
+        controller.step(game, action, startTime);
         viewer.draw(gui);
     }
 }

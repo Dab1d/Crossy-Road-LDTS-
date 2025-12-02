@@ -29,20 +29,27 @@ public class Game {
         new Game().start();
     }
 
-    //well be used by the controller to chance between menu and game state
+    //will be used by the controller to chance between menu and game state
     public void setState(State state) {
         this.state = state;
     }
 
     public void start() throws IOException {
+        int FPS = 80;
+        int frameTime = 1000 / FPS;
         while (state != null) {
+            long startTime = System.currentTimeMillis();
 
-            state.step(this, gui);
+            state.step(this, gui, startTime);
+
+            long elapsedTime = System.currentTimeMillis() - startTime;
+            long sleepTime = frameTime - elapsedTime;
             try {
-                Thread.sleep(50);
+                if (sleepTime > 0) Thread.sleep(sleepTime);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+        gui.close();
     }
 }
