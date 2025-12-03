@@ -5,7 +5,6 @@ import CrossyRoad.model.Position;
 import CrossyRoad.model.menu.Menu;
 import CrossyRoad.view.Viewer;
 
-import java.io.IOException;
 
 public class MenuView extends Viewer<Menu> {
     public MenuView(Menu menu) {
