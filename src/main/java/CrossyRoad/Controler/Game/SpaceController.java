@@ -17,8 +17,23 @@ public class SpaceController extends Controller<Space> {
         super(space);
         this.ChickenController = new ChickenController(space);
     }
-
+    @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
         if (action == GUI.ACTION.QUIT) game.setState(new MenuState(new Menu()));
+        switch (action) {
+            case UP:
+            case DOWN:
+            case LEFT:
+            case RIGHT:
+                ChickenController.step(game, action, time);
+                break;
+
+            case QUIT:
+                game.setState(new MenuState(new Menu()));
+                break;
+
+            default:
+                break;
+        }
     }
 }
