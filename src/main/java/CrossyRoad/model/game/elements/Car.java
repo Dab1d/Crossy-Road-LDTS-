@@ -7,4 +7,9 @@ public class Car extends Element {
     public Car(int x, int y) {
         super(x, y);
     }
+
+    @Override
+    public boolean blockMovement() {
+        return true;
+    }
 }
