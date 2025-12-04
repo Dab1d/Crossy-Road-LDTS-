@@ -76,4 +76,36 @@ public class Space {
 
         return true;
     }
+
+    public boolean isChickenDead() {
+        Position pos = chicken.getPosition();
+
+        for (Car car : cars) {
+            if (pos.equals(car.getPosition())) return true;
+        }
+
+        for (Truck truck : trucks) {
+            if (pos.equals(truck.getPosition())) return true;
+        }
+
+        for (River r : river) {
+            if (pos.equals(r.getPosition())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean reachedEndLine() {
+        Position chickenPos = chicken.getPosition();
+        for (EndLine endline : endlines) {
+            if (chickenPos.equals(endline.getPosition())) return true;
+        }
+        return false;
+    }
+
+
+
+
+
 }

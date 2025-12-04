@@ -5,6 +5,8 @@ import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.space.Space;
 import CrossyRoad.model.menu.Menu;
+import CrossyRoad.state.EndLineState;
+import CrossyRoad.state.GameOverState;
 import CrossyRoad.state.MenuState;
 
 import java.io.IOException;
@@ -17,9 +19,20 @@ public class SpaceController extends Controller<Space> {
         super(space);
         this.ChickenController = new ChickenController(space);
     }
+
+    private boolean chickenDied() {
+        return getModel().isChickenDead();
+    }
+
+
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
-        if (action == GUI.ACTION.QUIT) game.setState(new MenuState(new Menu()));
+        //quit anytime (use this or no?)
+        if (action == GUI.ACTION.QUIT) {
+            game.setState(new MenuState(new Menu()));
+            return;
+        }
+
         switch (action) {
             case UP:
             case DOWN:
@@ -27,13 +40,21 @@ public class SpaceController extends Controller<Space> {
             case RIGHT:
                 ChickenController.step(game, action, time);
                 break;
-
-            case QUIT:
-                game.setState(new MenuState(new Menu()));
-                break;
-
             default:
                 break;
         }
+
+        if (chickenDied()) {
+            game.setState(new GameOverState());
+        }
+
+        if (getModel().reachedEndLine()) { // Add this in Space
+            game.setState(new EndLineState());
+        }
+
+
     }
 }
+
+
+

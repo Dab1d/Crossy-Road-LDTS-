@@ -6,8 +6,4 @@ public class River extends Element {
         super(x, y);
     }
 
-    @Override
-    public boolean blockMovement() {
-        return true;
-    }
 }
