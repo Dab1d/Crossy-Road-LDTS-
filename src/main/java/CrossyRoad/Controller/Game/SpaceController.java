@@ -5,8 +5,10 @@ import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.space.Space;
 import CrossyRoad.model.menu.Menu;
+import CrossyRoad.model.menu.Pause;
 import CrossyRoad.state.GameOverState;
 import CrossyRoad.state.MenuState;
+import CrossyRoad.state.PauseState;
 
 import java.io.IOException;
 
@@ -49,6 +51,9 @@ public class SpaceController extends Controller<Space> {
                 ChickenController.step(game, action, time);
                 EndLineController.step(game, action, time);
                 break;
+            case PAUSE:
+                game.setPrevious(game.getState());
+                game.setState(new PauseState(new Pause()));
             default:
                 break;
         }

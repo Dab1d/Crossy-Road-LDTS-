@@ -14,6 +14,7 @@ import java.net.URISyntaxException;
 public class Game {
     private final LanternaGUI gui;
     private State state;
+    private State previousState;
     private int level;
 
     public Game() throws IOException, URISyntaxException, FontFormatException {
@@ -24,6 +25,18 @@ public class Game {
 
     public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException {
         new Game().start();
+    }
+
+    public void setPrevious(State state) {
+        this.previousState = state;
+    }
+
+    public State getPrevious() {
+        return this.previousState;
+    }
+
+    public State getState(){
+        return this.state;
     }
 
     public void setLevel(int level) {
