@@ -8,8 +8,4 @@ public class Car extends Element {
         super(x, y);
     }
 
-    @Override
-    public boolean blockMovement() {
-        return true;
-    }
 }

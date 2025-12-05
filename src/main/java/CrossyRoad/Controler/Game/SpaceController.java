@@ -10,30 +10,43 @@ import CrossyRoad.state.MenuState;
 import java.io.IOException;
 
 public class SpaceController extends Controller<Space> {
-    private final ChickenController ChickenController;
-//    private final MonsterController monsterController;
+
+    private final ChickenController chickenController;
+    private final CarController carController;
+    private final RiverController riverController;
+    private final TruckController truckController;
 
     public SpaceController(Space space) {
         super(space);
-        this.ChickenController = new ChickenController(space);
+        this.chickenController = new ChickenController(space);
+        this.carController = new CarController(space);
+        this.riverController = new RiverController(space);
+        this.truckController = new TruckController(space);
     }
+
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
-        if (action == GUI.ACTION.QUIT) game.setState(new MenuState(new Menu()));
-        switch (action) {
-            case UP:
-            case DOWN:
-            case LEFT:
-            case RIGHT:
-                ChickenController.step(game, action, time);
-                break;
+        // 1️⃣ Input do jogador
+        switch(action) {
+            case UP: case DOWN: case LEFT: case RIGHT:
 
+                chickenController.step(game, action, time);
+                break;
             case QUIT:
                 game.setState(new MenuState(new Menu()));
-                break;
-
+                return;
             default:
                 break;
         }
+
+        // 2️⃣ Atualização automática
+        carController.step(game, GUI.ACTION.NONE, time);
+        truckController.step(game, GUI.ACTION.NONE, time);
+        riverController.step(game, GUI.ACTION.NONE, time);
+
+        // 3️⃣ Desenhar estado atual
+        game.getGUI().clear();
+        getModel().draw(game.getGUI());
+        game.getGUI().refresh();
     }
 }

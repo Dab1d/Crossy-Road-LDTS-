@@ -1,5 +1,6 @@
 package CrossyRoad;
 
+import CrossyRoad.gui.GUI;
 import CrossyRoad.gui.LanternaGUI;
 import CrossyRoad.model.game.elements.*;
 import CrossyRoad.state.MenuState;
@@ -30,7 +31,7 @@ public class Game {
     }
 
     public void start() throws IOException {
-        int FPS = 80;
+        int FPS = 60;
         int frameTime = 1000 / FPS;
         while (state != null) {
             long startTime = System.currentTimeMillis();
@@ -46,5 +47,9 @@ public class Game {
             }
         }
         gui.close();
+    }
+
+    public GUI getGUI() {
+        return gui;
     }
 }

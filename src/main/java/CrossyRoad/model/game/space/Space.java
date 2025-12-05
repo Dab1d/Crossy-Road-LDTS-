@@ -1,5 +1,6 @@
 package CrossyRoad.model.game.space;
 
+import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.elements.*;
 import CrossyRoad.model.Position;
 
@@ -75,5 +76,30 @@ public class Space {
                 return false;
 
         return true;
+    }
+
+    public int[] getRiverLinesY() {
+        int[] lines = new int[river.size()];
+
+        for (int i = 0; i < river.size(); i++) {
+            lines[i] = river.get(i).getPosition().getY();
+        }
+
+        return lines;
+    }
+
+    public List<Position> getRiverPositionsAtLine(int y) {
+        List<Position> positions = new ArrayList<>();
+
+        for (River r : river) {
+            if (r.getPosition().getY() == y) {
+                positions.add(r.getPosition());
+            }
+        }
+
+        return positions;
+    }
+
+    public void draw(GUI gui) {
     }
 }
