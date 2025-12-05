@@ -18,7 +18,7 @@ public class SpaceController extends Controller<Space> {
     private final EndLineController EndLineController;
     private final TruckController TruckController;
     private final CarController CarController;
-    // private final LogController LogController;
+    private final LogController LogController;
     private final RiverController RiverController;
 
     public SpaceController(Space space) {
@@ -27,7 +27,7 @@ public class SpaceController extends Controller<Space> {
         this.EndLineController = new EndLineController(space);
         this.TruckController = new TruckController(space);
         this.CarController = new CarController(space);
-        //this.LogController = new LogController(space);
+        this.LogController = new LogController(space);
         this.RiverController = new RiverController(space);
     }
 
@@ -55,6 +55,7 @@ public class SpaceController extends Controller<Space> {
         CarController.step(game, GUI.ACTION.NONE, time);
         TruckController.step(game, GUI.ACTION.NONE, time);
         RiverController.step(game, GUI.ACTION.NONE, time);
+        LogController.step(game, GUI.ACTION.NONE, time);
 
         game.getGUI().clear();
         getModel().draw(game.getGUI());

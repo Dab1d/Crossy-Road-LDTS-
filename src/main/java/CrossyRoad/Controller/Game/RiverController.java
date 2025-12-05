@@ -25,7 +25,7 @@ public class RiverController extends Controller<Space> {
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
-        if (time - lastMoveTime >= 300) {
+        if (time - lastMoveTime >= 200) {
             moveRivers();
             lastMoveTime = time;
         }

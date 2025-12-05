@@ -29,7 +29,7 @@ public class CarController extends Controller<Space> {
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
-        if (time - lastMoveTime >= 200) { // move a cada 200ms
+        if (time - lastMoveTime >= 400) { // move a cada 200ms
             moveCars();
             lastMoveTime = time;
         }
