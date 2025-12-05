@@ -22,8 +22,8 @@ public class TruckController extends Controller<Space> {
         super(space);
         List<Truck> trucks = getModel().getTruck();
         for (Truck truck : trucks) {
-            speeds.put(truck, 1);        // velocidade padrão
-            directions.put(truck, true); // direção para a direita
+            speeds.put(truck, -1);        // velocidade padrão
+            directions.put(truck, true); // direção para a esquerda
         }
     }
 
