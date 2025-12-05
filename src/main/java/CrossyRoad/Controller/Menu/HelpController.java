@@ -1,6 +1,6 @@
-package CrossyRoad.Controler.Menu;
+package CrossyRoad.Controller.Menu;
 
-import CrossyRoad.Controler.Controller;
+import CrossyRoad.Controller.Controller;
 import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.menu.Help;

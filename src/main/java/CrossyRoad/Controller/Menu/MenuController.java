@@ -1,10 +1,9 @@
-package CrossyRoad.Controler.Menu;
+package CrossyRoad.Controller.Menu;
 
-import CrossyRoad.Controler.Controller;
+import CrossyRoad.Controller.Controller;
 import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.space.LoaderSpaceBuilder;
-import CrossyRoad.model.game.space.Space;
 import CrossyRoad.model.menu.Menu;
 import CrossyRoad.state.GameState;
 import CrossyRoad.state.HelpState;

@@ -1,6 +1,6 @@
 package CrossyRoad.state;
 
-import CrossyRoad.Controler.Controller;
+import CrossyRoad.Controller.Controller;
 import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.view.Viewer;

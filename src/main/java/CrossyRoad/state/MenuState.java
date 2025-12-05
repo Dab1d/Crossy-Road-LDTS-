@@ -1,7 +1,7 @@
 package CrossyRoad.state;
 
-import CrossyRoad.Controler.Controller;
-import CrossyRoad.Controler.Menu.MenuController;
+import CrossyRoad.Controller.Controller;
+import CrossyRoad.Controller.Menu.MenuController;
 import CrossyRoad.model.menu.Menu;
 import CrossyRoad.view.Viewer;
 import CrossyRoad.view.menu.MenuView;

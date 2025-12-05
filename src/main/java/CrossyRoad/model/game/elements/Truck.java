@@ -8,8 +8,4 @@ public class Truck extends Element  {
         super(x, y);
     }
 
-    @Override
-    public boolean blockMovement() {
-        return true;
-    }
 }
