@@ -4,15 +4,17 @@ import CrossyRoad.Controller.Controller;
 import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.space.LoaderSpaceBuilder;
+import CrossyRoad.model.game.space.Space;
 import CrossyRoad.model.menu.Menu;
+import CrossyRoad.model.menu.Win;
 import CrossyRoad.state.GameState;
 import CrossyRoad.state.HelpState;
 
 import java.io.IOException;
 
-public class MenuController extends Controller<Menu> {
-    public MenuController(Menu menu) {
-        super(menu);
+public class WinController extends Controller<Win> {
+    public WinController(Win win) {
+        super(win);
     }
 
 
@@ -27,8 +29,7 @@ public class MenuController extends Controller<Menu> {
                 break;
             case SELECT:
                 if (getModel().isSelectedExit()) game.setState(null);
-                if (getModel().isSelectedStart()) game.setState(new GameState(new LoaderSpaceBuilder(game.getLevel()).createSpace()));
-                if (getModel().isSelectedHelp()) game.setState(new HelpState());
+                if (getModel().isSelectedRestart()) game.setState(new GameState(new LoaderSpaceBuilder(1).createSpace()));
         }
     }
 }

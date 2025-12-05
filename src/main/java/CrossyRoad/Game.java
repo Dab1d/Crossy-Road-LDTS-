@@ -14,16 +14,25 @@ import java.net.URISyntaxException;
 public class Game {
     private final LanternaGUI gui;
     private State state;
+    private int level;
 
     public Game() throws IOException, URISyntaxException, FontFormatException {
         this.gui = new LanternaGUI(20, 32);
         this.state = new MenuState(new Menu());
+        this.level = 1;
     }
 
     public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException {
         new Game().start();
     }
 
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getLevel(){
+        return level;
+    }
     //will be used by the controller to chance between menu and game state
     public void setState(State state) {
         this.state = state;
