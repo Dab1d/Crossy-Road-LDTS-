@@ -6,6 +6,6 @@ import CrossyRoad.model.game.elements.Chicken;
 public class ChickenViewer implements ElementViewer<Chicken> {
     @Override
     public void draw(Chicken chicken, GUI gui) {
-        gui.drawCharacter(chicken.getPosition().getX(), chicken.getPosition().getY(), 'C', "#FF00FF");
+        gui.drawCharacter(chicken.getPosition().getX(), chicken.getPosition().getY(), 'G', "#FF00FF");
     }
 }

@@ -14,6 +14,7 @@ public class GameOverController extends Controller<GameOver> {
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
         if (action == GUI.ACTION.QUIT) {
+            game.setLevel(1);
             game.setState(new MenuState(new CrossyRoad.model.menu.Menu()));
         }
     }

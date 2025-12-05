@@ -37,12 +37,6 @@ public class SpaceController extends Controller<Space> {
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
-        //quit anytime (use this or no?)
-        if (action == GUI.ACTION.QUIT) {
-            game.setState(new MenuState(new Menu()));
-            return;
-        }
-
         switch (action) {
             case UP:
             case DOWN:

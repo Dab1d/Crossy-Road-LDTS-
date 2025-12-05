@@ -19,6 +19,6 @@ public class CarViewerTest {
         CarViewer viewer = new CarViewer();
         viewer.draw(car, gui);
 
-        verify(gui).drawCharacter(5, 5, '+', "#C4A480");
+        verify(gui).drawCharacter(5, 5, 'C', "#C4A480");
     }
 }
