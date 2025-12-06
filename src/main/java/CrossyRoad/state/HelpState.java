@@ -8,8 +8,8 @@ import CrossyRoad.view.menu.HelpView;
 
 public class HelpState extends State<Help> {
 
-    public HelpState() {
-        super(new Help());
+    public HelpState(Help model) {
+        super(model);
     }
 
     @Override
