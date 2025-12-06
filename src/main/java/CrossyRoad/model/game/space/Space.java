@@ -160,11 +160,7 @@ public class Space {
                 positions.add(r.getPosition());
             }
         }
-
         return positions;
-    }
-
-    public void draw(GUI gui) {
     }
 
     public boolean reachedEndLine() {
@@ -174,6 +170,4 @@ public class Space {
         }
         return false;
     }
-
-
 }

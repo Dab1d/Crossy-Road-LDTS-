@@ -88,4 +88,26 @@ class PositionTest {
         assertTrue(position.getUp().equals(testpos.getUp()));
 
     }
+
+    @Test
+    void setXTest() {
+        position.setX(6);
+        assertEquals(6, position.getX());
+        assertNotEquals(5, position.getX());
+        assertNotEquals(4, position.getX());
+        assertEquals(5, position.getY());
+        assertNotEquals(6, position.getY());
+        assertNotEquals(4, position.getY());
+    }
+
+    @Test
+    void setYTest() {
+        position.setY(6);
+        assertEquals(6, position.getY());
+        assertNotEquals(5, position.getY());
+        assertNotEquals(4, position.getY());
+        assertEquals(5, position.getX());
+        assertNotEquals(6, position.getX());
+        assertNotEquals(4, position.getX());
+    }
 }

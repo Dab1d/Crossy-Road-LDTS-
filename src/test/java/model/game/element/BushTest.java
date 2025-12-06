@@ -4,8 +4,7 @@ import CrossyRoad.model.game.elements.Bush;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BushTest {
     Bush bush;
@@ -24,5 +23,11 @@ public class BushTest {
         assertEquals(bush.getPosition().getY(), 5);
         assertFalse( bush.getPosition().getY() == 6);
         assertFalse( bush.getPosition().getY() == 4);
+    }
+
+    @Test
+    public void blockMovementTest() {
+        assertTrue(bush.blockMovement());
+        assertFalse(!bush.blockMovement());
     }
 }

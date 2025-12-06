@@ -35,4 +35,10 @@ public class ElementTest {
         assertNotEquals(element.getPosition(), new Position(6,7));
         assertNotEquals(element.getPosition(), new Position(7,6));
     }
+
+    @Test
+    public void blockMovementTest() {
+        assertTrue(!element.blockMovement());
+        assertFalse(element.blockMovement());
+    }
 }
