@@ -4,6 +4,7 @@ import CrossyRoad.Controller.Controller;
 import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.space.LoaderSpaceBuilder;
+import CrossyRoad.model.menu.Help;
 import CrossyRoad.model.menu.Menu;
 import CrossyRoad.state.GameState;
 import CrossyRoad.state.HelpState;
@@ -28,7 +29,7 @@ public class MenuController extends Controller<Menu> {
             case SELECT:
                 if (getModel().isSelectedExit()) game.setState(null);
                 if (getModel().isSelectedStart()) game.setState(new GameState(new LoaderSpaceBuilder(game.getLevel()).createSpace()));
-                if (getModel().isSelectedHelp()) game.setState(new HelpState());
+                if (getModel().isSelectedHelp()) game.setState(new HelpState(new Help()));
         }
     }
 }

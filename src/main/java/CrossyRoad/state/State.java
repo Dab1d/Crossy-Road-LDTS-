@@ -18,6 +18,13 @@ public abstract class State<T> {
         this.controller = getController();
     }
 
+    // for mock testing
+    public State(T model, Viewer<T> viewer, Controller<T> controller) {
+        this.model = model;
+        this.viewer = viewer;
+        this.controller = controller;
+    }
+
     public abstract Viewer<T> getViewer();
 
     public abstract Controller<T> getController();

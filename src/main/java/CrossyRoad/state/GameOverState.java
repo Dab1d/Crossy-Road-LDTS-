@@ -7,8 +7,8 @@ import CrossyRoad.view.Viewer;
 import CrossyRoad.view.menu.GameOverView;
 
 public class GameOverState extends State<GameOver> {
-    public GameOverState() {
-        super(new GameOver());
+    public GameOverState(GameOver model) {
+        super(model);
     }
 
     @Override
