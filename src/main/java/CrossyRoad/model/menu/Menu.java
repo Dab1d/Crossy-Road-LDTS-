@@ -6,7 +6,12 @@ import java.util.List;
 public class Menu {
     private final List<String> entries;
     private int currentEntry = 0;
+    private List<String> background;
 
+    public Menu(List<String> background) {
+        this.background = background;
+        this.entries = Arrays.asList("Start", "Help", "Exit");
+    }
     public Menu() {
         this.entries = Arrays.asList("Start", "Help", "Exit");
     }
@@ -43,5 +48,9 @@ public class Menu {
 
     public int getNumberEntries() {
         return this.entries.size();
+    }
+
+    public List<String> getBackground() {
+        return background;
     }
 }

@@ -31,7 +31,7 @@ public class PauseController extends Controller<Pause> {
                 if (getModel().isSelectedQuit()) game.setState(null);
                 if (getModel().isSelectedMenu()){
                     game.setLevel(1);
-                    game.setState(new MenuState(new Menu()));
+                    game.setState(new MenuState());
                 }
                 if (getModel().isSelectedResume()) game.setState(game.getPrevious());
         }
