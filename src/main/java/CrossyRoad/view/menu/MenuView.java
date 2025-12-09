@@ -35,7 +35,7 @@ public class MenuView extends Viewer<Menu> {
                         case 'j' -> "#B4B4B4";
                         default -> "#FFFFFF";
                     };
-                    gui.drawPixel(x,y,color);
+                    gui.drawPixel(x, y, color);
                 }
             }
         }
@@ -44,8 +44,9 @@ public class MenuView extends Viewer<Menu> {
         gui.drawText(new Position(8, 1), "Menu", "#FFFFFF");
         for (int i = 0; i < getModel().getNumberEntries(); i++)
             gui.drawText(
-                    new Position(2 + i*6, 4),
+                    new Position(2 + i * 6, 4),
                     getModel().getEntry(i),
                     getModel().isSelected(i) ? "#FFBA66" : "#2E89A6"
             );
-    }}
+    }
+}

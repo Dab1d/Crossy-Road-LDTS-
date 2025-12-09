@@ -18,15 +18,13 @@ public class MenuViewerTest {
         MenuView viewer = new MenuView(menu);
         viewer.drawElements(gui);
 
-        verify(gui).drawText(new Position(5,5),"Menu", "#FFFFFF");
-        verify(gui).drawText(new Position(3,15),"Press Enter", "#FFFFFF");
-        verify(gui).drawText(new Position(4,16),"to Select", "#FFFFFF");
+        verify(gui).drawText(new Position(8, 1), "Menu", "#FFFFFF");
 
         int num = menu.getNumberEntries();
-        for(int i = 0; i < num; i++) {
-            verify(gui).drawText(new Position(5, 7 + i),
+        for (int i = 0; i < num; i++) {
+            verify(gui).drawText(new Position(2 + i * 6, 4),
                     viewer.getModel().getEntry(i),
-                    viewer.getModel().isSelected(i) ? "#FFD700" : "#FFFFFF");
+                    viewer.getModel().isSelected(i) ? "#FFBA66" : "#2E89A6");
         }
 
     }
