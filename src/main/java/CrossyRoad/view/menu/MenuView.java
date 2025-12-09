@@ -42,12 +42,10 @@ public class MenuView extends Viewer<Menu> {
 
         // Desenhar menu por cima
         gui.drawText(new Position(8, 1), "Menu", "#FFFFFF");
-        gui.drawText(new Position(5, 28), "Press Enter", "#FFFFFF");
-        gui.drawText(new Position(6, 29), "to Select", "#FFFFFF");
         for (int i = 0; i < getModel().getNumberEntries(); i++)
             gui.drawText(
-                    new Position(15, 11 + i),
+                    new Position(2 + i*6, 4),
                     getModel().getEntry(i),
-                    getModel().isSelected(i) ? "#FFD700" : "#FFFFFF"
+                    getModel().isSelected(i) ? "#FFBA66" : "#2E89A6"
             );
     }}
