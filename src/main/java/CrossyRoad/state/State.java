@@ -1,6 +1,6 @@
 package CrossyRoad.state;
 
-import CrossyRoad.Controler.Controller;
+import CrossyRoad.Controller.Controller;
 import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.view.Viewer;
@@ -16,6 +16,13 @@ public abstract class State<T> {
         this.model = model;
         this.viewer = getViewer();
         this.controller = getController();
+    }
+
+    // for mock testing
+    public State(T model, Viewer<T> viewer, Controller<T> controller) {
+        this.model = model;
+        this.viewer = viewer;
+        this.controller = controller;
     }
 
     public abstract Viewer<T> getViewer();

@@ -1,5 +1,6 @@
 package CrossyRoad.model.game.space;
 
+import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.elements.*;
 import CrossyRoad.model.Position;
 
@@ -42,32 +43,77 @@ public class Space {
     }
 
 
-    public int getWidth() { return width; }
-    public int getHeight() { return height; }
+    public int getWidth() {
+        return width;
+    }
 
-    public Chicken getChicken() { return chicken; }
-    public void setChicken(Chicken chicken) { this.chicken = chicken; }
+    public int getHeight() {
+        return height;
+    }
 
-    public List<Bush> getBushes() { return bushes; }
-    public void setBushes(List<Bush> bushes) { this.bushes = bushes; }
+    public Chicken getChicken() {
+        return chicken;
+    }
 
-    public List<Car> getCars() { return cars; }
-    public void setCars(List<Car> cars) { this.cars = cars; }
+    public void setChicken(Chicken chicken) {
+        this.chicken = chicken;
+    }
 
-    public List<Truck> getTruck() { return trucks; }
-    public void setTrucks(List<Truck> trucks) { this.trucks = trucks; }
+    public List<Bush> getBushes() {
+        return bushes;
+    }
 
-    public void setLogs(List<Log> logs) { this.logs = logs; }
-    public List<Log> getLogs() { return logs; }
+    public void setBushes(List<Bush> bushes) {
+        this.bushes = bushes;
+    }
 
-    public void setRiver(List<River> river) { this.river = river; }
-    public List<River> getRiver() { return river; }
+    public List<Car> getCars() {
+        return cars;
+    }
 
-    public void setEndLines(List<EndLine> endlines) { this.endlines = endlines; }
-    public List<EndLine> getEndlines() { return endlines; }
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
+    }
 
-    public void setWalls(List<Wall> walls) { this.walls = walls; }
-    public List<Wall> getWalls() { return walls; }
+    public List<Truck> getTruck() {
+        return trucks;
+    }
+
+    public void setTrucks(List<Truck> trucks) {
+        this.trucks = trucks;
+    }
+
+    public void setLogs(List<Log> logs) {
+        this.logs = logs;
+    }
+
+    public List<Log> getLogs() {
+        return logs;
+    }
+
+    public void setRiver(List<River> river) {
+        this.river = river;
+    }
+
+    public List<River> getRiver() {
+        return river;
+    }
+
+    public void setEndLines(List<EndLine> endlines) {
+        this.endlines = endlines;
+    }
+
+    public List<EndLine> getEndlines() {
+        return endlines;
+    }
+
+    public void setWalls(List<Wall> walls) {
+        this.walls = walls;
+    }
+
+    public List<Wall> getWalls() {
+        return walls;
+    }
 
     public boolean isEmpty(Position pos) {
         for (Element e : getAllElements())
@@ -96,6 +142,27 @@ public class Space {
         return false;
     }
 
+    public int[] getRiverLinesY() {
+        int[] lines = new int[river.size()];
+
+        for (int i = 0; i < river.size(); i++) {
+            lines[i] = river.get(i).getPosition().getY();
+        }
+
+        return lines;
+    }
+
+    public List<Position> getRiverPositionsAtLine(int y) {
+        List<Position> positions = new ArrayList<>();
+
+        for (River r : river) {
+            if (r.getPosition().getY() == y) {
+                positions.add(r.getPosition());
+            }
+        }
+        return positions;
+    }
+
     public boolean reachedEndLine() {
         Position chickenPos = chicken.getPosition();
         for (EndLine endline : endlines) {
@@ -103,9 +170,4 @@ public class Space {
         }
         return false;
     }
-
-
-
-
-
 }

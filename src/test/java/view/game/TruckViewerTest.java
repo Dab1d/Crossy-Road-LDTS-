@@ -19,6 +19,6 @@ public class TruckViewerTest {
         TruckViewer viewer = new TruckViewer();
         viewer.draw(truck, gui);
 
-        verify(gui).drawCharacter(5, 5, 'T', "#FFFF00");
+        verify(gui).drawPixel(5, 5,  "#A19E67");
     }
 }

@@ -19,6 +19,6 @@ public class WallViewerTest {
         WallViewer viewer = new WallViewer();
         viewer.draw(wall, gui);
 
-        verify(gui).drawCharacter(5, 5, '#', "#FFFFFF");
+        verify(gui).drawCharacter(5, 5, ' ', "#FFFFFF");
     }
 }

@@ -144,5 +144,4 @@ public class LoaderSpaceBuilder extends SpaceBuilder {
         }
         return endlines;
     }
-
 }

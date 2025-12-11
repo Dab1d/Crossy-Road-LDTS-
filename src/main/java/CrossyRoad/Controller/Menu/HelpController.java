@@ -1,10 +1,12 @@
-package CrossyRoad.Controler.Menu;
+package CrossyRoad.Controller.Menu;
 
-import CrossyRoad.Controler.Controller;
+import CrossyRoad.Controller.Controller;
 import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.menu.Help;
 import CrossyRoad.state.MenuState;
+
+import java.io.IOException;
 
 public class HelpController extends Controller<Help> {
 
@@ -13,9 +15,9 @@ public class HelpController extends Controller<Help> {
     }
 
     @Override
-    public void step(Game game, GUI.ACTION action, long time) {
+    public void step(Game game, GUI.ACTION action, long time) throws IOException {
         if (action == GUI.ACTION.QUIT) {
-            game.setState(new MenuState(new CrossyRoad.model.menu.Menu()));
+            game.setState(new MenuState());
         }
     }
 }

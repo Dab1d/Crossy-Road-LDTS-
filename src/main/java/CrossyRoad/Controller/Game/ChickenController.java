@@ -1,9 +1,10 @@
-package CrossyRoad.Controler.Game;
+package CrossyRoad.Controller.Game;
 
-import CrossyRoad.Controler.Controller;
+import CrossyRoad.Controller.Controller;
 import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.Position;
+import CrossyRoad.model.game.elements.Log;
 import CrossyRoad.model.game.space.Space;
 
 public class ChickenController extends Controller<Space> {
@@ -30,7 +31,6 @@ public class ChickenController extends Controller<Space> {
     private void moveChicken(Position position) {
         if (getModel().isEmpty(position)) {
             getModel().getChicken().setPosition(position);
-//            if (getModel().isMonster(position)) getModel().getHero().decreaseEnergy();
         }
     }
 
@@ -40,5 +40,11 @@ public class ChickenController extends Controller<Space> {
         if (action == GUI.ACTION.RIGHT) moveChickenRight();
         if (action == GUI.ACTION.DOWN) moveChickenDown();
         if (action == GUI.ACTION.LEFT) moveChickenLeft();
+
+        for(Log log : getModel().getLogs()) {
+            if (getModel().getChicken().getPosition().equals(log.getPosition())) {
+                moveChicken(log.getPosition());
+            }
+        }
     }
 }

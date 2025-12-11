@@ -1,14 +1,14 @@
 package CrossyRoad.state;
 
-import CrossyRoad.Controler.Controller;
-import CrossyRoad.Controler.Menu.GameOverController;
+import CrossyRoad.Controller.Controller;
+import CrossyRoad.Controller.Menu.GameOverController;
 import CrossyRoad.model.menu.GameOver;
 import CrossyRoad.view.Viewer;
 import CrossyRoad.view.menu.GameOverView;
 
 public class GameOverState extends State<GameOver> {
-    public GameOverState() {
-        super(new GameOver());
+    public GameOverState(GameOver model) {
+        super(model);
     }
 
     @Override

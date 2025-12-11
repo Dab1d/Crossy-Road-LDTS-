@@ -19,6 +19,6 @@ public class ChickenViewerTest {
         ChickenViewer viewer = new ChickenViewer();
         viewer.draw(chicken, gui);
 
-        verify(gui).drawCharacter(5, 5, 'C', "#FF00FF");
+        verify(gui).drawCharacter(5, 5, 'G', "#FF00FF");
     }
 }

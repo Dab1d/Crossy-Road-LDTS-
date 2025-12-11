@@ -1,6 +1,7 @@
 package CrossyRoad.gui;
 
 import CrossyRoad.model.Position;
+import com.googlecode.lanterna.TextColor;
 
 import java.io.IOException;
 
@@ -12,6 +13,8 @@ public interface GUI {
 
     void drawText(Position position, String text, String color);
 
+    void drawPixel(double x, double y, String color);
+
     void clear();
 
     void refresh() throws IOException;
@@ -19,5 +22,5 @@ public interface GUI {
     void close() throws IOException;
 
 
-    enum ACTION {UP, RIGHT, DOWN, LEFT, NONE, QUIT, SELECT}
+    enum ACTION {UP, RIGHT, DOWN, LEFT, NONE, QUIT, SELECT, PAUSE}
 }

@@ -1,4 +1,4 @@
-package CrossyRoad.Controler;
+package CrossyRoad.Controller;
 
 import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;

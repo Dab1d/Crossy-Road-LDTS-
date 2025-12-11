@@ -76,6 +76,7 @@ public class LanternaGUI implements GUI {
         if (keyStroke == null) return ACTION.NONE;
         if (keyStroke.getKeyType() == KeyType.EOF) return ACTION.QUIT;
         if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'q') return ACTION.QUIT;
+        if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'p') return ACTION.PAUSE;
 
         if (keyStroke.getKeyType() == KeyType.ArrowUp) return ACTION.UP;
         if (keyStroke.getKeyType() == KeyType.ArrowRight) return ACTION.RIGHT;
@@ -93,6 +94,14 @@ public class LanternaGUI implements GUI {
         TextGraphics tg = screen.newTextGraphics();
         tg.setForegroundColor(TextColor.Factory.fromString(color));
         tg.putString(position.getX(), position.getY(), text);
+    }
+
+    @Override
+    public void drawPixel(double x, double y, String color_) {
+        var graphics = this.screen.newTextGraphics();
+        TextColor color = TextColor.Factory.fromString(color_);
+        graphics.setBackgroundColor(color);
+        graphics.putString((int) x, (int) y, " "); // Use a space character to create a "pixel"
     }
 
     public void drawCharacter(int x, int y, char c, String color) {

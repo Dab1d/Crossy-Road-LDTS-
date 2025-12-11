@@ -1,7 +1,8 @@
 package CrossyRoad;
 
+import CrossyRoad.gui.GUI;
 import CrossyRoad.gui.LanternaGUI;
-import CrossyRoad.model.game.elements.*;
+import CrossyRoad.model.menu.MenuLoader;
 import CrossyRoad.state.MenuState;
 import CrossyRoad.state.State;
 import CrossyRoad.model.menu.Menu;
@@ -14,23 +15,45 @@ import java.net.URISyntaxException;
 public class Game {
     private final LanternaGUI gui;
     private State state;
+    private State previousState;
+    private int level;
 
     public Game() throws IOException, URISyntaxException, FontFormatException {
         this.gui = new LanternaGUI(20, 32);
-        this.state = new MenuState(new Menu());
+        this.state = new MenuState(new Menu(MenuLoader.loadBackground()));
+        this.level = 1;
     }
 
     public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException {
         new Game().start();
     }
 
+    public void setPrevious(State state) {
+        this.previousState = state;
+    }
+
+    public State getPrevious() {
+        return this.previousState;
+    }
+
+    public State getState(){
+        return this.state;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getLevel(){
+        return level;
+    }
     //will be used by the controller to chance between menu and game state
     public void setState(State state) {
         this.state = state;
     }
 
     public void start() throws IOException {
-        int FPS = 80;
+        int FPS = 60;
         int frameTime = 1000 / FPS;
         while (state != null) {
             long startTime = System.currentTimeMillis();
@@ -48,4 +71,7 @@ public class Game {
         gui.close();
     }
 
+    public GUI getGUI() {
+        return gui;
+    }
 }

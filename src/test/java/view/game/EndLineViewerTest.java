@@ -19,6 +19,6 @@ public class EndLineViewerTest {
         EndLineViewer viewer = new EndLineViewer();
         viewer.draw(endLine, gui);
 
-        verify(gui).drawCharacter(5, 5, '=', "#F00000");
+        verify(gui).drawPixel(5, 5,  "#68FC86");
     }
 }

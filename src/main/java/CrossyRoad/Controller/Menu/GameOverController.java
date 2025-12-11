@@ -1,10 +1,12 @@
-package CrossyRoad.Controler.Menu;
+package CrossyRoad.Controller.Menu;
 
-import CrossyRoad.Controler.Controller;
+import CrossyRoad.Controller.Controller;
 import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.menu.GameOver;
 import CrossyRoad.state.MenuState;
+
+import java.io.IOException;
 
 public class GameOverController extends Controller<GameOver> {
     public GameOverController(GameOver gameover) {
@@ -12,9 +14,10 @@ public class GameOverController extends Controller<GameOver> {
     }
 
     @Override
-    public void step(Game game, GUI.ACTION action, long time) {
+    public void step(Game game, GUI.ACTION action, long time) throws IOException {
         if (action == GUI.ACTION.QUIT) {
-            game.setState(new MenuState(new CrossyRoad.model.menu.Menu()));
+            game.setLevel(1);
+            game.setState(new MenuState());
         }
     }
 }

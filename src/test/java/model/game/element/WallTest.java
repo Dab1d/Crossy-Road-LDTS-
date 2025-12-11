@@ -4,8 +4,7 @@ import CrossyRoad.model.game.elements.Wall;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class WallTest {
     Wall wall;
@@ -24,5 +23,11 @@ public class WallTest {
         assertEquals(wall.getPosition().getY(), 5);
         assertFalse( wall.getPosition().getY() == 6);
         assertFalse( wall.getPosition().getY() == 4);
+    }
+
+    @Test
+    public void blockMovementTest() {
+        assertTrue(wall.blockMovement());
+        assertFalse(!wall.blockMovement());
     }
 }

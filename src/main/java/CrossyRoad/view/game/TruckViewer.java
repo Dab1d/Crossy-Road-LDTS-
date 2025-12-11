@@ -7,6 +7,6 @@ import CrossyRoad.model.game.elements.Truck;
 public class TruckViewer implements ElementViewer<Truck> {
     @Override
     public void draw(Truck truck, GUI gui) {
-            gui.drawCharacter(truck.getPosition().getX(), truck.getPosition().getY(), 'T', "#FFFF00");
+        gui.drawPixel(truck.getPosition().getX(), truck.getPosition().getY(), "#A19E67");
         }
 }

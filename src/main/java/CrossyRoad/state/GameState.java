@@ -1,7 +1,7 @@
 package CrossyRoad.state;
 
-import CrossyRoad.Controler.Controller;
-import CrossyRoad.Controler.Game.SpaceController;
+import CrossyRoad.Controller.Controller;
+import CrossyRoad.Controller.Game.SpaceController;
 import CrossyRoad.model.game.space.Space;
 import CrossyRoad.view.Viewer;
 import CrossyRoad.view.game.GameViewer;

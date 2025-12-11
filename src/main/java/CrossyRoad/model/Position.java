@@ -43,4 +43,13 @@ public class Position {
         Position p = (Position) o; // casts o to position (it already is)
         return x_ == p.getX() && y_ == p.getY(); //checks if the positions are the same.
     }
+
+    public void setX(int newX) {
+        this.x_ = newX;
+    }
+
+    public void setY(int newY) {
+        this.y_ = newY;
+    }
+
 }
