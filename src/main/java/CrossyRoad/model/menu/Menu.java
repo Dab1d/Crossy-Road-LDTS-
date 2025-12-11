@@ -12,6 +12,7 @@ public class Menu {
         this.background = background;
         this.entries = Arrays.asList("Start", "Help", "Exit");
     }
+
     public Menu() {
         this.entries = Arrays.asList("Start", "Help", "Exit");
     }

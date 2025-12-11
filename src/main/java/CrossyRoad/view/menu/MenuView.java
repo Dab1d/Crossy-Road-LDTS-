@@ -33,6 +33,7 @@ public class MenuView extends Viewer<Menu> {
                         case 'h' -> "#772D20";
                         case 'i' -> "#E0E0E0";
                         case 'j' -> "#B4B4B4";
+                        case 'k' -> "#0047ab";
                         default -> "#FFFFFF";
                     };
                     gui.drawPixel(x, y, color);

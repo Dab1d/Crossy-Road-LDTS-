@@ -3,7 +3,11 @@ package CrossyRoad.Controller.Menu;
 import CrossyRoad.Controller.Controller;
 import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;
+import CrossyRoad.model.game.space.LoaderSpaceBuilder;
 import CrossyRoad.model.menu.GameOver;
+import CrossyRoad.model.menu.Help;
+import CrossyRoad.state.GameState;
+import CrossyRoad.state.HelpState;
 import CrossyRoad.state.MenuState;
 
 import java.io.IOException;
@@ -15,9 +19,16 @@ public class GameOverController extends Controller<GameOver> {
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
-        if (action == GUI.ACTION.QUIT) {
-            game.setLevel(1);
-            game.setState(new MenuState());
+        switch (action) {
+            case LEFT:
+                getModel().previousEntry();
+                break;
+            case RIGHT:
+                getModel().nextEntry();
+                break;
+            case SELECT:
+                if (getModel().isSelectedExit()) game.setState(null);
+                if (getModel().isSelectedRestart()) game.setState(new GameState(new LoaderSpaceBuilder(game.getLevel()).createSpace()));
         }
     }
 }
