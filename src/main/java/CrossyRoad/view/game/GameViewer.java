@@ -23,6 +23,10 @@ public class GameViewer extends Viewer<Space> {
         drawElements(gui, getModel().getTruck(),new TruckViewer());
         drawElements(gui, getModel().getWalls(), new WallViewer());
         drawElement(gui, getModel().getChicken(), new ChickenViewer());
+
+        gui.drawText(new Position(0, 0),
+                "Score: " + getModel().getScore().getPoints(),
+                "#FFFF00");
     }
 
     protected <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {

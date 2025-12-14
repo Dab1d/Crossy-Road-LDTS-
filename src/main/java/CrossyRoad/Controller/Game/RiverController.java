@@ -1,11 +1,16 @@
-package CrossyRoad.Controler.Game;
+package CrossyRoad.Controller.Game;
 
 import CrossyRoad.Controller.Controller;
 import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.space.Space;
 import CrossyRoad.model.Position;
+import CrossyRoad.model.menu.GameOver;
+import CrossyRoad.model.menu.Pause;
+import CrossyRoad.state.GameOverState;
+import CrossyRoad.state.PauseState;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
@@ -41,4 +46,20 @@ public class RiverController extends Controller<Space> {
             }
         }
     }
-}
+        public static class ScoreController extends Controller<Space> {
+
+            public ScoreController(Space space) {
+                super(space);
+            }
+
+            public void addPoints(int points) {
+                getModel().getScore().addPoints(points);
+            }
+
+            @Override
+            public void step(Game game, GUI.ACTION action, long time) {
+                if (action == GUI.ACTION.QUIT)
+                    getModel().getScore().reset();
+            }
+        }
+    }

@@ -1,14 +1,11 @@
 package CrossyRoad.Controller.Game;
 
-import CrossyRoad.Controler.Game.RiverController;
 import CrossyRoad.Controller.Controller;
 import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.space.Space;
 import CrossyRoad.model.menu.GameOver;
 import CrossyRoad.model.menu.Pause;
-import CrossyRoad.Controller.Menu.ScoreController;
-import CrossyRoad.model.menu.Score;
 import CrossyRoad.state.GameOverState;
 import CrossyRoad.state.PauseState;
 import java.io.IOException;
@@ -20,8 +17,8 @@ public class SpaceController extends Controller<Space> {
     private final CarController CarController;
     private final LogController LogController;
     private final RiverController RiverController;
-    private final ScoreController ScoreController;
-    private final Score score;
+    private final RiverController.ScoreController ScoreController;
+
 
     public SpaceController(Space space) {
         super(space);
@@ -31,8 +28,7 @@ public class SpaceController extends Controller<Space> {
         this.CarController = new CarController(space);
         this.LogController = new LogController(space);
         this.RiverController = new RiverController(space);
-        this.score = new Score();
-        this.ScoreController = new ScoreController(score);
+        this.ScoreController = new RiverController.ScoreController(space);
     }
 
     private boolean chickenDied() {
@@ -44,14 +40,12 @@ public class SpaceController extends Controller<Space> {
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
         switch (action) {
             case UP:
-                ChickenController.step(game, action, time);
-                ScoreController.addPoints(1);
-                break;
             case DOWN:
             case LEFT:
             case RIGHT:
                 ChickenController.step(game, action, time);
                 EndLineController.step(game, action, time);
+                if (action == GUI.ACTION.UP) ScoreController.addPoints(1);
                 break;
             case PAUSE:
                 game.setPrevious(game.getState());
@@ -66,7 +60,7 @@ public class SpaceController extends Controller<Space> {
 
         if (chickenDied()) {
             game.setLevel(1);
-            game.setState(new GameOverState(new GameOver(score)));
+            game.setState(new GameOverState(new GameOver(getModel().getScore())));
         }
         
     }
