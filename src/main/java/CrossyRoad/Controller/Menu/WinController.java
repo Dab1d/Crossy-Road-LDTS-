@@ -4,12 +4,8 @@ import CrossyRoad.Controller.Controller;
 import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.space.LoaderSpaceBuilder;
-import CrossyRoad.model.game.space.Space;
-import CrossyRoad.model.menu.Menu;
 import CrossyRoad.model.menu.Win;
 import CrossyRoad.state.GameState;
-import CrossyRoad.state.HelpState;
-
 import java.io.IOException;
 
 public class WinController extends Controller<Win> {
@@ -21,10 +17,10 @@ public class WinController extends Controller<Win> {
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
         switch (action) {
-            case UP:
+            case LEFT:
                 getModel().previousEntry();
                 break;
-            case DOWN:
+            case RIGHT:
                 getModel().nextEntry();
                 break;
             case SELECT:

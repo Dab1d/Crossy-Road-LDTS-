@@ -7,6 +7,7 @@ import CrossyRoad.model.Position;
 import CrossyRoad.model.game.space.LoaderSpaceBuilder;
 import CrossyRoad.model.game.space.Space;
 import CrossyRoad.model.game.elements.EndLine;
+import CrossyRoad.model.loader.Loader;
 import CrossyRoad.model.menu.Win;
 import CrossyRoad.state.GameState;
 import CrossyRoad.state.WinState;
@@ -27,7 +28,7 @@ public class EndLineController extends Controller<Space> {
                     game.setLevel(game.getLevel() + 1);
                     game.setState(new GameState(new LoaderSpaceBuilder(game.getLevel()).createSpace()));
                 }
-                else if(game.getLevel() == 5) game.setState(new WinState(new Win()));
+                else if(game.getLevel() == 5) game.setState(new WinState(new Win(new Loader("GameWinScreen").getLines())));
             }
         }
     }
