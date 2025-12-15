@@ -2,7 +2,6 @@ package CrossyRoad.view.menu;
 
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.Position;
-import CrossyRoad.model.menu.GameOver;
 import CrossyRoad.model.menu.Win;
 import CrossyRoad.view.Viewer;
 

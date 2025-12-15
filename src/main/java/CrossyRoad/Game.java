@@ -17,11 +17,13 @@ public class Game {
     private State state;
     private State previousState;
     private int level;
+    private int score;
 
     public Game() throws IOException, URISyntaxException, FontFormatException {
         this.gui = new LanternaGUI(20, 32);
         this.state = new MenuState(new Menu(new Loader("loadscreen").getLines()));
         this.level = 1;
+        this.score = 0;
     }
 
     public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException {
@@ -46,6 +48,14 @@ public class Game {
 
     public int getLevel(){
         return level;
+    }
+
+    public void addScore(){
+        score++;
+    }
+
+    public int getScore(){
+        return score;
     }
     //will be used by the controller to chance between menu and game state
     public void setState(State state) {
