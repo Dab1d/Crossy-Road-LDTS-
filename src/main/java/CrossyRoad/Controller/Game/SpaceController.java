@@ -61,7 +61,7 @@ public class SpaceController extends Controller<Space> {
 
         if (chickenDied()) {
             game.setLevel(1);
-            game.setState(new GameOverState(new GameOver(new Loader("GameOverScreen").getLines(),getModel().getScore() )));
+            game.setState(new GameOverState(new GameOver(new Loader("GameOverScreen").getLines())));
         }
         
     }

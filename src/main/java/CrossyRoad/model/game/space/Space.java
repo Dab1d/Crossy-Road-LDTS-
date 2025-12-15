@@ -1,9 +1,7 @@
 package CrossyRoad.model.game.space;
 
-import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.elements.*;
 import CrossyRoad.model.Position;
-import CrossyRoad.model.menu.Score;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +12,6 @@ public class Space {
     private final int height;
 
     private Chicken chicken;
-    private Score score;
 
     private List<Bush> bushes;
     private List<Truck> trucks;
@@ -179,11 +176,5 @@ public class Space {
         return false;
     }
 
-    public Score getScore() {
-        return score;
-    }
 
-    public void setScore(Score score) {
-        this.score = score;
-    }
 }
