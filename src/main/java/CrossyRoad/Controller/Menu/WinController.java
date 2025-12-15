@@ -26,6 +26,7 @@ public class WinController extends Controller<Win> {
             case SELECT:
                 if (getModel().isSelectedExit()) game.setState(null);
                 if (getModel().isSelectedRestart()){
+                    game.resetScore();
                     game.setLevel(1);
                     game.setState(new GameState(new LoaderSpaceBuilder(1).createSpace()));
                 }
