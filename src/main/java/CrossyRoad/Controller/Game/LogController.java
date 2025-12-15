@@ -38,7 +38,6 @@ public class LogController extends Controller<Space> {
         int width = getModel().getWidth();
         Position chickenPos = getModel().getChicken().getPosition();
 
-        // prevent the chicken from moving to the next log when it steps onto a log
         boolean chickenMoved = false;
 
         for (Log log : getModel().getLogs()) {
@@ -46,20 +45,23 @@ public class LogController extends Controller<Space> {
 
             boolean carryingChicken = !chickenMoved && chickenPos.equals(logPos);
 
-            //log's speed
             int movement = speeds.get(log);
             int newLogX = logPos.getX() + movement;
-            //circularity
+
+
             if (newLogX >= width) newLogX = 0;
-            // move log 1 unit
             else if (newLogX < 0) newLogX = width - 1;
 
             logPos.setX(newLogX);
 
-            //chicken on log
+            // Se a galinha estava no tronco, move-a
             if (carryingChicken) {
                 int newChickenX = chickenPos.getX() + movement;
-                chickenPos.setX(newChickenX);
+                if (newChickenX < 0 || newChickenX >= width) {
+                    getModel().isChickenDead();
+                } else {
+                    chickenPos.setX(newChickenX);
+                }
                 chickenMoved = true;
             }
         }

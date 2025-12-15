@@ -1,6 +1,7 @@
 package CrossyRoad.view.game;
 
 import CrossyRoad.gui.GUI;
+import CrossyRoad.model.Position;
 import CrossyRoad.model.game.elements.Element;
 import CrossyRoad.model.game.space.Space;
 import CrossyRoad.view.Viewer;

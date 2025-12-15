@@ -32,6 +32,9 @@ public class GameOverView extends Viewer<GameOver> {
                         case 'i' -> "#E0E0E0";
                         case 'j' -> "#B4B4B4";
                         case 'k' -> "#0047ab";
+                        case 'n' -> "#ffba00";
+                        case 'l' -> "#ff9800";
+                        case 'm' -> "#00c1ff";
                         default -> "#FFFFFF";
                     };
                     gui.drawPixel(x, y, color);

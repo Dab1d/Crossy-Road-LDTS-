@@ -8,7 +8,7 @@ public class GameOver {
     private int currentEntry = 0;
     private List<String> background;
 
-    public GameOver(List<String> background) {
+    public GameOver(List<String> background, Score score) {
         this.background = background;
         this.lines = Arrays.asList("Restart", "Exit");
     }
