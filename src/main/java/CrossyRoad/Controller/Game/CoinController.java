@@ -18,7 +18,6 @@ public class CoinController extends Controller<Space> {
         super(space);
     }
 
-    private int score = 0;
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
@@ -27,16 +26,12 @@ public class CoinController extends Controller<Space> {
         for (Coin coin : getModel().getCoins()) {
             if (!collectedCoins.contains(coin) && coin.getPosition().equals(chickenPos)) {
                 collectedCoins.add(coin);
-                score++;
-
+                game.addScore();
+                
                 coin.getPosition().setX(-1);
                 coin.getPosition().setY(-1);
             }
         }
-    }
-
-    public int getScore() {
-        return score;
     }
 
     public boolean isCollected(Coin coin) {
