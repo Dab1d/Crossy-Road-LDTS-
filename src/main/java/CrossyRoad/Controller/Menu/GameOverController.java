@@ -28,7 +28,10 @@ public class GameOverController extends Controller<GameOver> {
                 break;
             case SELECT:
                 if (getModel().isSelectedExit()) game.setState(null);
-                if (getModel().isSelectedRestart()) game.setState(new GameState(new LoaderSpaceBuilder(game.getLevel()).createSpace()));
+                if (getModel().isSelectedRestart()) {
+                    game.resetScore();
+                    game.setState(new GameState(new LoaderSpaceBuilder(game.getLevel()).createSpace()));
+                }
         }
     }
 }

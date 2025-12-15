@@ -36,6 +36,13 @@ public abstract class State<T> {
     public void step(Game game, GUI gui, long startTime) throws IOException {
         GUI.ACTION action = gui.getNextAction(); //detects user input
         controller.step(game, action, startTime);
+
+        gui.clear();
         viewer.draw(gui);
+
+        if (this instanceof GameState) {
+            game.getHUD().draw(gui, game);
+        }
+        gui.refresh();
     }
 }
