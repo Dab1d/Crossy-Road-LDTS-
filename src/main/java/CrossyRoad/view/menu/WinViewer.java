@@ -33,6 +33,9 @@ public class WinViewer extends Viewer<Win> {
                         case 'i' -> "#E0E0E0";
                         case 'j' -> "#B4B4B4";
                         case 'k' -> "#0047ab";
+                        case 'n' -> "#ffba00";
+                        case 'l'->"#ff9800";
+                        case 'm'->"#00c1ff";
                         default -> "#FFFFFF";
                     };
                     gui.drawPixel(x, y, color);
@@ -42,7 +45,7 @@ public class WinViewer extends Viewer<Win> {
 
         for(int i = 0; i < getModel().getNumberEntries(); i++){
             gui.drawText(
-                    new Position(2 + (10 * i), 11),
+                    new Position(2 + (10 * i), 9),
                     getModel().getEntry(i),
                     getModel().isSelected(i) ? "#FFBA66" : "#2E89A6"
             );

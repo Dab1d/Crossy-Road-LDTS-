@@ -28,7 +28,7 @@ public class EndLineController extends Controller<Space> {
                     game.setLevel(game.getLevel() + 1);
                     game.setState(new GameState(new LoaderSpaceBuilder(game.getLevel()).createSpace()));
                 }
-                else if(game.getLevel() == 5) game.setState(new WinState(new Win(new Loader("GameWinScreen").getLines())));
+                else if(game.getLevel() == 5) game.setState(new WinState(new Win(new Loader("GameScreenWin").getLines())));
             }
         }
     }
