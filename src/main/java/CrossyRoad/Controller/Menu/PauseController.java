@@ -4,6 +4,7 @@ import CrossyRoad.Controller.Controller;
 import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.space.LoaderSpaceBuilder;
+import CrossyRoad.model.loader.Loader;
 import CrossyRoad.model.menu.Menu;
 import CrossyRoad.model.menu.Pause;
 import CrossyRoad.state.GameState;
@@ -31,7 +32,7 @@ public class PauseController extends Controller<Pause> {
                 if (getModel().isSelectedQuit()) game.setState(null);
                 if (getModel().isSelectedMenu()){
                     game.setLevel(1);
-                    game.setState(new MenuState());
+                    game.setState(new MenuState(new Menu(new Loader("loadscreen").getLines())));
                 }
                 if (getModel().isSelectedResume()) game.setState(game.getPrevious());
         }

@@ -42,12 +42,12 @@ public class MenuView extends Viewer<Menu> {
         }
 
         // Desenhar menu por cima
-        gui.drawText(new Position(8, 1), "Menu", "#FFFFFF");
+        gui.drawText(new Position(8, 1), "Menu", "#BCF0FB");
         for (int i = 0; i < getModel().getNumberEntries(); i++)
             gui.drawText(
                     new Position(2 + i * 6, 4),
                     getModel().getEntry(i),
-                    getModel().isSelected(i) ? "#FFBA66" : "#2E89A6"
+                    getModel().isSelected(i) ? "#F1E20E" : "#C4C4C4"
             );
     }
 }

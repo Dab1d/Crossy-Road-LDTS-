@@ -46,7 +46,7 @@ public class WinViewer extends Viewer<Win> {
             gui.drawText(
                     new Position(2 + (10 * i), 9),
                     getModel().getEntry(i),
-                    getModel().isSelected(i) ? "#FFBA66" : "#2E89A6"
+                    getModel().isSelected(i) ? "#F1E20E" : "#C4C4C4"
             );
         }
     }
