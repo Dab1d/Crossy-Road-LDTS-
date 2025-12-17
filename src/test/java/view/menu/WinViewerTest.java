@@ -69,7 +69,7 @@ public class WinViewerTest {
     public void testNullBackground() {
         GUI gui = Mockito.mock(GUI.class);
         Win model = Mockito.mock(Win.class);
-        
+
         when(model.getBackground()).thenReturn(null);
 
         //ensure that buttons still work
