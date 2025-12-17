@@ -45,7 +45,7 @@ public class GameViewerTest {
         viewer.drawElements(gui);
 
 
-        // Verificação A: Garantir que o GameViewer foi buscar os dados ao Modelo
+        // checkar GameViewer se foi buscar os dados ao Modelo
         verify(space, times(1)).getBushes();
         verify(space, times(1)).getCars();
         verify(space, times(1)).getChicken();
@@ -68,7 +68,7 @@ public class GameViewerTest {
         when(space.getRiver()).thenReturn(Collections.emptyList());
         when(space.getTruck()).thenReturn(Collections.emptyList());
         when(space.getWalls()).thenReturn(Collections.emptyList());
-        when(space.getChicken()).thenReturn(new Chicken(0,0)); // Galinha existe sempre
+        when(space.getChicken()).thenReturn(new Chicken(0,0));
 
         GameViewer viewer = new GameViewer(space);
         viewer.drawElements(gui);
