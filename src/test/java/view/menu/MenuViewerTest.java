@@ -7,25 +7,84 @@ import CrossyRoad.view.menu.MenuView;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.mockito.Mockito.verify;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.mockito.Mockito.*;
 
 public class MenuViewerTest {
     @Test
-    public void menuViewerTest() {
-        GUI gui = Mockito.mock(GUI.class);
-        Menu menu = new Menu();
+    public void testDrawBackgroundAndEntries() {
 
-        MenuView viewer = new MenuView(menu);
+        GUI gui = Mockito.mock(GUI.class);
+        Menu model = Mockito.mock(Menu.class);
+
+        List<String> mockBackground = Arrays.asList("ad");
+        when(model.getBackground()).thenReturn(mockBackground);
+
+        when(model.getNumberEntries()).thenReturn(2);
+
+        //  0 "Start" Selected-> #F1E20E
+        when(model.getEntry(0)).thenReturn("Start");
+        when(model.isSelected(0)).thenReturn(true);
+
+        // "Exit" Not Selected -> #C4C4C4
+        when(model.getEntry(1)).thenReturn("Exit");
+        when(model.isSelected(1)).thenReturn(false);
+
+        MenuView viewer = new MenuView(model);
         viewer.drawElements(gui);
 
-        verify(gui).drawText(new Position(8, 1), "Menu", "#FFFFFF");
+        // 'a' on  (0,0) -> #000000
+        verify(gui).drawPixel(0, 0, "#000000");
+        // 'd' on (1,0) -> #FF0000
+        verify(gui).drawPixel(1, 0, "#FF0000");
 
-        int num = menu.getNumberEntries();
-        for (int i = 0; i < num; i++) {
-            verify(gui).drawText(new Position(2 + i * 6, 4),
-                    viewer.getModel().getEntry(i),
-                    viewer.getModel().isSelected(i) ? "#FFBA66" : "#2E89A6");
-        }
+        //Check title
+        verify(gui).drawText(new Position(8, 1), "Menu", "#BCF0FB");
 
+        // Botton 0 ("Start") Pos X = 2 + 0 = 2. Color (#F1E20E)
+        verify(gui).drawText(
+                new Position(2, 4),
+                "Start",
+                "#F1E20E"
+        );
+
+        // Button 1 ("Exit"): Pos X = 2 + 6 = 8. Color not selected (#C4C4C4)
+        verify(gui).drawText(
+                new Position(8, 4),
+                "Exit",
+                "#C4C4C4"
+        );
+    }
+    @Test
+    public void testUnknownCharacterInMap() {
+        GUI gui = Mockito.mock(GUI.class);
+        Menu model = Mockito.mock(Menu.class);
+
+        //char z that doesn't belong to doc
+        when(model.getBackground()).thenReturn(Arrays.asList("z"));
+
+        MenuView viewer = new MenuView(model);
+        viewer.drawElements(gui);
+
+        // should be default color #FFFFFF
+        verify(gui).drawPixel(0, 0, "#FFFFFF");
+    }
+    @Test
+    public void testNullBackground() {
+        GUI gui = Mockito.mock(GUI.class);
+        Menu model = Mockito.mock(Menu.class);
+
+        when(model.getBackground()).thenReturn(null);
+
+        MenuView viewer = new MenuView(model);
+        viewer.drawElements(gui);
+
+        //Check that none pixel was drawn
+        verify(gui, never()).drawPixel(anyInt(), anyInt(), anyString());
+
+        // Check text
+        verify(gui).drawText(new Position(8, 1), "Menu", "#BCF0FB");
     }
 }

@@ -7,25 +7,60 @@ import CrossyRoad.view.menu.PauseViewer;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class PauseViewerTest {
 
     @Test
-    public void pauseViewerTest() {
-        GUI gui = Mockito.mock(GUI.class);
-        Pause pause = new Pause();
+    public void testDrawElements() {
 
-        PauseViewer viewer = new PauseViewer(pause);
+        GUI gui = Mockito.mock(GUI.class);
+        Pause model = Mockito.mock(Pause.class);
+
+        when(model.getNumberEntries()).thenReturn(2);
+
+        // "Resume" (Selected)
+        when(model.getEntry(0)).thenReturn("Resume");
+        when(model.isSelected(0)).thenReturn(true);
+
+        //"Menu" (Not Selected)
+        when(model.getEntry(1)).thenReturn("Menu");
+        when(model.isSelected(1)).thenReturn(false);
+
+        PauseViewer viewer = new PauseViewer(model);
         viewer.drawElements(gui);
 
-        verify(gui).drawText(new Position(5,5),"Pause", "#FFFFFF");
-        verify(gui).drawText(new Position(3,15),"Press Enter", "#FFFFFF");
-        verify(gui).drawText(new Position(4,16),"to Select", "#FFFFFF");
+        // title  on (7, 5), "Pause", "#9FC1E9"
+        verify(gui).drawText(new Position(7, 5), "Pause", "#9FC1E9");
 
-        for (int i = 0; i < viewer.getModel().getNumberEntries(); i++){
-            verify(gui).drawText(new Position(5,7 + i), viewer.getModel().getEntry(i),
-                    viewer.getModel().isSelected(i) ? "#FFD700" : "#FFFFFF");
-        }
+
+        // other titles
+        verify(gui).drawText(new Position(4, 25), "Press Enter", "#C4C4C4");
+        verify(gui).drawText(new Position(5, 26), "to Select", "#C4C4C4");
+        verify(gui).drawText(
+                new Position(7, 10),
+                "Resume",
+                "#F1E20E"
+        );
+        verify(gui).drawText(
+                new Position(7, 12),
+                "Menu",
+                "#C4C4C4"
+        );
+    }
+
+    @Test
+    public void testEmptyMenu() {
+        GUI gui = Mockito.mock(GUI.class);
+        Pause model = Mockito.mock(Pause.class);
+
+        when(model.getNumberEntries()).thenReturn(0);
+
+        PauseViewer viewer = new PauseViewer(model);
+        viewer.drawElements(gui);
+
+        verify(gui).drawText(new Position(7, 5), "Pause", "#9FC1E9");
+        verify(gui).drawText(new Position(4, 25), "Press Enter", "#C4C4C4");
+        verify(gui, never()).drawText(any(Position.class), eq("Resume"), anyString());
     }
 }
