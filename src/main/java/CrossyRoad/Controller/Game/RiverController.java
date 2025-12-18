@@ -1,10 +1,12 @@
-package CrossyRoad.Controler.Game;
+package CrossyRoad.Controller.Game;
 
 import CrossyRoad.Controller.Controller;
 import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.space.Space;
 import CrossyRoad.model.Position;
+
+
 
 import java.util.List;
 import java.util.Map;

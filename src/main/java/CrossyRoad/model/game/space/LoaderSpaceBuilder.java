@@ -144,4 +144,16 @@ public class LoaderSpaceBuilder extends SpaceBuilder {
         }
         return endlines;
     }
+
+    @Override
+    protected List<Coin> createCoin(){
+        List<Coin> coins = new ArrayList<>();
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++) {
+                if (line.charAt(x) == 'G') coins.add(new Coin(x, y));
+            }
+        }
+        return coins;
+    }
 }

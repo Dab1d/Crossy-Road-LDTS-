@@ -1,4 +1,4 @@
-package CrossyRoad.model.menu;
+package CrossyRoad.model.loader;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -7,14 +7,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuLoader {
+public class Loader {
 
     private final List<String> lines;
 
-    public MenuLoader() throws IOException {
+    public Loader(String filename) throws IOException {
 
-        URL resource = MenuLoader.class.getResource("/loadscreen/loadscreen");
-        System.out.println("Resource: " + resource);
+        URL resource = Loader.class.getResource("/loadscreen/" + filename);
         if (resource == null) {
             throw new IOException("Ficheiro loadscreen.txt não encontrado!");
         }
@@ -35,7 +34,7 @@ public class MenuLoader {
         return lines;
     }
 
-    public static List<String> loadBackground() throws IOException {
-        return new MenuLoader().getLines();
+    public static List<String> loadBackground(String filename) throws IOException {
+        return new Loader(filename).getLines();
     }
 }

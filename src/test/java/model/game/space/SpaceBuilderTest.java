@@ -63,6 +63,9 @@ public class SpaceBuilderTest {
         public List<EndLine> createEndLine() {
             return List.of(new EndLine(7,7));
         }
+
+        @Override
+        public List<Coin> createCoin() {return List.of(new Coin(8,8));}
     }
 
     @Test
@@ -96,5 +99,8 @@ public class SpaceBuilderTest {
 
         assertEquals(1, space.getEndlines().size());
         assertEquals(new Position(7, 7), space.getEndlines().get(0).getPosition());
+
+        assertEquals(1, space.getCoins().size());
+        assertEquals(new Position(8, 8), space.getCoins().get(0).getPosition());
     }
 }

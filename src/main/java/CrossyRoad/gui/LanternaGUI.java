@@ -54,6 +54,12 @@ public class LanternaGUI implements GUI {
         terminalFactory.setTerminalEmulatorFontConfiguration(fontconfig);
 
         Terminal terminal = terminalFactory.createTerminal();
+
+        if (terminal instanceof com.googlecode.lanterna.terminal.swing.AWTTerminalFrame) {
+            ((com.googlecode.lanterna.terminal.swing.AWTTerminalFrame) terminal)
+                    .setTitle("Crossy Road");
+        }
+
         return terminal;
     }
 

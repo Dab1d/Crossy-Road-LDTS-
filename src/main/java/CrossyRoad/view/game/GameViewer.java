@@ -16,6 +16,7 @@ public class GameViewer extends Viewer<Space> {
     @Override
     public void drawElements(GUI gui) {
         drawElements(gui,getModel().getBushes(),new BushViewer());
+        drawElements(gui, getModel().getCoins(), new CoinViewer());
         drawElements(gui, getModel().getCars(), new CarViewer());
         drawElements(gui, getModel().getLogs(), new LogViewer());
         drawElements(gui, getModel().getEndlines(), new EndLineViewer());
@@ -23,6 +24,8 @@ public class GameViewer extends Viewer<Space> {
         drawElements(gui, getModel().getTruck(),new TruckViewer());
         drawElements(gui, getModel().getWalls(), new WallViewer());
         drawElement(gui, getModel().getChicken(), new ChickenViewer());
+
+
     }
 
     protected <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {

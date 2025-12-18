@@ -19,6 +19,7 @@ public abstract class SpaceBuilder {
         space.setCars(createCar());
         space.setTrucks(createTruck());
         space.setEndLines(createEndLine());
+        space.setCoins(createCoin());
         return space;
     }
 
@@ -41,4 +42,6 @@ public abstract class SpaceBuilder {
     protected abstract List<Truck> createTruck();
 
     protected abstract List<EndLine> createEndLine();
+
+    protected abstract List<Coin> createCoin();
 }

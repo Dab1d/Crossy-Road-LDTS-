@@ -41,10 +41,5 @@ public class ChickenController extends Controller<Space> {
         if (action == GUI.ACTION.DOWN) moveChickenDown();
         if (action == GUI.ACTION.LEFT) moveChickenLeft();
 
-        for(Log log : getModel().getLogs()) {
-            if (getModel().getChicken().getPosition().equals(log.getPosition())) {
-                moveChicken(log.getPosition());
-            }
-        }
     }
 }

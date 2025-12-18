@@ -1,6 +1,5 @@
 package CrossyRoad.model.game.space;
 
-import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.elements.*;
 import CrossyRoad.model.Position;
 
@@ -21,6 +20,7 @@ public class Space {
     private List<Log> logs;
     private List<EndLine> endlines;
     private List<Wall> walls;
+    private List<Coin> coins;
 
     public Space(int width, int height) {
         this.width = width;
@@ -38,6 +38,7 @@ public class Space {
         all.addAll(river);
         all.addAll(logs);
         all.addAll(endlines);
+        all.addAll(coins);
 
         return all;
     }
@@ -115,6 +116,10 @@ public class Space {
         return walls;
     }
 
+    public void setCoins(List<Coin> coins) {this.coins = coins;}
+
+    public List<Coin> getCoins() {return coins;}
+
     public boolean isEmpty(Position pos) {
         for (Element e : getAllElements())
             if (e.blockMovement() && e.getPosition().equals(pos))
@@ -170,4 +175,6 @@ public class Space {
         }
         return false;
     }
+
+
 }

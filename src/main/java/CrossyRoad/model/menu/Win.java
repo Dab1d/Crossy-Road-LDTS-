@@ -4,28 +4,32 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Win {
-    private final List<String> entries;
+    private final List<String> lines;
     private int currentEntry = 0;
+    private List<String> background;
 
-    public Win() {
-        this.entries = Arrays.asList("Restart", "Exit");
+    public Win(List<String> background) {
+        this.background = background;
+        this.lines = Arrays.asList("Restart", "Exit");
     }
-
+    public Win() {
+        this.lines = Arrays.asList("Restart", "Exit");
+    }
 
     public void nextEntry() {
         currentEntry++;
-        if (currentEntry > this.entries.size() - 1)
+        if (currentEntry > this.lines.size() - 1)
             currentEntry = 0;
     }
 
     public void previousEntry() {
         currentEntry--;
         if (currentEntry < 0)
-            currentEntry = this.entries.size() - 1;
+            currentEntry = this.lines.size() - 1;
     }
 
     public String getEntry(int i) {
-        return entries.get(i);
+        return lines.get(i);
     }
 
     public boolean isSelected(int i) {
@@ -36,11 +40,20 @@ public class Win {
         return isSelected(1);
     }
 
-    public boolean isSelectedRestart() {return isSelected(0);}
+    public boolean isSelectedRestart() {
+        return isSelected(0);
+    }
 
+    public List<String> getLines() {
+        return lines;
+    }
 
     public int getNumberEntries() {
-        return this.entries.size();
+        return this.lines.size();
     }
-}
 
+    public List<String> getBackground() {
+        return background;
+    }
+
+}

@@ -2,10 +2,11 @@ package CrossyRoad;
 
 import CrossyRoad.gui.GUI;
 import CrossyRoad.gui.LanternaGUI;
-import CrossyRoad.model.menu.MenuLoader;
+import CrossyRoad.model.loader.Loader;
 import CrossyRoad.state.MenuState;
 import CrossyRoad.state.State;
 import CrossyRoad.model.menu.Menu;
+import CrossyRoad.view.menu.HUDView;
 
 
 import java.awt.*;
@@ -17,11 +18,15 @@ public class Game {
     private State state;
     private State previousState;
     private int level;
+    private int score;
+    private HUDView hud;
 
     public Game() throws IOException, URISyntaxException, FontFormatException {
         this.gui = new LanternaGUI(20, 32);
-        this.state = new MenuState(new Menu(MenuLoader.loadBackground()));
+        this.state = new MenuState(new Menu(new Loader("loadscreen").getLines()));
         this.level = 1;
+        this.score = 0;
+        this.hud = new HUDView();
     }
 
     public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException {
@@ -47,6 +52,24 @@ public class Game {
     public int getLevel(){
         return level;
     }
+
+    public void addScore(){
+        score++;
+    }
+
+    public int getScore(){
+        return score;
+    }
+
+    public HUDView getHUD() {
+        return hud;
+    }
+
+    public void resetScore() {
+        this.score = 0;
+    }
+
+
     //will be used by the controller to chance between menu and game state
     public void setState(State state) {
         this.state = state;
@@ -59,6 +82,8 @@ public class Game {
             long startTime = System.currentTimeMillis();
 
             state.step(this, gui, startTime);
+            hud.draw(gui, this);
+
 
             long elapsedTime = System.currentTimeMillis() - startTime;
             long sleepTime = frameTime - elapsedTime;

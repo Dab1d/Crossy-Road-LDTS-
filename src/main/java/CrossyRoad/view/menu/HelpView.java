@@ -13,12 +13,27 @@ public class HelpView extends Viewer<Help> {
 
     @Override
     public void drawElements(GUI gui) {
-        int y = 0;
 
-        for (String line : getModel().getLines()) {
-            String color = (y == 0) ? "#FFF888" : "#FFFFFF";
-            gui.drawText(new Position(0, y), line, color);
-            y++;
+        gui.drawText(new Position(4, 1), "Crossy Road", "#F2BD97");
+        gui.drawText(new Position(3, 3), "Avoid cars and", "#C4C4C4");
+        gui.drawText(new Position(3, 4), "trucks while", "#C4C4C4");
+        gui.drawText(new Position(2, 5), "collecting coins", "#C4C4C4");
+        gui.drawText(new Position(2, 6), "Reach the end to", "#C4C4C4");
+        gui.drawText(new Position(2, 7), "save the chicken", "#C4C4C4");
+
+
+        gui.drawText(new Position(3, 14), " Instructions", "#F2BD97");
+
+        gui.drawText(new Position(3, 16), "Use arrow keys", "#C4C4C4");
+        gui.drawText(new Position(1, 17), "to move the chiken", "#C4C4C4");
+
+        for (int i = 0; i < getModel().getNumberEntries(); i++) {
+            gui.drawText(
+                    new Position(4 + i * 6, 25),
+                    getModel().getEntry(i),
+                    getModel().isSelected(i) ? "#F1E20E" : "#C4C4C4"
+            );
         }
     }
 }
+

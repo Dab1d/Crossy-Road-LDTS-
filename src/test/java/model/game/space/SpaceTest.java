@@ -25,6 +25,7 @@ public class SpaceTest {
         space.setLogs(new ArrayList<>());
         space.setEndLines(new ArrayList<>());
         space.setWalls(new ArrayList<>());
+        space.setCoins(new ArrayList<>());
 
         space.setChicken(new Chicken(5,5));
     }
