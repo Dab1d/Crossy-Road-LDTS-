@@ -1,8 +1,10 @@
 package CrossyRoad.view;
 
 import CrossyRoad.gui.GUI;
+import CrossyRoad.model.loader.ColorAdapter; // Importa o teu adaptador de cores
 
 import java.io.IOException;
+import java.util.List;
 
 public abstract class Viewer<T> {
     private final T model;
@@ -22,4 +24,17 @@ public abstract class Viewer<T> {
     }
 
     protected abstract void drawElements(GUI gui);
+
+    protected void drawBackground(GUI gui, List<String> background) {
+        if (background == null) return;
+
+        for (int y = 0; y < background.size(); y++) {
+            String line = background.get(y);
+            for (int x = 0; x < line.length(); x++) {
+                char c = line.charAt(x);
+                String color = ColorAdapter.getHexColor(c);
+                gui.drawPixel(x, y, color);
+            }
+        }
+    }
 }

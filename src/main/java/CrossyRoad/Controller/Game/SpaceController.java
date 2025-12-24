@@ -11,41 +11,40 @@ import CrossyRoad.state.GameOverState;
 import CrossyRoad.state.PauseState;
 
 import java.io.IOException;
+import java.util.List;
 
 public class SpaceController extends Controller<Space> {
-    private final ChickenController ChickenController;
-    private final EndLineController EndLineController;
-    private final TruckController TruckController;
-    private final CarController CarController;
-    private final LogController LogController;
-    private final RiverController RiverController;
-    private final CoinController CoinController;
+
+    // Controllers that react on player input
+    private final ChickenController chickenController;
+    private final EndLineController endLineController;
+
+    private final List<Controller<Space>> autoControllers;
 
     public SpaceController(Space space) {
         super(space);
-        this.ChickenController = new ChickenController(space);
-        this.EndLineController = new EndLineController(space);
-        this.TruckController = new TruckController(space);
-        this.CarController = new CarController(space);
-        this.LogController = new LogController(space);
-        this.RiverController = new RiverController(space);
-        this.CoinController = new CoinController(space);
+
+        ControllerFactory factory = new ControllerFactory(space);
+
+        this.chickenController = factory.createChickenController();
+        this.endLineController = factory.createEndLineController();
+        this.autoControllers = factory.createAutoControllers();
     }
 
     private boolean chickenDied() {
         return getModel().isChickenDead();
     }
 
-
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
+
         switch (action) {
             case UP:
             case DOWN:
             case LEFT:
             case RIGHT:
-                ChickenController.step(game, action, time);
-                EndLineController.step(game, action, time);
+                chickenController.step(game, action, time);
+                endLineController.step(game, action, time);
                 break;
             case PAUSE:
                 game.setPrevious(game.getState());
@@ -53,19 +52,14 @@ public class SpaceController extends Controller<Space> {
             default:
                 break;
         }
-        CarController.step(game, GUI.ACTION.NONE, time);
-        TruckController.step(game, GUI.ACTION.NONE, time);
-        RiverController.step(game, GUI.ACTION.NONE, time);
-        LogController.step(game, GUI.ACTION.NONE, time);
-        CoinController.step(game, GUI.ACTION.NONE, time);
+
+        for (Controller<Space> controller : autoControllers) {
+            controller.step(game, GUI.ACTION.NONE, time);
+        }
 
         if (chickenDied()) {
             game.setLevel(1);
             game.setState(new GameOverState(new GameOver(new Loader("GameOverScreen").getLines())));
         }
-        
     }
 }
-
-
-

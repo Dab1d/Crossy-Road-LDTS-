@@ -2,7 +2,6 @@ package controller.game;
 
 import CrossyRoad.Controller.Game.CoinController;
 import CrossyRoad.Game;
-import CrossyRoad.model.Position;
 import CrossyRoad.model.game.elements.Chicken;
 import CrossyRoad.model.game.elements.Coin;
 import CrossyRoad.model.game.space.Space;
@@ -24,7 +23,7 @@ class CoinControllerTest {
     void setUp() {
         space = new Space(5, 5);
 
-        // Inicializa todas as listas para evitar NullPointerException
+        // Inicializa listas
         space.setBushes(new ArrayList<>());
         space.setCars(new ArrayList<>());
         space.setTrucks(new ArrayList<>());
@@ -32,6 +31,8 @@ class CoinControllerTest {
         space.setRiver(new ArrayList<>());
         space.setEndLines(new ArrayList<>());
         space.setWalls(new ArrayList<>());
+
+        // A lista de coins tem de ser mutável (ArrayList)
         space.setCoins(new ArrayList<>());
 
         Chicken chicken = new Chicken(2,2);
@@ -46,25 +47,32 @@ class CoinControllerTest {
         Coin coin = new Coin(2,2);
         space.getCoins().add(coin);
 
+        // Antes de executar, a lista tem 1 moeda
+        assertEquals(1, space.getCoins().size());
+
         controller.step(game, null, 0);
 
-        assertTrue(controller.isCollected(coin));
+        // VERIFICAÇÃO CORRETA:
+        // 1. A moeda foi removida da lista?
+        assertTrue(space.getCoins().isEmpty());
+
+        // 2. O score foi aumentado?
         verify(game, times(1)).addScore();
-        assertEquals(-1, coin.getPosition().getX());
-        assertEquals(-1, coin.getPosition().getY());
     }
 
     @Test
     void doesNotCollectCoinWhenChickenNotOnCoin() {
-        Coin coin = new Coin(1,1);
+        Coin coin = new Coin(1,1); // Galinha está em (2,2)
         space.getCoins().add(coin);
 
         controller.step(game, null, 0);
 
-        assertFalse(controller.isCollected(coin));
+        // VERIFICAÇÃO CORRETA:
+        // A lista ainda deve ter a moeda
+        assertEquals(1, space.getCoins().size());
+        assertTrue(space.getCoins().contains(coin));
+
         verify(game, never()).addScore();
-        assertEquals(1, coin.getPosition().getX());
-        assertEquals(1, coin.getPosition().getY());
     }
 
     @Test
@@ -72,11 +80,18 @@ class CoinControllerTest {
         Coin coin = new Coin(2,2);
         space.getCoins().add(coin);
 
-        controller.step(game, null, 0);
+        // Passo 1: Apanha a moeda
         controller.step(game, null, 0);
 
-        assertTrue(controller.isCollected(coin));
-        verify(game, times(1)).addScore(); // só uma vez
+        // A moeda já foi removida aqui. A lista está vazia.
+
+        // Passo 2: Tenta apanhar outra vez (mas a lista já não tem nada lá)
+        controller.step(game, null, 0);
+
+        // O score só deve ter sido chamado 1 vez (no primeiro step)
+        verify(game, times(1)).addScore();
+
+        // Garante que a lista continua vazia
+        assertTrue(space.getCoins().isEmpty());
     }
 }
-
