@@ -1,27 +1,21 @@
 package controller.game;
 
-import CrossyRoad.Controller.Game.ChickenController;
 import CrossyRoad.Controller.Game.SpaceController;
 import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.Position;
+import CrossyRoad.model.game.elements.Bush;
 import CrossyRoad.model.game.elements.Chicken;
 import CrossyRoad.model.game.elements.Coin;
-import CrossyRoad.model.game.elements.Bush;
-import CrossyRoad.model.game.elements.Car;
-import CrossyRoad.model.game.elements.Log;
-import CrossyRoad.model.game.elements.Truck;
 import CrossyRoad.model.game.space.Space;
-import CrossyRoad.model.game.elements.EndLine;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class SpaceControllerTest {
 
@@ -30,10 +24,10 @@ public class SpaceControllerTest {
     private Game game;
 
     @BeforeEach
-    public void setUp() throws IOException, URISyntaxException, FontFormatException {
+    public void setUp() {
         space = new Space(10, 10);
 
-        // Inicializa todas as listas do Space
+        // Inicializa todas as listas para evitar NullPointer
         space.setBushes(new ArrayList<>());
         space.setCars(new ArrayList<>());
         space.setTrucks(new ArrayList<>());
@@ -41,28 +35,36 @@ public class SpaceControllerTest {
         space.setRiver(new ArrayList<>());
         space.setEndLines(new ArrayList<>());
         space.setWalls(new ArrayList<>());
-        space.setCoins(new ArrayList<>());
+        space.setCoins(new ArrayList<>()); // Lista mutável para o teste da moeda
 
-        // Coloca a galinha no centro
-        space.setChicken(new Chicken(5,5));
+        // Coloca a galinha no centro (5, 5)
+        space.setChicken(new Chicken(6,5));
 
+        // Cria o controller real
         controller = new SpaceController(space);
-        game = new Game(); // Certifica-te que Game pode ser instanciado assim
+
+        // MOCK do Game (Simula o jogo sem abrir janelas reais)
+        game = mock(Game.class);
     }
 
     @Test
     public void moveChickenUp_whenEmpty() throws IOException {
-        Position initial = new Position(space.getChicken().getPosition().getX(), space.getChicken().getPosition().getY());
+        Position initial = new Position(6, 5);
+
+        // Ação
         controller.step(game, GUI.ACTION.UP, 0);
+
         Position after = space.getChicken().getPosition();
 
+        // Verifica (y diminui ao subir)
         assertEquals(initial.getX(), after.getX());
         assertEquals(initial.getY() - 1, after.getY());
     }
 
     @Test
     public void moveChickenDown_whenEmpty() throws IOException {
-        Position initial = new Position(space.getChicken().getPosition().getX(), space.getChicken().getPosition().getY());
+        Position initial = new Position(6, 5);
+
         controller.step(game, GUI.ACTION.DOWN, 0);
         Position after = space.getChicken().getPosition();
 
@@ -72,8 +74,10 @@ public class SpaceControllerTest {
 
     @Test
     public void moveChickenLeft_whenEmpty() throws IOException {
-        Position initial = new Position(space.getChicken().getPosition().getX(), space.getChicken().getPosition().getY());
+        Position initial = new Position(6, 5);
+
         controller.step(game, GUI.ACTION.LEFT, 0);
+
         Position after = space.getChicken().getPosition();
 
         assertEquals(initial.getX() - 1, after.getX());
@@ -82,8 +86,10 @@ public class SpaceControllerTest {
 
     @Test
     public void moveChickenRight_whenEmpty() throws IOException {
-        Position initial = new Position(space.getChicken().getPosition().getX(), space.getChicken().getPosition().getY());
+        Position initial = new Position(6, 5);
+
         controller.step(game, GUI.ACTION.RIGHT, 0);
+
         Position after = space.getChicken().getPosition();
 
         assertEquals(initial.getX() + 1, after.getX());
@@ -92,27 +98,27 @@ public class SpaceControllerTest {
 
     @Test
     public void chickenDoesNotMoveIntoBush() throws IOException {
-        // Adiciona um bush onde a galinha iria mover-se
-        space.getBushes().add(new Bush(5,4));
-        Position initial = new Position(space.getChicken().getPosition().getX(), space.getChicken().getPosition().getY());
-
+        space.getBushes().add(new Bush(6,4));
+        Position initial = new Position(6, 5);
+        // Tenta mover para cima
         controller.step(game, GUI.ACTION.UP, 0);
         Position after = space.getChicken().getPosition();
 
-        // Galinha não se move
         assertEquals(initial.getX(), after.getX());
         assertEquals(initial.getY(), after.getY());
     }
 
     @Test
     public void coinIsCollected_whenChickenMoves() throws IOException {
-        Coin coin = new Coin(5,4);
+        Coin coin = new Coin(6,4);
         space.getCoins().add(coin);
 
+        assertFalse(space.getCoins().isEmpty());
+
+        // Move a galinha para cima (para cima da moeda)
         controller.step(game, GUI.ACTION.UP, 0);
 
-        // Verifica se a moeda foi "coletada" movendo-a para (-1, -1)
-        assertEquals(-1, coin.getPosition().getX());
-        assertEquals(-1, coin.getPosition().getY());
+        assertTrue(space.getCoins().isEmpty(), "A moeda devia ter sido removida");
+        verify(game, times(1)).addScore();
     }
 }

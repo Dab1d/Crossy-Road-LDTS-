@@ -41,7 +41,7 @@ public abstract class State<T> {
         viewer.draw(gui);
 
         if (this instanceof GameState) {
-            game.getHUD().draw(gui, game);
+            game.getHUD().draw(gui, game.getScore(), game.getLevel());
         }
         gui.refresh();
     }

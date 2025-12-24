@@ -41,7 +41,7 @@ public class Game {
         return this.previousState;
     }
 
-    public State getState(){
+    public State getState() {
         return this.state;
     }
 
@@ -49,15 +49,15 @@ public class Game {
         this.level = level;
     }
 
-    public int getLevel(){
+    public int getLevel() {
         return level;
     }
 
-    public void addScore(){
+    public void addScore() {
         score++;
     }
 
-    public int getScore(){
+    public int getScore() {
         return score;
     }
 
@@ -82,8 +82,7 @@ public class Game {
             long startTime = System.currentTimeMillis();
 
             state.step(this, gui, startTime);
-            hud.draw(gui, this);
-
+            hud.draw(gui, this.getScore(),this.getLevel());
 
             long elapsedTime = System.currentTimeMillis() - startTime;
             long sleepTime = frameTime - elapsedTime;

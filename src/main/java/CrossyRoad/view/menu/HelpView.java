@@ -25,7 +25,7 @@ public class HelpView extends Viewer<Help> {
         gui.drawText(new Position(3, 14), " Instructions", "#F2BD97");
 
         gui.drawText(new Position(3, 16), "Use arrow keys", "#C4C4C4");
-        gui.drawText(new Position(1, 17), "to move the chiken", "#C4C4C4");
+        gui.drawText(new Position(1, 17), "to move the chicken", "#C4C4C4");
 
         for (int i = 0; i < getModel().getNumberEntries(); i++) {
             gui.drawText(
