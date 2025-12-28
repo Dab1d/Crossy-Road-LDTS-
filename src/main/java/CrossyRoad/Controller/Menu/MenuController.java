@@ -20,7 +20,7 @@ import java.util.Map;
 public class MenuController extends Controller<Menu> {
     private Map<Integer, Command> commands;
 
-    public MenuController(Menu menu, Game game) {
+    public MenuController(Menu menu) {
         super(menu);
 
         commands = new HashMap<>();

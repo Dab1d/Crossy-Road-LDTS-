@@ -37,7 +37,7 @@ public class GameOver {
     public boolean isSelected(int i) {
         return currentEntry == i;
     }
-    
+
     public int getNumberEntries() {
         return this.lines.size();
     }
