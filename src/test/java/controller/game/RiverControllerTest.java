@@ -1,5 +1,6 @@
 package controller.game;
 
+import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
 import CrossyRoad.Controller.Game.RiverController;
 import CrossyRoad.Game;
 import CrossyRoad.model.Position;
@@ -37,8 +38,8 @@ class RiverControllerTest {
 
     @Test
     void step_movesRiverPositions() {
-        River r1 = new River(0,2);
-        River r2 = new River(1,2);
+        River r1 = new River(0,2,1,new MoveRightStrategy());
+        River r2 = new River(1,2,1,new MoveRightStrategy());
 
         space.getRiver().add(r1);
         space.getRiver().add(r2);

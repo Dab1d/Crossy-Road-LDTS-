@@ -1,5 +1,6 @@
 package model.game.element;
 
+import CrossyRoad.Controller.Game.MoveStrategies.MoveLeftStrategy;
 import CrossyRoad.model.game.elements.Truck;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,7 @@ public class TruckTest {
     Truck truck;
     @BeforeEach
     public void setUp() {
-        this.truck = new Truck(5,5);
+        this.truck = new Truck(5,5,1, new MoveLeftStrategy());
     }
 
     @Test

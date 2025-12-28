@@ -1,5 +1,6 @@
 package model.game.space;
 
+import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
 import CrossyRoad.model.Position;
 import CrossyRoad.model.game.elements.*;
 import CrossyRoad.model.game.space.Space;
@@ -41,22 +42,22 @@ public class SpaceBuilderTest {
 
         @Override
         public List<Log> createLog() {
-            return List.of(new Log(3,3));
+            return List.of(new Log(3,3,1,new MoveRightStrategy()));
         }
 
         @Override
         public List<River> createRiver() {
-            return List.of(new River(4,4));
+            return List.of(new River(4,4,1,new MoveRightStrategy()));
         }
 
         @Override
         public List<Car> createCar() {
-            return List.of(new Car(5,5));
+            return List.of(new Car(5,5,1,new MoveRightStrategy()));
         }
 
         @Override
         public List<Truck> createTruck() {
-            return List.of(new Truck(6,6));
+            return List.of(new Truck(6,6,1,new MoveRightStrategy()));
         }
 
         @Override

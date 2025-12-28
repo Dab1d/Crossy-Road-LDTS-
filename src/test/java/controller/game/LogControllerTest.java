@@ -1,6 +1,7 @@
 package controller.game;
 
 import CrossyRoad.Controller.Game.LogController;
+import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
 import CrossyRoad.Game;
 import CrossyRoad.model.Position;
 import CrossyRoad.model.game.elements.Chicken;
@@ -42,7 +43,7 @@ class LogControllerTest {
 
     @Test
     void step_movesLogAndChickenIfOnLog() {
-        Log log = new Log(2,2);
+        Log log = new Log(2,2,1,new MoveRightStrategy());
         space.getLogs().add(log);              // adicionar **antes** do controller
         controller = new LogController(space); // criar controller depois
 
@@ -57,7 +58,7 @@ class LogControllerTest {
 
     @Test
     void step_movesLogWithoutChicken() {
-        Log log = new Log(0,0);
+        Log log = new Log(0,0,1,new MoveRightStrategy());
         space.getLogs().add(log);
         controller = new LogController(space);
 
@@ -69,7 +70,7 @@ class LogControllerTest {
 
     @Test
     void step_doesNotMoveIfNotEnoughTime() {
-        Log log = new Log(1,1);
+        Log log = new Log(1,1,1,new MoveRightStrategy());
         space.getLogs().add(log);
         controller = new LogController(space);
 

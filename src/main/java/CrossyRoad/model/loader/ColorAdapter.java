@@ -4,7 +4,8 @@ public class ColorAdapter {
 
     public static String getHexColor(char code) {
         return switch (code) {
-            case 'a', 'b' -> "#000000"; // Preto
+            case 'a' -> "#000000";      // Preto (mas devia ser ciano, mas não deu devido ao fundo da fonte ser preto)
+            case 'b' -> "#000000";      // Preto
             case 'd' -> "#FF0000";      // Vermelho
             case 'f' -> "#FFFFFF";      // Branco
             case 'g' -> "#E59400";      // Laranja Escuro
@@ -15,7 +16,10 @@ public class ColorAdapter {
             case 'n' -> "#ffba00";      // Ouro
             case 'l' -> "#ff9800";      // Laranja
             case 'm' -> "#00c1ff";      // Azul Claro
-            default -> "#FFFFFF";       // Default Branco
+            case 'o' -> "#ffae00";      // Amarelo Torrado
+            case 'p' -> "#b914c8";      // Roxo
+            case 'q' -> "#d54d34";      // Vermelho Escuro
+            default -> "#FFFFFF";       // ‘Default’ Branco
         };
     }
 }

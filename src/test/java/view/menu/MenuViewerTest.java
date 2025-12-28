@@ -21,7 +21,7 @@ public class MenuViewerTest {
 
         List<String> mockBackground = Arrays.asList("ad");
         when(model.getBackground()).thenReturn(mockBackground);
-
+        when(model.getBackgroundColor()).thenReturn("#0000FF"); // Azul de fundo
         when(model.getNumberEntries()).thenReturn(2);
 
         //  0 "Start" Selected-> #F1E20E
@@ -41,20 +41,21 @@ public class MenuViewerTest {
         verify(gui).drawPixel(1, 0, "#FF0000");
 
         //Check title
-        verify(gui).drawText(new Position(8, 1), "Menu", "#BCF0FB");
-
+        verify(gui).drawText(new Position(8, 1), "Menu", "#FFFFFF", "#0000FF");
         // Botton 0 ("Start") Pos X = 2 + 0 = 2. Color (#F1E20E)
         verify(gui).drawText(
                 new Position(2, 4),
                 "Start",
-                "#F1E20E"
+                "#00fef8",
+                "#0000FF"
         );
 
         // Button 1 ("Exit"): Pos X = 2 + 6 = 8. Color not selected (#C4C4C4)
         verify(gui).drawText(
                 new Position(8, 4),
                 "Exit",
-                "#C4C4C4"
+                "#FFFFFF",
+                "#0000FF"
         );
     }
     @Test
@@ -77,6 +78,7 @@ public class MenuViewerTest {
         Menu model = Mockito.mock(Menu.class);
 
         when(model.getBackground()).thenReturn(null);
+        when(model.getBackgroundColor()).thenReturn("#000000");
 
         MenuView viewer = new MenuView(model);
         viewer.drawElements(gui);
@@ -85,6 +87,6 @@ public class MenuViewerTest {
         verify(gui, never()).drawPixel(anyInt(), anyInt(), anyString());
 
         // Check text
-        verify(gui).drawText(new Position(8, 1), "Menu", "#BCF0FB");
+        verify(gui).drawText(new Position(8, 1), "Menu", "#FFFFFF", "#000000");
     }
 }

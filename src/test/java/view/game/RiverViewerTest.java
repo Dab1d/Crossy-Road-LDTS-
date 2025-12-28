@@ -1,5 +1,6 @@
 package view.game;
 
+import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.elements.River;
 import CrossyRoad.view.game.RiverViewer;
@@ -12,7 +13,7 @@ public class RiverViewerTest {
     @Test
     void riverViewerDrawsCorrectCharacter() {
         GUI gui = Mockito.mock(GUI.class);
-        River river = new River(5,5);
+        River river = new River(5,5,1,new MoveRightStrategy());
 
         RiverViewer viewer = new RiverViewer();
         viewer.draw(river, gui);

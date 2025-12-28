@@ -1,6 +1,7 @@
 package controller.game;
 
 import CrossyRoad.Controller.Game.CarController;
+import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
 import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.Position;
@@ -20,7 +21,7 @@ public class CarControllerTest {
     void carsDoNotMoveBefore400ms() {
         // Arrange
         Space space = new Space(10, 10);
-        Car car = new Car(2,2);
+        Car car = new Car(2,2,1,new MoveRightStrategy());
         space.setCars(List.of(car));
 
         CarController controller = new CarController(space);
@@ -37,7 +38,7 @@ public class CarControllerTest {
     void carsMoveRightAfter400ms() {
         // Arrange
         Space space = new Space(10, 10);
-        Car car = new Car(2,5);
+        Car car = new Car(2,5,1,new MoveRightStrategy());
         space.setCars(List.of(car));
 
         CarController controller = new CarController(space);
@@ -54,7 +55,7 @@ public class CarControllerTest {
     void carWrapsAroundWhenExceedingWidth() {
         // Arrange
         Space space = new Space(10, 10);
-        Car car = new Car(9,5);
+        Car car = new Car(9,5,1,new MoveRightStrategy());
         space.setCars(List.of(car));
 
         CarController controller = new CarController(space);

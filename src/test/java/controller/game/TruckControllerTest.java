@@ -1,5 +1,7 @@
 package controller.game;
 
+import CrossyRoad.Controller.Game.MoveStrategies.MoveLeftStrategy;
+import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
 import CrossyRoad.Controller.Game.TruckController;
 import CrossyRoad.model.game.elements.Truck;
 import CrossyRoad.model.game.space.Space;
@@ -26,8 +28,8 @@ public class TruckControllerTest {
     public void setup() throws IOException, URISyntaxException, FontFormatException {
         space = new Space(10, 10);
 
-        Truck truck1 = new Truck(0,5);
-        Truck truck2 = new Truck(9,5);
+        Truck truck1 = new Truck(0,5,1,new MoveLeftStrategy());
+        Truck truck2 = new Truck(9,5,1, new MoveLeftStrategy());
 
         ArrayList<Truck> trucks = new ArrayList<>();
         trucks.add(truck1);

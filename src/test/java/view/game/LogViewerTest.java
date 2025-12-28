@@ -1,5 +1,6 @@
 package view.game;
 
+import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.elements.Log;
 import CrossyRoad.model.game.elements.Log;
@@ -14,7 +15,7 @@ public class LogViewerTest {
     @Test
     void logViewerDrawsCorrectCharacter() {
         GUI gui = Mockito.mock(GUI.class);
-        Log log = new Log(5,5);
+        Log log = new Log(5,5,1,new MoveRightStrategy());
 
         LogViewer viewer = new LogViewer();
         viewer.draw(log, gui);

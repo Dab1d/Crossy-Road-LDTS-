@@ -1,4 +1,6 @@
 package model.game.space;
+import CrossyRoad.Controller.Game.MoveStrategies.MoveLeftStrategy;
+import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
 import CrossyRoad.model.Position;
 import CrossyRoad.model.game.elements.*;
 import CrossyRoad.model.game.space.Space;
@@ -46,7 +48,7 @@ public class SpaceTest {
 
     @Test
     void testChickenDiesByCar() {
-        Car car = new Car(5,5);
+        Car car = new Car(5,5,1,new MoveRightStrategy());
         space.getCars().add(car);
 
         assertTrue(space.isChickenDead());
@@ -54,7 +56,7 @@ public class SpaceTest {
 
     @Test
     void testChickenDiesByTruck() {
-        Truck truck = new Truck(5,5);
+        Truck truck = new Truck(5,5,1,new MoveLeftStrategy());
         space.getTruck().add(truck);
 
         assertTrue(space.isChickenDead());
@@ -62,7 +64,7 @@ public class SpaceTest {
 
     @Test
     void testChickenDiesByRiver() {
-        River river = new River(5,5);
+        River river = new River(5,5,1,new MoveRightStrategy());
         space.getRiver().add(river);
 
         assertTrue(space.isChickenDead());
@@ -91,9 +93,9 @@ public class SpaceTest {
 
     @Test
     void testGetRiverLinesY() {
-        space.getRiver().add(new River(0,3));
-        space.getRiver().add(new River(1,3));
-        space.getRiver().add(new River(2,4));
+        space.getRiver().add(new River(0,3,1,new MoveRightStrategy()));
+        space.getRiver().add(new River(1,3,1,new MoveRightStrategy()));
+        space.getRiver().add(new River(2,4,1,new MoveRightStrategy()));
 
         int[] lines = space.getRiverLinesY();
 
@@ -105,9 +107,9 @@ public class SpaceTest {
 
     @Test
     void testGetRiverPositionsAtLine() {
-        space.getRiver().add(new River(0,2));
-        space.getRiver().add(new River(1,2));
-        space.getRiver().add(new River(3,4));
+        space.getRiver().add(new River(0,2,1,new MoveRightStrategy()));
+        space.getRiver().add(new River(1,2,1,new MoveRightStrategy()));
+        space.getRiver().add(new River(3,4,1,new MoveRightStrategy()));
 
         List<Position> positions = space.getRiverPositionsAtLine(2);
 
@@ -142,7 +144,7 @@ public class SpaceTest {
 
     @Test
     void testgetLogs(){
-        space.getLogs().add(new Log(1,1));
+        space.getLogs().add(new Log(1,1,1,new MoveRightStrategy()));
         List<Log> log = space.getLogs();
         assertEquals(space.getLogs().size(), 1);
         assertEquals(space.getLogs().get(0).getPosition(), new Position(1,1));

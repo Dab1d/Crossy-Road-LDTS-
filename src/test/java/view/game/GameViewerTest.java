@@ -1,5 +1,7 @@
 package view.game;
 
+import CrossyRoad.Controller.Game.MoveStrategies.MoveLeftStrategy;
+import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.elements.*;
 import CrossyRoad.model.game.space.Space;
@@ -22,11 +24,11 @@ public class GameViewerTest {
 
         Bush bush = new Bush(1, 1);
         Coin coin = new Coin(2, 2);
-        Car car = new Car(3, 3);
-        Log log = new Log(4, 4);
+        Car car = new Car(3, 3,1,new MoveRightStrategy());
+        Log log = new Log(4, 4,1,new MoveRightStrategy());
         EndLine endLine = new EndLine(5, 5);
-        River river = new River(6, 6);
-        Truck truck = new Truck(7, 7);
+        River river = new River(6, 6,1,new MoveRightStrategy());
+        Truck truck = new Truck(7, 7,1,new MoveLeftStrategy());
         Wall wall = new Wall(8, 8);
         Chicken chicken = new Chicken(10, 10);
 

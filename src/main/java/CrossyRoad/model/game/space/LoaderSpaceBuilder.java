@@ -1,6 +1,8 @@
 package CrossyRoad.model.game.space;
 
 
+import CrossyRoad.Controller.Game.MoveStrategies.MoveLeftStrategy;
+import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
 import CrossyRoad.model.game.elements.*;
 
 import java.io.BufferedReader;
@@ -91,7 +93,7 @@ public class LoaderSpaceBuilder extends SpaceBuilder {
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++) {
-                if (line.charAt(x) == '~') river.add(new River(x, y));
+                if (line.charAt(x) == '~') river.add(new River(x, y, 1, new MoveRightStrategy()));
             }
         }
         return river;
@@ -102,7 +104,7 @@ public class LoaderSpaceBuilder extends SpaceBuilder {
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++) {
-                if (line.charAt(x) == 'L') log.add(new Log(x, y));
+                if (line.charAt(x) == 'L') log.add(new Log(x, y,1,new MoveRightStrategy()));
             }
         }
         return log;
@@ -115,7 +117,7 @@ public class LoaderSpaceBuilder extends SpaceBuilder {
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++) {
-                if (line.charAt(x) == '+') car.add(new Car(x, y));
+                if (line.charAt(x) == '+') car.add(new Car(x, y, 1, new MoveRightStrategy()));
             }
         }
         return car;
@@ -127,7 +129,7 @@ public class LoaderSpaceBuilder extends SpaceBuilder {
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++) {
-                if (line.charAt(x) == 'Y') trucks.add(new Truck(x, y));
+                if (line.charAt(x) == 'Y') trucks.add(new Truck(x, y, 1, new MoveLeftStrategy()));
             }
         }
         return trucks;
@@ -146,7 +148,7 @@ public class LoaderSpaceBuilder extends SpaceBuilder {
     }
 
     @Override
-    protected List<Coin> createCoin(){
+    protected List<Coin> createCoin() {
         List<Coin> coins = new ArrayList<>();
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);

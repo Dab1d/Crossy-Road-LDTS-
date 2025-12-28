@@ -13,6 +13,8 @@ public interface GUI {
 
     void drawText(Position position, String text, String color);
 
+    void drawText(Position position, String text, String color, String bg);
+
     void drawPixel(double x, double y, String color);
 
     void clear();

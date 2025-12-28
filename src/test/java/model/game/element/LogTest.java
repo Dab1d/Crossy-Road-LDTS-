@@ -1,5 +1,6 @@
 package model.game.element;
 
+import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
 import CrossyRoad.model.game.elements.Log;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,7 @@ public class LogTest {
     Log log;
     @BeforeEach
     public void setUp() {
-        this.log = new Log(5,5);
+        this.log = new Log(5,5, 1, new MoveRightStrategy());
     }
 
     @Test

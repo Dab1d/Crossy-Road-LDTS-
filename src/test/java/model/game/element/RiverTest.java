@@ -1,5 +1,6 @@
 package model.game.element;
 
+import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
 import CrossyRoad.model.game.elements.River;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,7 @@ public class RiverTest {
     River river;
     @BeforeEach
     public void setUp() {
-        this.river = new River(5,5);
+        this.river = new River(5,5, 1, new MoveRightStrategy());
     }
 
     @Test

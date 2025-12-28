@@ -7,6 +7,7 @@ public class Menu {
     private final List<String> entries;
     private int currentEntry = 0;
     private List<String> background;
+    private final String backgroundColor = "#b914c8";
 
     public Menu(List<String> background) {
         this.background = background;
@@ -45,5 +46,9 @@ public class Menu {
 
     public List<String> getBackground() {
         return background;
+    }
+
+    public String getBackgroundColor() {
+        return backgroundColor;
     }
 }

@@ -1,5 +1,7 @@
 package view.game;
 
+import CrossyRoad.Controller.Game.MoveStrategies.MoveLeftStrategy;
+import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.elements.River;
 import CrossyRoad.model.game.elements.Truck;
@@ -14,7 +16,7 @@ public class TruckViewerTest {
     @Test
     void truckViewerDrawsCorrectCharacter() {
         GUI gui = Mockito.mock(GUI.class);
-        Truck truck = new Truck(5,5);
+        Truck truck = new Truck(5,5,1,new MoveLeftStrategy());
 
         TruckViewer viewer = new TruckViewer();
         viewer.draw(truck, gui);
