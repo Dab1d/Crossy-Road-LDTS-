@@ -27,16 +27,7 @@ public class EndLineController extends Controller<Space> {
         Position chickenPos = getModel().getChicken().getPosition();
         for (EndLine endline : getModel().getEndlines()) {
             if (chickenPos.equals(endline.getPosition())) {
-
-                if (game.getLevel() < FINAL_LEVEL) {
-                    game.setLevel(game.getLevel() + 1);
-                    game.setState(new GameState(new LoaderSpaceBuilder(game.getLevel()).createSpace()));
-                }
-                else {
-                    Loader loader = new Loader(ScreenType.WIN.getFile());
-                    Win winMenu = new Win(loader.getLines());
-                    game.setState(new WinState(winMenu));
-                }
+                game.advanceLevel();
                 return;
             }
         }
