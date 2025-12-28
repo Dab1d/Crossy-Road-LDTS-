@@ -27,18 +27,10 @@ public class Pause {
         return entries.get(i);
     }
 
+    public int getCurrentEntry() { return currentEntry; }
+
     public boolean isSelected(int i) {
         return currentEntry == i;
-    }
-
-    public boolean isSelectedQuit() {
-        return isSelected(2);
-    }
-
-    public boolean isSelectedMenu() {return isSelected(1);}
-
-    public boolean isSelectedResume() {
-        return isSelected(0);
     }
 
     public int getNumberEntries() {

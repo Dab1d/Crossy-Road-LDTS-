@@ -32,16 +32,10 @@ public class Help {
         return lines.get(i);
     }
 
+    public int getCurrentEntry() { return currentEntry; }
+
     public boolean isSelected(int i) {
         return currentEntry == i;
-    }
-
-    public boolean isSelectedReturn() {
-        return isSelected(1);
-    }
-
-    public boolean isSelectedStart() {
-        return isSelected(0);
     }
 
     public int getNumberEntries() {

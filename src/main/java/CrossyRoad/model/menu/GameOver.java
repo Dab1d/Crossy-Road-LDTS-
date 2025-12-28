@@ -32,22 +32,12 @@ public class GameOver {
         return lines.get(i);
     }
 
+    public int getCurrentEntry() { return currentEntry; }
+
     public boolean isSelected(int i) {
         return currentEntry == i;
     }
-
-    public boolean isSelectedExit() {
-        return isSelected(1);
-    }
-
-    public boolean isSelectedRestart() {
-        return isSelected(0);
-    }
-
-    public List<String> getLines() {
-        return lines;
-    }
-
+    
     public int getNumberEntries() {
         return this.lines.size();
     }
