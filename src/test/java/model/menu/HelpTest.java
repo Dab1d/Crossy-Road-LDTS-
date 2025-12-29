@@ -9,21 +9,21 @@ public class HelpTest {
     @Test
     public void nextEntry_cyclesForward() {
         Help help = new Help();
-        assertTrue(help.isSelectedStart());
+        assertTrue(help.isSelected(0));
         help.nextEntry();
-        assertTrue(help.isSelectedReturn());
+        assertTrue(help.isSelected(1));
         help.nextEntry();
-        assertTrue(help.isSelectedStart()); // volta ao início
+        assertTrue(help.isSelected(0)); // volta ao início
     }
 
     @Test
     public void previousEntry_cyclesBackward() {
         Help help = new Help();
-        assertTrue(help.isSelectedStart());
+        assertTrue(help.isSelected(0));
         help.previousEntry();
-        assertTrue(help.isSelectedReturn()); // vai para o final
+        assertTrue(help.isSelected(1)); // vai para o final
         help.previousEntry();
-        assertTrue(help.isSelectedStart()); // volta ao início
+        assertTrue(help.isSelected(0)); // volta ao início
     }
 
     @Test

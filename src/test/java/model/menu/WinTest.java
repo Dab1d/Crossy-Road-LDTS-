@@ -16,10 +16,10 @@ public class WinTest {
         Win win = new Win(loader.getLines());
 
         win.previousEntry();
-        assertTrue(win.isSelectedExit(), "Deveria estar selecionado o Exit ao retroceder do início");
+        assertTrue(win.isSelected(1), "Deveria estar selecionado o Exit ao retroceder do início");
 
         win.nextEntry();
-        assertTrue(win.isSelectedRestart(), "Deveria voltar ao Restart ao avançar do fim");
+        assertTrue(win.isSelected(0), "Deveria voltar ao Restart ao avançar do fim");
 
         assertEquals("Restart", win.getEntry(0));
         assertEquals("Exit", win.getEntry(1));

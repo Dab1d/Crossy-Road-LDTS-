@@ -2,39 +2,42 @@ package model.menu;
 
 import CrossyRoad.model.menu.GameOver;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameOverTest {
 
     @Test
     public void nextEntry_cyclesForward() {
-        GameOver gameOver = new GameOver();
-        assertTrue(gameOver.isSelectedRestart());
+        GameOver gameOver = new GameOver(List.of("bg"));
+        assertTrue(gameOver.isSelected(0));
         gameOver.nextEntry();
-        assertTrue(gameOver.isSelectedExit());
+        assertTrue(gameOver.isSelected(1));
         gameOver.nextEntry();
-        assertTrue(gameOver.isSelectedRestart()); // deve voltar ao início
+        assertTrue(gameOver.isSelected(0)); // deve voltar ao início
     }
 
     @Test
     public void previousEntry_cyclesBackward() {
-        GameOver gameOver = new GameOver();
-        assertTrue(gameOver.isSelectedRestart());
+        GameOver gameOver = new GameOver(List.of("bg"));
+        assertTrue(gameOver.isSelected(0));
         gameOver.previousEntry();
-        assertTrue(gameOver.isSelectedExit()); // deve ir para a última entrada
+        assertTrue(gameOver.isSelected(1)); // deve ir para a última entrada
         gameOver.previousEntry();
-        assertTrue(gameOver.isSelectedRestart()); // volta ao início
+        assertTrue(gameOver.isSelected(0)); // volta ao início
     }
 
     @Test
     public void numberEntriesIsCorrect() {
-        GameOver gameOver = new GameOver();
+        GameOver gameOver = new GameOver(List.of("bg"));
         assertEquals(2, gameOver.getNumberEntries());
     }
 
     @Test
     public void getEntryWorks() {
-        GameOver gameOver = new GameOver();
+        GameOver gameOver = new GameOver(List.of("bg"));
         assertEquals("Restart", gameOver.getEntry(0));
         assertEquals("Exit", gameOver.getEntry(1));
     }

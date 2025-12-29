@@ -54,8 +54,8 @@ public class GameOverControllerTest {
 
     @Test
     void stepSelect_whenExitSelected_exitsGame() throws Exception {
-        when(gameOverMock.isSelectedExit()).thenReturn(true);
-        when(gameOverMock.isSelectedRestart()).thenReturn(false);
+        when(gameOverMock.isSelected(0)).thenReturn(true);
+        when(gameOverMock.isSelected(1)).thenReturn(false);
 
         controller.step(gameMock, GUI.ACTION.SELECT, 0);
 
@@ -65,8 +65,8 @@ public class GameOverControllerTest {
 
     @Test
     void stepSelect_whenRestartSelected_restartsGame() throws Exception {
-        when(gameOverMock.isSelectedExit()).thenReturn(false);
-        when(gameOverMock.isSelectedRestart()).thenReturn(true);
+        when(gameOverMock.isSelected(0)).thenReturn(false);
+        when(gameOverMock.isSelected(1)).thenReturn(true);
         when(gameMock.getLevel()).thenReturn(1);
 
         controller.step(gameMock, GUI.ACTION.SELECT, 0);
@@ -78,8 +78,8 @@ public class GameOverControllerTest {
 
     @Test
     void stepSelect_whenNothingSelected_doesNothing() throws Exception {
-        when(gameOverMock.isSelectedExit()).thenReturn(false);
-        when(gameOverMock.isSelectedRestart()).thenReturn(false);
+        when(gameOverMock.isSelected(0)).thenReturn(false);
+        when(gameOverMock.isSelected(1)).thenReturn(false);
 
         controller.step(gameMock, GUI.ACTION.SELECT, 0);
 

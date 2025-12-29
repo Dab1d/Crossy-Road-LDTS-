@@ -21,7 +21,7 @@ public class MenuViewerTest {
 
         List<String> mockBackground = Arrays.asList("ad");
         when(model.getBackground()).thenReturn(mockBackground);
-        when(model.getBackgroundColor()).thenReturn("#0000FF"); // Azul de fundo
+        //when(model.getBackgroundColor()).thenReturn("#0000FF"); // Azul de fundo
         when(model.getNumberEntries()).thenReturn(2);
 
         //  0 "Start" Selected-> #F1E20E
@@ -78,7 +78,7 @@ public class MenuViewerTest {
         Menu model = Mockito.mock(Menu.class);
 
         when(model.getBackground()).thenReturn(null);
-        when(model.getBackgroundColor()).thenReturn("#000000");
+       // when(model.getBackgroundColor()).thenReturn("#000000");
 
         MenuView viewer = new MenuView(model);
         viewer.drawElements(gui);
