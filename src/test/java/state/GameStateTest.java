@@ -1,48 +1,34 @@
 package state;
 
-import CrossyRoad.Controller.Game.SpaceController;
-import CrossyRoad.Controller.Menu.GameOverController;
-import CrossyRoad.model.game.elements.Chicken;
+import CrossyRoad.controller.Game.SpaceController;
 import CrossyRoad.model.game.space.Space;
-import CrossyRoad.model.menu.GameOver;
-import CrossyRoad.state.GameOverState;
 import CrossyRoad.state.GameState;
-import CrossyRoad.state.State;
 import CrossyRoad.view.Viewer;
 import CrossyRoad.view.game.GameViewer;
-import CrossyRoad.view.menu.GameOverView;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
-import java.util.ArrayList;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.mock;
 
 public class GameStateTest {
     @Test
-    public void gameStateStateTest() {
-        Space space = new Space(20, 20);
-        space.setChicken(new Chicken(5, 5));
-        space.setTrucks(new ArrayList<>());
-        space.setCars(new ArrayList<>());
-        space.setLogs(new ArrayList<>());
-        space.setRiver(new ArrayList<>());
-        space.setWalls(new ArrayList<>());
-        space.setBushes(new ArrayList<>());
-        space.setEndLines(new ArrayList<>());
+    public void gameStateInitializationTest() {
 
-        GameState state = new GameState(space);
+        Space spaceMock = mock(Space.class);
+        SpaceController controllerMock = mock(SpaceController.class);
+
+        GameState state = new GameState(spaceMock, controllerMock);
 
         assertNotNull(state.getModel());
-        assertTrue(state.getModel() instanceof Space);
+        assertEquals(spaceMock, state.getModel());
+
+        assertNotNull(state.getController());
+        assertEquals(controllerMock, state.getController());
 
         Viewer<Space> viewer = state.getViewer();
         assertNotNull(viewer);
         assertTrue(viewer instanceof GameViewer);
-
-        assertNotNull(state.getController());
-        assertTrue(state.getController() instanceof SpaceController);
     }
 }

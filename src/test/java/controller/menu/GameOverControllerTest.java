@@ -1,15 +1,13 @@
 package controller.menu;
 
-import CrossyRoad.Controller.Menu.GameOverController;
+import CrossyRoad.controller.Menu.GameOverController;
 import CrossyRoad.state.StateManager;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.menu.GameOver;
-import CrossyRoad.state.GameState;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.mockito.Mockito.*;

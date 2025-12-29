@@ -1,7 +1,7 @@
 package view.game;
 
-import CrossyRoad.Controller.Game.MoveStrategies.MoveLeftStrategy;
-import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
+import CrossyRoad.controller.Game.MoveStrategies.MoveLeftStrategy;
+import CrossyRoad.controller.Game.MoveStrategies.MoveRightStrategy;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.elements.*;
 import CrossyRoad.model.game.space.Space;

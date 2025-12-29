@@ -1,10 +1,8 @@
 package view.game;
 
-import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
+import CrossyRoad.controller.Game.MoveStrategies.MoveRightStrategy;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.elements.Log;
-import CrossyRoad.model.game.elements.Log;
-import CrossyRoad.view.game.BushViewer;
 import CrossyRoad.view.game.LogViewer;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

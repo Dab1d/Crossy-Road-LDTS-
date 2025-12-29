@@ -1,9 +1,8 @@
 package state;
 
-import CrossyRoad.Controller.Menu.WinController;
+import CrossyRoad.controller.Menu.WinController;
 import CrossyRoad.model.loader.Loader;
 import CrossyRoad.model.loader.ScreenType;
-import CrossyRoad.model.menu.Pause;
 import CrossyRoad.model.menu.Win;
 import CrossyRoad.state.WinState;
 import CrossyRoad.view.menu.WinViewer;

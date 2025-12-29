@@ -1,6 +1,6 @@
 package state;
 
-import CrossyRoad.Controller.Controller;
+import CrossyRoad.controller.Controller;
 import CrossyRoad.state.StateManager;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.state.State;

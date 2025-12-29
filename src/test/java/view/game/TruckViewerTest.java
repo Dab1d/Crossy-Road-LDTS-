@@ -1,11 +1,8 @@
 package view.game;
 
-import CrossyRoad.Controller.Game.MoveStrategies.MoveLeftStrategy;
-import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
+import CrossyRoad.controller.Game.MoveStrategies.MoveLeftStrategy;
 import CrossyRoad.gui.GUI;
-import CrossyRoad.model.game.elements.River;
 import CrossyRoad.model.game.elements.Truck;
-import CrossyRoad.view.game.RiverViewer;
 import CrossyRoad.view.game.TruckViewer;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

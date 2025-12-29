@@ -1,6 +1,6 @@
 package model.game.element;
 
-import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
+import CrossyRoad.controller.Game.MoveStrategies.MoveRightStrategy;
 import CrossyRoad.model.game.elements.Log;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
