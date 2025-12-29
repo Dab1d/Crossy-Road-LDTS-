@@ -55,9 +55,9 @@ class MenuControllerTest {
 
     @Test
     void stepSelect_whenExitSelected_exitsGame() throws Exception {
-        when(menuMock.isSelectedExit()).thenReturn(true);
-        when(menuMock.isSelectedStart()).thenReturn(false);
-        when(menuMock.isSelectedHelp()).thenReturn(false);
+        when(menuMock.isSelected(2)).thenReturn(true);
+        when(menuMock.isSelected(0)).thenReturn(false);
+        when(menuMock.isSelected(1)).thenReturn(false);
 
         controller.step(gameMock, GUI.ACTION.SELECT, 0);
 
@@ -66,9 +66,9 @@ class MenuControllerTest {
 
     @Test
     void stepSelect_whenStartSelected_startsGame() throws Exception {
-        when(menuMock.isSelectedExit()).thenReturn(false);
-        when(menuMock.isSelectedStart()).thenReturn(true);
-        when(menuMock.isSelectedHelp()).thenReturn(false);
+        when(menuMock.isSelected(2)).thenReturn(false);
+        when(menuMock.isSelected(0)).thenReturn(true);
+        when(menuMock.isSelected(1)).thenReturn(false);
         when(gameMock.getLevel()).thenReturn(1);
 
         controller.step(gameMock, GUI.ACTION.SELECT, 0);
@@ -79,9 +79,9 @@ class MenuControllerTest {
 
     @Test
     void stepSelect_whenHelpSelected_goesToHelp() throws Exception {
-        when(menuMock.isSelectedExit()).thenReturn(false);
-        when(menuMock.isSelectedStart()).thenReturn(false);
-        when(menuMock.isSelectedHelp()).thenReturn(true);
+        when(menuMock.isSelected(2)).thenReturn(false);
+        when(menuMock.isSelected(0)).thenReturn(false);
+        when(menuMock.isSelected(1)).thenReturn(true);
 
         controller.step(gameMock, GUI.ACTION.SELECT, 0);
 
@@ -90,9 +90,9 @@ class MenuControllerTest {
 
     @Test
     void stepSelect_whenNothingSelected_doesNothing() throws Exception {
-        when(menuMock.isSelectedExit()).thenReturn(false);
-        when(menuMock.isSelectedStart()).thenReturn(false);
-        when(menuMock.isSelectedHelp()).thenReturn(false);
+        when(menuMock.isSelected(2)).thenReturn(false);
+        when(menuMock.isSelected(0)).thenReturn(false);
+        when(menuMock.isSelected(1)).thenReturn(false);
 
         controller.step(gameMock, GUI.ACTION.SELECT, 0);
 

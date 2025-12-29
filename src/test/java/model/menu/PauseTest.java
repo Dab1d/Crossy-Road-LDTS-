@@ -12,13 +12,13 @@ public class PauseTest {
         Pause pause = new Pause();
 
         pause.previousEntry();
-        assertEquals(true, pause.isSelectedQuit());
+        assertEquals(true, pause.isSelected(2));
 
         pause.nextEntry();
-        assertEquals(true, pause.isSelectedResume());
+        assertEquals(true, pause.isSelected(0));
 
         pause.nextEntry();
-        assertEquals(true, pause.isSelectedMenu());
+        assertEquals(true, pause.isSelected(0));
 
         assertEquals("Resume", pause.getEntry(0));
         assertEquals("Menu", pause.getEntry(1));
