@@ -2,8 +2,7 @@ package controller.game;
 
 import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
 import CrossyRoad.Controller.Game.RiverController;
-import CrossyRoad.Game;
-import CrossyRoad.model.Position;
+import CrossyRoad.state.StateManager;
 import CrossyRoad.model.game.elements.River;
 import CrossyRoad.model.game.space.Space;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,7 +16,7 @@ class RiverControllerTest {
 
     private Space space;
     private RiverController controller;
-    private Game game;
+    private StateManager game;
 
     @BeforeEach
     void setUp() {
@@ -33,7 +32,7 @@ class RiverControllerTest {
         space.setWalls(new ArrayList<>());
         space.setCoins(new ArrayList<>());
 
-        game = mock(Game.class);
+        game = mock(StateManager.class);
     }
 
     @Test

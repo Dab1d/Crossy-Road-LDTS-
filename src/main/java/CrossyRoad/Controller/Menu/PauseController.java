@@ -1,19 +1,13 @@
 package CrossyRoad.Controller.Menu;
 
 import CrossyRoad.Controller.Controller;
-import CrossyRoad.Game;
+import CrossyRoad.state.StateManager;
 import CrossyRoad.command.Command;
 import CrossyRoad.command.QuitCommand;
 import CrossyRoad.command.ResumeCommand;
 import CrossyRoad.command.ReturnToMenuCommand;
 import CrossyRoad.gui.GUI;
-import CrossyRoad.model.game.space.LoaderSpaceBuilder;
-import CrossyRoad.model.loader.Loader;
-import CrossyRoad.model.menu.Menu;
 import CrossyRoad.model.menu.Pause;
-import CrossyRoad.state.GameState;
-import CrossyRoad.state.HelpState;
-import CrossyRoad.state.MenuState;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -29,7 +23,7 @@ public class PauseController extends Controller<Pause> {
 
 
     @Override
-    public void step(Game game, GUI.ACTION action, long time) throws IOException {
+    public void step(StateManager game, GUI.ACTION action, long time) throws IOException {
         if(commands.isEmpty()){
             commands.put(0, new ResumeCommand(game));
             commands.put(1, new ReturnToMenuCommand(game));

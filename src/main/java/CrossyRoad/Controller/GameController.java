@@ -1,6 +1,6 @@
-package CrossyRoad.Controller.Game;
+package CrossyRoad.Controller;
 
-import CrossyRoad.Game;
+import CrossyRoad.state.StateManager;
 import CrossyRoad.state.GameState;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.view.menu.HUDView;
@@ -8,11 +8,11 @@ import CrossyRoad.view.menu.HUDView;
 import java.io.IOException;
 
 public class GameController {
-    private final Game game;
+    private final StateManager game;
     private final GUI gui;
     private final HUDView hud;
 
-    public GameController(Game game, GUI gui) {
+    public GameController(StateManager game, GUI gui) {
         this.game = game;
         this.gui = gui;
         this.hud = new HUDView();

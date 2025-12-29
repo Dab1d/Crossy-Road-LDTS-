@@ -1,15 +1,13 @@
 package CrossyRoad.command;
 
-import CrossyRoad.Game;
-import CrossyRoad.model.game.space.LoaderSpaceBuilder;
-import CrossyRoad.state.GameState;
+import CrossyRoad.state.StateManager;
 
 import java.io.IOException;
 
 public class StartCommand implements Command {
-    private final Game game;
+    private final StateManager game;
 
-    public StartCommand(Game game) {
+    public StartCommand(StateManager game) {
         this.game = game;
     }
 

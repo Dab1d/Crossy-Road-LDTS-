@@ -2,7 +2,7 @@ package controller.menu;
 
 
 import CrossyRoad.Controller.Menu.HelpController;
-import CrossyRoad.Game;
+import CrossyRoad.state.StateManager;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.menu.Help;
 import CrossyRoad.state.GameState;
@@ -25,7 +25,7 @@ public class HelpControllerTest {
     private Help helpMock;
 
     @Mock
-    private Game gameMock;
+    private StateManager gameMock;
 
     @BeforeEach
     void setUp() {

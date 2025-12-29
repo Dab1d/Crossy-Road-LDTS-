@@ -1,7 +1,7 @@
 package controller.menu;
 
 import CrossyRoad.Controller.Menu.MenuController;
-import CrossyRoad.Game;
+import CrossyRoad.state.StateManager;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.menu.Menu;
 import CrossyRoad.state.GameState;
@@ -24,7 +24,7 @@ class MenuControllerTest {
     private Menu menuMock;
 
     @Mock
-    private Game gameMock;
+    private StateManager gameMock;
 
     @BeforeEach
     void setUp() {

@@ -1,13 +1,10 @@
 package CrossyRoad.command;
 
-import CrossyRoad.Game;
-import CrossyRoad.gui.GUI;
-
-import java.io.IOException;
+import CrossyRoad.state.StateManager;
 
 public class QuitCommand implements Command {
-    private final Game game;
-    public QuitCommand(Game game) {
+    private final StateManager game;
+    public QuitCommand(StateManager game) {
         this.game = game;
     }
 

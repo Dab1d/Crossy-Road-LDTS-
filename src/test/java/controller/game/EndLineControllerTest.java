@@ -1,8 +1,7 @@
 package controller.game;
 
 import CrossyRoad.Controller.Game.EndLineController;
-import CrossyRoad.Game;
-import CrossyRoad.model.Position;
+import CrossyRoad.state.StateManager;
 import CrossyRoad.model.game.elements.Chicken;
 import CrossyRoad.model.game.elements.EndLine;
 import CrossyRoad.model.game.space.Space;
@@ -14,14 +13,13 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class EndLineControllerTest {
 
     private Space space;
     private EndLineController controller;
-    private Game game;
+    private StateManager game;
 
     @BeforeEach
     void setUp() {
@@ -41,7 +39,7 @@ class EndLineControllerTest {
         space.setChicken(chicken);
 
         controller = new EndLineController(space);
-        game = mock(Game.class);
+        game = mock(StateManager.class);
     }
 
     @Test

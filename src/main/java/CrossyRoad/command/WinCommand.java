@@ -1,13 +1,12 @@
 package CrossyRoad.command;
 
-import CrossyRoad.Game;
-
+import CrossyRoad.state.StateManager;
 import java.io.IOException;
 
 public class WinCommand implements Command {
-    private final Game game;
+    private final StateManager game;
 
-    public WinCommand(Game game) {
+    public WinCommand(StateManager game) {
         this.game = game;
     }
 

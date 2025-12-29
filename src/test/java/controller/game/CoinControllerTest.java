@@ -1,7 +1,7 @@
 package controller.game;
 
 import CrossyRoad.Controller.Game.CoinController;
-import CrossyRoad.Game;
+import CrossyRoad.state.StateManager;
 import CrossyRoad.model.game.elements.Chicken;
 import CrossyRoad.model.game.elements.Coin;
 import CrossyRoad.model.game.space.Space;
@@ -17,7 +17,7 @@ class CoinControllerTest {
 
     private Space space;
     private CoinController controller;
-    private Game game;
+    private StateManager game;
 
     @BeforeEach
     void setUp() {
@@ -39,7 +39,7 @@ class CoinControllerTest {
         space.setChicken(chicken);
 
         controller = new CoinController(space);
-        game = mock(Game.class);
+        game = mock(StateManager.class);
     }
 
     @Test

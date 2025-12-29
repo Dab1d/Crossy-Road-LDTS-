@@ -1,7 +1,7 @@
 package controller.game;
 
 import CrossyRoad.Controller.Game.SpaceController;
-import CrossyRoad.Game;
+import CrossyRoad.state.StateManager;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.Position;
 import CrossyRoad.model.game.elements.Bush;
@@ -21,7 +21,7 @@ public class SpaceControllerTest {
 
     private Space space;
     private SpaceController controller;
-    private Game game;
+    private StateManager game;
 
     @BeforeEach
     public void setUp() {
@@ -44,7 +44,7 @@ public class SpaceControllerTest {
         controller = new SpaceController(space);
 
         // MOCK do Game (Simula o jogo sem abrir janelas reais)
-        game = mock(Game.class);
+        game = mock(StateManager.class);
     }
 
     @Test

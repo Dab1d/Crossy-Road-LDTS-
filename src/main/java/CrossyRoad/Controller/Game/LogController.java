@@ -1,16 +1,11 @@
 package CrossyRoad.Controller.Game;
 
 import CrossyRoad.Controller.Controller;
-import CrossyRoad.Game;
+import CrossyRoad.state.StateManager;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.Position;
 import CrossyRoad.model.game.elements.Log;
-import CrossyRoad.model.game.elements.Truck;
 import CrossyRoad.model.game.space.Space;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class LogController extends Controller<Space> {
 
@@ -21,7 +16,7 @@ public class LogController extends Controller<Space> {
     }
 
     @Override
-    public void step(Game game, GUI.ACTION action, long time) {
+    public void step(StateManager game, GUI.ACTION action, long time) {
         if (time - lastMoveTime >= 200) { // move a cada 200ms
             moveLog();
             lastMoveTime = time;

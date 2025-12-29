@@ -1,7 +1,7 @@
 package controller.menu;
 
 import CrossyRoad.Controller.Menu.GameOverController;
-import CrossyRoad.Game;
+import CrossyRoad.state.StateManager;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.menu.GameOver;
 import CrossyRoad.state.GameState;
@@ -23,7 +23,7 @@ public class GameOverControllerTest {
     private GameOver gameOverMock;
 
     @Mock
-    private Game gameMock;
+    private StateManager gameMock;
 
     @BeforeEach
     void setUp() {

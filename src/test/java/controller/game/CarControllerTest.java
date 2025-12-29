@@ -2,13 +2,11 @@ package controller.game;
 
 import CrossyRoad.Controller.Game.CarController;
 import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
-import CrossyRoad.Game;
+import CrossyRoad.state.StateManager;
 import CrossyRoad.gui.GUI;
-import CrossyRoad.model.Position;
 import CrossyRoad.model.game.elements.Car;
 import CrossyRoad.model.game.space.Space;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.util.List;
 
@@ -25,7 +23,7 @@ public class CarControllerTest {
         space.setCars(List.of(car));
 
         CarController controller = new CarController(space);
-        Game gameMock = mock(Game.class);
+        StateManager gameMock = mock(StateManager.class);
 
         // Act
         controller.step(gameMock, GUI.ACTION.NONE, 0);
@@ -42,7 +40,7 @@ public class CarControllerTest {
         space.setCars(List.of(car));
 
         CarController controller = new CarController(space);
-        Game gameMock = mock(Game.class);
+        StateManager gameMock = mock(StateManager.class);
 
         // Act
         controller.step(gameMock, GUI.ACTION.NONE, 400);
@@ -59,7 +57,7 @@ public class CarControllerTest {
         space.setCars(List.of(car));
 
         CarController controller = new CarController(space);
-        Game gameMock = mock(Game.class);
+        StateManager gameMock = mock(StateManager.class);
 
         // Act
         controller.step(gameMock, GUI.ACTION.NONE, 400);

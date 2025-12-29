@@ -1,17 +1,15 @@
 package state;
 
 import CrossyRoad.Controller.Controller;
-import CrossyRoad.Game;
+import CrossyRoad.state.StateManager;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.state.State;
 import CrossyRoad.view.Viewer;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
 import java.io.IOException;
 
 import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 public class StateTest {
@@ -41,7 +39,7 @@ public class StateTest {
     @Test
     void testStepWithMocks() throws IOException {
         GUI gui = mock(GUI.class);
-        Game game = mock(Game.class);
+        StateManager game = mock(StateManager.class);
 
         Viewer<Object> viewer = mock(Viewer.class);
         Controller<Object> controller = mock(Controller.class);

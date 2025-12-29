@@ -1,15 +1,17 @@
 package CrossyRoad.command;
 
-import CrossyRoad.Game;
+import CrossyRoad.state.StateManager;
+
+import java.io.IOException;
 
 public class HelpCommand implements Command {
-    private final Game game;
+    private final StateManager game;
 
-    public HelpCommand(Game game) {
+    public HelpCommand(StateManager game) {
         this.game = game;
     }
 
-    public void execute() {
+    public void execute() throws IOException {
         game.goToHelp();
     }
 }

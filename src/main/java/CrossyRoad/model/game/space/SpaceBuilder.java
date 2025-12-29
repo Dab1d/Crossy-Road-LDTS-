@@ -1,12 +1,8 @@
 package CrossyRoad.model.game.space;
 
 import CrossyRoad.model.game.elements.*;
-
 import java.util.List;
 
-/**
- * pode nao ser necessário implementar se nao fizemos niveis
- */
 public abstract class SpaceBuilder {
     public Space createSpace() {
         Space space = new Space(getWidth(), getHeight());

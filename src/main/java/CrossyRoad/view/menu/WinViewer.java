@@ -2,11 +2,8 @@ package CrossyRoad.view.menu;
 
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.Position;
-import CrossyRoad.model.loader.ColorAdapter;
 import CrossyRoad.model.menu.Win;
 import CrossyRoad.view.Viewer;
-
-import java.util.List;
 
 public class WinViewer extends Viewer<Win> {
     public WinViewer(Win win) {

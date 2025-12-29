@@ -2,7 +2,7 @@ package controller.menu;
 
 import CrossyRoad.state.State;
 import CrossyRoad.Controller.Menu.PauseController;
-import CrossyRoad.Game;
+import CrossyRoad.state.StateManager;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.menu.Pause;
 import CrossyRoad.state.MenuState;
@@ -24,7 +24,7 @@ public class PauseControllerTest {
     private Pause pauseMock;
 
     @Mock
-    private Game gameMock;
+    private StateManager gameMock;
 
     @BeforeEach
     void setUp() {

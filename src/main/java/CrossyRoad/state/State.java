@@ -1,7 +1,6 @@
 package CrossyRoad.state;
 
 import CrossyRoad.Controller.Controller;
-import CrossyRoad.Game;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.view.Viewer;
 
@@ -33,7 +32,7 @@ public abstract class State<T> {
         return model;
     }
 
-    public void step(Game game, GUI gui, long startTime) throws IOException {
+    public void step(StateManager game, GUI gui, long startTime) throws IOException {
         GUI.ACTION action = gui.getNextAction();
         controller.step(game, action, startTime);
 

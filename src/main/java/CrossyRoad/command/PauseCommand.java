@@ -1,11 +1,11 @@
 package CrossyRoad.command;
 
-import CrossyRoad.Game;
+import CrossyRoad.state.StateManager;
 
 public class PauseCommand implements Command {
-    private final Game game;
+    private final StateManager game;
 
-    public PauseCommand(Game game) {
+    public PauseCommand(StateManager game) {
         this.game = game;
     }
 

@@ -1,6 +1,6 @@
 package CrossyRoad.Controller;
 
-import CrossyRoad.Game;
+import CrossyRoad.state.StateManager;
 import CrossyRoad.gui.GUI;
 
 import java.io.IOException;
@@ -16,5 +16,5 @@ public abstract class Controller<T> {
         return model;
     }
 
-    public abstract void step(Game game, GUI.ACTION action, long startTime) throws IOException;
+    public abstract void step(StateManager game, GUI.ACTION action, long startTime) throws IOException;
 }

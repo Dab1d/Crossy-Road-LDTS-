@@ -1,7 +1,7 @@
 package CrossyRoad.view;
 
 import CrossyRoad.gui.GUI;
-import CrossyRoad.model.loader.ColorAdapter; // Importa o teu adaptador de cores
+import CrossyRoad.model.loader.ColorAdapter;
 
 import java.io.IOException;
 import java.util.List;

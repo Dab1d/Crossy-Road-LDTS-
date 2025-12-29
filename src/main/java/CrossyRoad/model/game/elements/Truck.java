@@ -1,7 +1,6 @@
 package CrossyRoad.model.game.elements;
 
 import CrossyRoad.Controller.Game.MoveStrategies.MoveStrategy;
-import CrossyRoad.model.Position;
 
 public class Truck extends Element {
 

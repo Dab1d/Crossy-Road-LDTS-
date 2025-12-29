@@ -2,8 +2,7 @@ package controller.game;
 
 import CrossyRoad.Controller.Game.LogController;
 import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
-import CrossyRoad.Game;
-import CrossyRoad.model.Position;
+import CrossyRoad.state.StateManager;
 import CrossyRoad.model.game.elements.Chicken;
 import CrossyRoad.model.game.elements.Log;
 import CrossyRoad.model.game.space.Space;
@@ -18,7 +17,7 @@ class LogControllerTest {
 
     private Space space;
     private LogController controller;
-    private Game game;
+    private StateManager game;
     private Chicken chicken;
 
     @BeforeEach
@@ -38,7 +37,7 @@ class LogControllerTest {
         chicken = new Chicken(2,2);
         space.setChicken(chicken);
 
-        game = mock(Game.class);
+        game = mock(StateManager.class);
     }
 
     @Test
