@@ -1,82 +1,48 @@
 package CrossyRoad;
 
-import CrossyRoad.gui.GUI;
-import CrossyRoad.gui.LanternaGUI;
 import CrossyRoad.model.game.space.LoaderSpaceBuilder;
 import CrossyRoad.model.loader.Loader;
 import CrossyRoad.model.loader.ScreenType;
 import CrossyRoad.model.menu.*;
 import CrossyRoad.model.menu.Menu;
 import CrossyRoad.state.*;
-import CrossyRoad.view.menu.HUDView;
-
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class Game {
-    private final LanternaGUI gui;
     private State state;
     private State previousState;
     private int level;
     private int score;
-    private HUDView hud;
     private static final int FINAL_LEVEL = 5;
 
     public Game() throws IOException, URISyntaxException, FontFormatException {
-        this.gui = new LanternaGUI(20, 32);
+        // Inicializa apenas o estado inicial (Menu)
         this.state = new MenuState(
-                new Menu(
-                        new Loader(ScreenType.MENU.getFile()).getLines()
-                )
+                new Menu(new Loader(ScreenType.MENU.getFile()).getLines())
         );
-
         this.level = 1;
         this.score = 0;
-        this.hud = new HUDView();
     }
 
-    public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException {
-        new Game().start();
-    }
+    // --- Gestão de Estado ---
+    public void setState(State state) { this.state = state; }
+    public State getState() { return this.state; }
 
-    public void setPrevious(State state) {
-        this.previousState = state;
-    }
+    public void setPrevious(State state) { this.previousState = state; }
+    public State getPrevious() { return this.previousState; }
 
-    public State getPrevious() {
-        return this.previousState;
-    }
+    // --- Dados do Jogo ---
+    public int getLevel() { return level; }
+    public void setLevel(int level) { this.level = level; }
 
-    public State getState() {
-        return this.state;
-    }
+    public int getScore() { return score; }
+    public void addScore() { score++; }
+    public void resetScore() { this.score = 0; }
 
-    public int getLevel() {
-        return level;
-    }
-
-    public void addScore() {
-        score++;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public HUDView getHUD() {
-        return hud;
-    }
-
-    public void resetScore() {
-        this.score = 0;
-    }
-
-    public void setState(State state) {
-        this.state = state;
-    }
-
+    // --- Lógica de Transição (Regras de Negócio) ---
     public void initGame() throws IOException {
         this.score = 0;
         this.level = 1;
@@ -84,7 +50,7 @@ public class Game {
     }
 
     public void quitGame() {
-        this.setState(null);
+        this.setState(null); // Isto vai parar o loop no Controller
     }
 
     public void pauseGame() {
@@ -112,7 +78,6 @@ public class Game {
         this.setState(new WinState(winMenu));
     }
 
-
     public void advanceLevel() throws IOException {
         if(this.level < FINAL_LEVEL) {
             this.level++;
@@ -123,9 +88,7 @@ public class Game {
     }
 
     public void finishGame() throws IOException {
-        Loader loader = new Loader(ScreenType.WIN.getFile());
-        Win winMenu = new Win(loader.getLines());
-        this.setState(new WinState(winMenu));
+        winGame(); // Reutiliza a lógica
     }
 
     public void loseGame() throws IOException {
@@ -134,30 +97,5 @@ public class Game {
         Loader loader = new Loader(ScreenType.LOSE.getFile());
         GameOver gameOver = new GameOver(loader.getLines());
         this.setState(new GameOverState(gameOver));
-    }
-
-
-    public void start() throws IOException {
-        int FPS = 60;
-        int frameTime = 1000 / FPS;
-        while (state != null) {
-            long startTime = System.currentTimeMillis();
-
-            state.step(this, gui, startTime);
-            hud.draw(gui, this.getScore(),this.getLevel());
-
-            long elapsedTime = System.currentTimeMillis() - startTime;
-            long sleepTime = frameTime - elapsedTime;
-            try {
-                if (sleepTime > 0) Thread.sleep(sleepTime);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        gui.close();
-    }
-
-    public GUI getGUI() {
-        return gui;
     }
 }
