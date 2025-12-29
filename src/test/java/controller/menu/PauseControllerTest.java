@@ -13,43 +13,36 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 @ExtendWith(MockitoExtension.class)
-public class PauseControllerTest {
+class PauseControllerTest {
     private PauseController controller;
-<<<<<<< HEAD
-
-    @Mock
-    private Pause pauseMock;
-
-    @Mock
-    private StateManager gameMock;
-=======
-    @Mock private Pause pauseMock;
-    @Mock private Game gameMock;
->>>>>>> 7801c4d4e6a6a8f61d8ca0cd1716e2159a9b9160
+    @Mock private Pause model;
+    @Mock private StateManager stateManager;
 
     @BeforeEach
-    void setUp() { controller = new PauseController(pauseMock); }
+    void setUp() { controller = new PauseController(model); }
 
     @Test
     void stepSelect_Resume() throws Exception {
-        when(pauseMock.getCurrentEntry()).thenReturn(0);
-        controller.step(gameMock, GUI.ACTION.SELECT, 0);
-        verify(gameMock).resumeGame();
+        when(model.getCurrentEntry()).thenReturn(0);
+        controller.step(stateManager, GUI.ACTION.SELECT, 0);
+        verify(stateManager).resumeGame();
     }
 
     @Test
     void stepSelect_ReturnToMenu() throws Exception {
-        when(pauseMock.getCurrentEntry()).thenReturn(1);
-        controller.step(gameMock, GUI.ACTION.SELECT, 0);
-        verify(gameMock).returnToMenu();
+        when(model.getCurrentEntry()).thenReturn(1);
+        controller.step(stateManager, GUI.ACTION.SELECT, 0);
+        verify(stateManager).returnToMenu();
     }
 
     @Test
     void stepSelect_Quit() throws Exception {
-        when(pauseMock.getCurrentEntry()).thenReturn(2);
-        controller.step(gameMock, GUI.ACTION.SELECT, 0);
-        verify(gameMock).quitGame();
+        when(model.getCurrentEntry()).thenReturn(2);
+        controller.step(stateManager, GUI.ACTION.SELECT, 0);
+        verify(stateManager).quitGame();
     }
 }

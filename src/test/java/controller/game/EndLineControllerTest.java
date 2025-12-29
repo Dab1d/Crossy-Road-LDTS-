@@ -1,6 +1,8 @@
 package controller.game;
 
 import CrossyRoad.Controller.Game.EndLineController;
+import CrossyRoad.gui.GUI;
+import CrossyRoad.model.Position;
 import CrossyRoad.state.StateManager;
 import CrossyRoad.model.game.elements.Chicken;
 import CrossyRoad.model.game.elements.EndLine;
@@ -9,75 +11,82 @@ import CrossyRoad.state.GameState;
 import CrossyRoad.state.WinState;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 class EndLineControllerTest {
 
-    private Space space;
     private EndLineController controller;
-    private StateManager game;
+
+    @Mock
+    private Space spaceMock;
+    @Mock private StateManager stateManagerMock;
+    @Mock private Chicken chickenMock;
 
     @BeforeEach
     void setUp() {
-        space = new Space(5, 5);
-
-        // Inicializa todas as listas para não dar NullPointerException
-        space.setBushes(new ArrayList<>());
-        space.setCars(new ArrayList<>());
-        space.setTrucks(new ArrayList<>());
-        space.setLogs(new ArrayList<>());
-        space.setRiver(new ArrayList<>());
-        space.setEndLines(new ArrayList<>());
-        space.setWalls(new ArrayList<>());
-        space.setCoins(new ArrayList<>());
-
-        Chicken chicken = new Chicken(2,2);
-        space.setChicken(chicken);
-
-        controller = new EndLineController(space);
-        game = mock(StateManager.class);
+        controller = new EndLineController(spaceMock);
+        // Configuração comum: o model tem sempre uma galinha
+        when(spaceMock.getChicken()).thenReturn(chickenMock);
     }
 
     @Test
-    void step_advancesLevelIfNotLastLevel() throws IOException {
-        EndLine endLine = new EndLine(2,2);
-        space.getEndlines().add(endLine);
+    void step_WhenChickenReachedEndLine_CallsAdvanceLevel() throws IOException {
+        // 1. Definir posição da galinha
+        Position pos = new Position(10, 0);
+        when(chickenMock.getPosition()).thenReturn(pos);
 
-        when(game.getLevel()).thenReturn(1);
+        // 2. Criar uma lista de EndLines onde uma coincide com a posição da galinha
+        EndLine endLineMatch = new EndLine(10, 0);
+        EndLine endLineOther = new EndLine(5, 0);
+        when(spaceMock.getEndlines()).thenReturn(Arrays.asList(endLineOther, endLineMatch));
 
-        controller.step(game, null, 0);
+        // 3. Executar o step
+        controller.step(stateManagerMock, GUI.ACTION.NONE, 0);
 
-        verify(game).setLevel(2);
-        verify(game).setState(any(GameState.class));
+        // 4. Verificar se avançou de nível
+        verify(stateManagerMock, times(1)).advanceLevel();
     }
 
     @Test
-    void step_triggersWinIfLastLevel() throws IOException {
-        EndLine endLine = new EndLine(2,2);
-        space.getEndlines().add(endLine);
+    void step_WhenChickenNotAtEndLine_DoesNothing() throws IOException {
+        // 1. Galinha numa posição qualquer
+        when(chickenMock.getPosition()).thenReturn(new Position(10, 10));
 
-        when(game.getLevel()).thenReturn(5);
+        // 2. EndLines em posições diferentes
+        EndLine endLine = new EndLine(10, 0);
+        when(spaceMock.getEndlines()).thenReturn(Collections.singletonList(endLine));
 
-        controller.step(game, null, 0);
+        // 3. Executar
+        controller.step(stateManagerMock, GUI.ACTION.NONE, 0);
 
-        verify(game).setState(any(WinState.class));
+        // 4. Verificar que NUNCA chamou advanceLevel
+        verify(stateManagerMock, never()).advanceLevel();
     }
 
     @Test
-    void step_doesNothingIfChickenNotOnEndLine() throws IOException {
-        EndLine endLine = new EndLine(1,1);
-        space.getEndlines().add(endLine);
+    void step_WhenMultipleEndLines_CallsAdvanceLevelOnlyOnce() throws IOException {
+        // Caso a galinha consiga estar em "cima" de duas ao mesmo tempo (teórico)
+        Position pos = new Position(10, 0);
+        when(chickenMock.getPosition()).thenReturn(pos);
 
-        when(game.getLevel()).thenReturn(3);
+        EndLine e1 = new EndLine(10, 0);
+        EndLine e2 = new EndLine(10, 0);
+        when(spaceMock.getEndlines()).thenReturn(Arrays.asList(e1, e2));
 
-        controller.step(game, null, 0);
+        controller.step(stateManagerMock, GUI.ACTION.NONE, 0);
 
-        verify(game, never()).setLevel(anyInt());
-        verify(game, never()).setState(any());
+        // O 'return' dentro do loop garante que só chama uma vez
+        verify(stateManagerMock, times(1)).advanceLevel();
     }
 }
 

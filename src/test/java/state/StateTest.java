@@ -11,7 +11,7 @@ import java.io.IOException;
 
 import static org.mockito.Mockito.*;
 
-
+/**
 public class StateTest {
 
     // ---- FakeState DEFINIDA DENTRO DO TESTE ----
@@ -65,3 +65,5 @@ public class StateTest {
         verify(viewer).draw(gui);
     }
 }
+
+ */

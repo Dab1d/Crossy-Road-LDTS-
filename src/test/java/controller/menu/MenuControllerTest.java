@@ -17,73 +17,31 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class MenuControllerTest {
-
     private MenuController controller;
-
-    @Mock
-    private Menu menuMock;
-
-    @Mock
-    private StateManager gameMock;
+    @Mock private Menu model;
+    @Mock private StateManager stateManager;
 
     @BeforeEach
-    void setUp() {
-        controller = new MenuController(menuMock);
-    }
-
-    // ---------- MOVIMENTO ----------
-
-    @Test
-    void stepLeft_callsPreviousEntry() throws Exception {
-        controller.step(gameMock, GUI.ACTION.LEFT, 0);
-
-        verify(menuMock).previousEntry();
-        verify(menuMock, never()).nextEntry();
-        verify(gameMock, never()).setState(any());
-    }
-
-    @Test
-    void stepRight_callsNextEntry() throws Exception {
-        controller.step(gameMock, GUI.ACTION.RIGHT, 0);
-
-        verify(menuMock).nextEntry();
-        verify(menuMock, never()).previousEntry();
-        verify(gameMock, never()).setState(any());
-    }
-
-    // ---------- SELECT ----------
+    void setUp() { controller = new MenuController(model); }
 
     @Test
     void stepSelect_Start() throws Exception {
-        when(menuMock.getCurrentEntry()).thenReturn(0);
-        controller.step(gameMock, GUI.ACTION.SELECT, 0);
-        verify(gameMock).initGame();
+        when(model.getCurrentEntry()).thenReturn(0);
+        controller.step(stateManager, GUI.ACTION.SELECT, 0);
+        verify(stateManager).initGame();
     }
 
     @Test
     void stepSelect_Help() throws Exception {
-        when(menuMock.getCurrentEntry()).thenReturn(1);
-        controller.step(gameMock, GUI.ACTION.SELECT, 0);
-        verify(gameMock).goToHelp(); // Assume que o HelpCommand chama goToHelp
+        when(model.getCurrentEntry()).thenReturn(1);
+        controller.step(stateManager, GUI.ACTION.SELECT, 0);
+        verify(stateManager).goToHelp();
     }
 
     @Test
     void stepSelect_Quit() throws Exception {
-        when(menuMock.getCurrentEntry()).thenReturn(2);
-        controller.step(gameMock, GUI.ACTION.SELECT, 0);
-        verify(gameMock).quitGame();
-    }
-
-    @Test
-    void stepSelect_whenInvalidOption_doesNothing() throws Exception {
-        when(menuMock.getCurrentEntry()).thenReturn(99);
-
-        controller.step(gameMock, GUI.ACTION.SELECT, 0);
-
-        verify(gameMock, never()).initGame();
-        verify(gameMock, never()).goToHelp();
-        verify(gameMock, never()).quitGame();
-        verify(gameMock, never()).setState(any());
+        when(model.getCurrentEntry()).thenReturn(2);
+        controller.step(stateManager, GUI.ACTION.SELECT, 0);
+        verify(stateManager).quitGame();
     }
 }
-

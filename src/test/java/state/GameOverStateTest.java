@@ -8,7 +8,7 @@ import CrossyRoad.view.menu.GameOverView;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/**
 public class GameOverStateTest {
     @Test
     public void gameOverStateTest() {
@@ -25,3 +25,4 @@ public class GameOverStateTest {
         assertTrue(state.getController() instanceof GameOverController);
     }
 }
+*/

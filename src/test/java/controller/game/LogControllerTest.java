@@ -2,80 +2,94 @@ package controller.game;
 
 import CrossyRoad.Controller.Game.LogController;
 import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
+import CrossyRoad.gui.GUI;
+import CrossyRoad.model.Position;
 import CrossyRoad.state.StateManager;
 import CrossyRoad.model.game.elements.Chicken;
 import CrossyRoad.model.game.elements.Log;
 import CrossyRoad.model.game.space.Space;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 class LogControllerTest {
 
-    private Space space;
     private LogController controller;
-    private StateManager game;
-    private Chicken chicken;
+    @Mock
+    private Space spaceMock;
+    @Mock private StateManager stateManagerMock;
+    @Mock private Chicken chickenMock;
+    @Mock private Log logMock;
 
     @BeforeEach
     void setUp() {
-        space = new Space(5, 5);
-
-        // Inicializa todas as listas
-        space.setBushes(new ArrayList<>());
-        space.setCars(new ArrayList<>());
-        space.setTrucks(new ArrayList<>());
-        space.setLogs(new ArrayList<>());
-        space.setRiver(new ArrayList<>());
-        space.setEndLines(new ArrayList<>());
-        space.setWalls(new ArrayList<>());
-        space.setCoins(new ArrayList<>());
-
-        chicken = new Chicken(2,2);
-        space.setChicken(chicken);
-
-        game = mock(StateManager.class);
+        controller = new LogController(spaceMock);
+        when(spaceMock.getChicken()).thenReturn(chickenMock);
+        when(spaceMock.getWidth()).thenReturn(20);
     }
 
     @Test
-    void step_movesLogAndChickenIfOnLog() {
-        Log log = new Log(2,2,1,new MoveRightStrategy());
-        space.getLogs().add(log);              // adicionar **antes** do controller
-        controller = new LogController(space); // criar controller depois
+    void step_DoesNotMove_WhenTimeIntervalTooSmall() {
+        // Primeira chamada (inicializa lastMoveTime)
+        controller.step(stateManagerMock, GUI.ACTION.NONE, 1000);
 
-        controller.step(game, null, 500);
+        // Chamada apenas 100ms depois (menor que 200)
+        controller.step(stateManagerMock, GUI.ACTION.NONE, 1100);
 
-        // Log deve ter avançado
-        assert(log.getPosition().getX() != 2);
-
-        // Chicken deve ter se movido junto
-        assert(chicken.getPosition().getX() == log.getPosition().getX());
+        verify(spaceMock, times(1)).getLogs(); // Só foi chamado na primeira vez
     }
 
     @Test
-    void step_movesLogWithoutChicken() {
-        Log log = new Log(0,0,1,new MoveRightStrategy());
-        space.getLogs().add(log);
-        controller = new LogController(space);
+    void moveLog_CarryingChicken_UpdatesChickenPosition() {
+        Position chickenPos = new Position(10, 5);
+        when(chickenMock.getPosition()).thenReturn(chickenPos);
+        when(logMock.getPosition()).thenReturn(new Position(10, 5)); // Mesma pos
+        when(logMock.updatePosition(20)).thenReturn(1); // Moveu +1 para a direita
+        when(spaceMock.getLogs()).thenReturn(Collections.singletonList(logMock));
 
-        controller.step(game, null, 500);
+        // Forçar o tempo a passar (200ms)
+        controller.step(stateManagerMock, GUI.ACTION.NONE, 200);
 
-        assert(log.getPosition().getX() != 0);
-        assert(chicken.getPosition().getX() == 2);
+        // A galinha deve ter sido movida para 11 (10 + 1)
+        assertEquals(11, chickenPos.getX());
     }
 
     @Test
-    void step_doesNotMoveIfNotEnoughTime() {
-        Log log = new Log(1,1,1,new MoveRightStrategy());
-        space.getLogs().add(log);
-        controller = new LogController(space);
+    void moveLog_ChickenDies_WhenPushedOutOfBounds() {
+        Position chickenPos = new Position(19, 5); // No limite direito
+        when(chickenMock.getPosition()).thenReturn(chickenPos);
+        when(logMock.getPosition()).thenReturn(new Position(19, 5));
+        when(logMock.updatePosition(20)).thenReturn(1); // Tenta mover para 20
+        when(spaceMock.getLogs()).thenReturn(Collections.singletonList(logMock));
 
-        controller.step(game, null, 100);
+        controller.step(stateManagerMock, GUI.ACTION.NONE, 200);
 
-        assert(log.getPosition().getX() == 1);
+        // Verifica se chamou o método de morte no model
+        verify(spaceMock).isChickenDead();
+    }
+
+    @Test
+    void moveLog_NoChickenOnLog_OnlyLogMoves() {
+        Position chickenPos = new Position(5, 5);
+        when(chickenMock.getPosition()).thenReturn(chickenPos);
+        when(logMock.getPosition()).thenReturn(new Position(10, 5)); // Longe da galinha
+        when(logMock.updatePosition(20)).thenReturn(-1);
+        when(spaceMock.getLogs()).thenReturn(Collections.singletonList(logMock));
+
+        controller.step(stateManagerMock, GUI.ACTION.NONE, 200);
+
+        // A posição da galinha não deve ter mudado
+        assertEquals(5, chickenPos.getX());
+        verify(logMock).updatePosition(20);
     }
 }
 

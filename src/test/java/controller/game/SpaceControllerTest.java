@@ -1,6 +1,7 @@
 package controller.game;
 
 import CrossyRoad.Controller.Game.SpaceController;
+import CrossyRoad.model.game.elements.Car;
 import CrossyRoad.state.StateManager;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.Position;
@@ -120,5 +121,43 @@ public class SpaceControllerTest {
 
         assertTrue(space.getCoins().isEmpty(), "A moeda devia ter sido removida");
         verify(game, times(1)).addScore();
+    }
+
+    @Test
+    public void step_WhenPauseAction_ExecutesPauseCommand() throws IOException {
+        controller.step(game, GUI.ACTION.PAUSE, 0);
+
+        // O PauseCommand chama o pauseGame no StateManager
+        verify(game, times(1)).pauseGame();
+    }
+
+    @Test
+    public void step_WhenChickenCollidesWithCar_ExecutesLoseCommand() throws IOException {
+        // 1. Obtém a posição atual da galinha
+        Position chickenPos = space.getChicken().getPosition();
+
+        // 2. Adiciona um carro na mesma posição
+        // Passamos speed = 1 e moveStrategy = null porque não serão usados neste step
+        space.getCars().add(new Car(chickenPos.getX(), chickenPos.getY(), 1, null));
+
+        // 3. Executa o step (o SpaceController deve detetar a morte através do isChickenDead())
+        controller.step(game, GUI.ACTION.NONE, 0);
+
+        // 4. Verifica se o LoseCommand foi chamado
+        verify(game, times(1)).loseGame();
+    }
+
+    @Test
+    public void step_WhenChickenIsAlive_DoesNotExecuteLoseCommand() throws IOException {
+        // 1. Garante que as listas de perigos estão vazias
+        space.getCars().clear();
+        space.getTruck().clear();
+        space.getRiver().clear();
+
+        // 2. Executa o step
+        controller.step(game, GUI.ACTION.NONE, 0);
+
+        // 3. Verifica que o loseGame NUNCA foi chamado
+        verify(game, never()).loseGame();
     }
 }
