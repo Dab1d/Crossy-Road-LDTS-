@@ -5,7 +5,7 @@ plugins {
 }
 
 application {
-    mainClass.set("CrossyRoad.Game")
+    mainClass.set("CrossyRoad.Application")
 }
 group = 'com.goncalopinto1.GameProj'
 version = '1.0-SNAPSHOT'
