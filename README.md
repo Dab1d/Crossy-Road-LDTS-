@@ -20,31 +20,27 @@ For a more detailed version of this description click [here](./docs/README.md).
 
 
 ## Screenshots
-
-The following screenshots ilustrate the general look of our game, as well as the divergent functionalities:
-
-### Menus
-<br>
-<p align="center" justify="center">
-  <img src=docs/images/cover.png>
-</p>
-<p align ="center">
-    <b><i>Start Menu</i></b>
-<br>
-<br>
-<p>
-
-### Levels
-
-<p align="center" justify="center">
-  <img src=docs/images/game.png>
-</p>
-<p align="center">
-  <b><i>Grafic Desgin of level 1</i></b>
-</p>
-<br>
-<br/>
-
-
+<div align="center">
+    <img src="src/main/resources/images/Menu.png" alt="Main Menu" width="500">
+    <p>
+        <i>Figure 1 - Main Menu</i>
+    </p>
+    <img src="src/main/resources/images/HelpMenu.png" alt="How To Play" width="500">
+    <p>
+        <i>Figure 2 - How To Play</i>
+    </p>
+    <img src="src/main/resources/images/PauseMenu.png" alt="Pause Menu" width="500">
+    <p>
+        <i>Figure 3 - Pause Menu</i>
+    </p>
+    <img src="src/main/resources/images/GameOverMenuScreenShot.png" alt="Game Over" width="500">
+    <p>
+        <i>Figure 4 - Game Over</i>
+    </p>
+    <img src="src/main/resources/images/WinMenu.png" alt="Win Menu" width="500">
+    <p>
+        <i>Figure 5 - Win Menu</i>
+    </p>
+</div>
 
 
