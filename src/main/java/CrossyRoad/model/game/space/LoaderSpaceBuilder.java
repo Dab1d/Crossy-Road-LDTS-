@@ -1,8 +1,8 @@
 package CrossyRoad.model.game.space;
 
 
-import CrossyRoad.Controller.Game.MoveStrategies.MoveLeftStrategy;
-import CrossyRoad.Controller.Game.MoveStrategies.MoveRightStrategy;
+import CrossyRoad.controller.Game.MoveStrategies.MoveLeftStrategy;
+import CrossyRoad.controller.Game.MoveStrategies.MoveRightStrategy;
 import CrossyRoad.model.game.elements.*;
 
 import java.io.BufferedReader;

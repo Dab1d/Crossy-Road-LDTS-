@@ -1,6 +1,6 @@
 package CrossyRoad.model.game.elements;
 
-import CrossyRoad.Controller.Game.MoveStrategies.MoveStrategy;
+import CrossyRoad.controller.Game.MoveStrategies.MoveStrategy;
 
 public class Car extends Element {
 
