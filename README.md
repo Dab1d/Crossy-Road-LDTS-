@@ -15,7 +15,7 @@ For a more detailed version of this description click [here](./docs/README.md).
 
 
 - Simple and intuitive keyboard controls  
-- Increasing difficulty with faster obstacles  
+- Increasing difficulty with more obstacles  
 - Clear win/lose conditions  
 
 
