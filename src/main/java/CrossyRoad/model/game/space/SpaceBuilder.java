@@ -11,7 +11,6 @@ public abstract class SpaceBuilder {
         space.setBushes(createBushes());
         space.setLogs(createLog());
         space.setRiver(createRiver());
-        space.setRiver(createRiver());
         space.setCars(createCar());
         space.setTrucks(createTruck());
         space.setEndLines(createEndLine());

@@ -156,4 +156,27 @@ public class SpaceTest {
         assertEquals(space.getWalls().size(), 1);
         assertEquals(space.getWalls().get(0).getPosition(), new Position(2,2));
     }
+    @Test
+    void testIsChickenDead() {
+        Space space = new Space(20, 20);
+        Chicken chicken = new Chicken(10, 10);
+        space.setChicken(chicken);
+
+        space.setCars(new ArrayList<>());
+        space.setTrucks(new ArrayList<>());
+        space.setRiver(new ArrayList<>());
+
+        assertFalse(space.isChickenDead());
+
+        space.setCars(List.of(new Car(10, 10, 1, null)));
+        assertTrue(space.isChickenDead());
+        space.setCars(new ArrayList<>()); // Limpa
+
+        space.setTrucks(List.of(new Truck(10, 10, 1, null)));
+        assertTrue(space.isChickenDead());
+        space.setTrucks(new ArrayList<>()); // Limpa
+
+        space.setRiver(List.of(new River(10, 10, 1, null)));
+        assertTrue(space.isChickenDead());
+    }
 }

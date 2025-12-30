@@ -3,7 +3,6 @@ package model.game.space;
 import CrossyRoad.model.Position;
 import CrossyRoad.model.game.space.LoaderSpaceBuilder;
 import CrossyRoad.model.game.space.Space;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
