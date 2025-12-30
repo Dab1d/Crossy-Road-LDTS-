@@ -2,9 +2,7 @@ package view.game;
 
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.elements.EndLine;
-import CrossyRoad.model.game.elements.Wall;
 import CrossyRoad.view.game.EndLineViewer;
-import CrossyRoad.view.game.WallViewer;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 

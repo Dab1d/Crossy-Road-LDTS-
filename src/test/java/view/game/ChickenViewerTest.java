@@ -1,7 +1,6 @@
 package view.game;
 
 import CrossyRoad.gui.GUI;
-import CrossyRoad.gui.LanternaGUI;
 import CrossyRoad.model.game.elements.Chicken;
 import CrossyRoad.view.game.ChickenViewer;
 

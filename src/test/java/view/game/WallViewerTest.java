@@ -1,9 +1,7 @@
 package view.game;
 
 import CrossyRoad.gui.GUI;
-import CrossyRoad.model.game.elements.Truck;
 import CrossyRoad.model.game.elements.Wall;
-import CrossyRoad.view.game.TruckViewer;
 import CrossyRoad.view.game.WallViewer;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

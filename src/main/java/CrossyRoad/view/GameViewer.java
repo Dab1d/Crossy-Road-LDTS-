@@ -1,9 +1,9 @@
-package CrossyRoad.view.game;
+package CrossyRoad.view;
 
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.elements.Element;
 import CrossyRoad.model.game.space.Space;
-import CrossyRoad.view.Viewer;
+import CrossyRoad.view.game.*;
 
 import java.util.List;
 

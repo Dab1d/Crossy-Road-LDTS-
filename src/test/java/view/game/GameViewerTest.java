@@ -5,11 +5,10 @@ import CrossyRoad.controller.Game.MoveStrategies.MoveRightStrategy;
 import CrossyRoad.gui.GUI;
 import CrossyRoad.model.game.elements.*;
 import CrossyRoad.model.game.space.Space;
-import CrossyRoad.view.game.GameViewer;
+import CrossyRoad.view.GameViewer;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
