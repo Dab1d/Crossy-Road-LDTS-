@@ -41,12 +41,14 @@ For a more detailed version of this description click [here](./docs/README.md).
     <p>
         <i>Figure 5 - Win Menu</i>
     </p>
+</div>
     
 ## Gameplay
-    <p>
-    <img src="docs/gifs/WinGif.gif"  alt="Gameplay" width="500">
-        <i>Figure 6 - Gameplay</i>
-    </p>
+
+<div align="center">
+  <img src="docs/gifs/WinGif.gif" alt="Gameplay demonstration" width="500">
+  <p><i>Gif 1. Gameplay</i></p>
 </div>
+
 
 
