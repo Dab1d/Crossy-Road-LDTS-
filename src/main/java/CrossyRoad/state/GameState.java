@@ -10,16 +10,20 @@ import CrossyRoad.view.menu.HUDView;
 
 import java.io.IOException;
 
-public class GameState extends State<Space> {
+public class    GameState extends State<Space> {
     private final Controller<Space> controller;
     private final Viewer<Space> viewer;
     private final HUDView hudView;
 
-    public GameState(Space space,Controller<Space> controller, Viewer<Space> viewer) {
-        super(space,new GameViewer(space),controller);
+
+    public GameState(Space space, Controller<Space> controller, Viewer<Space> viewer, HUDView hudView) {
+        super(space, new GameViewer(space), controller);
         this.controller = controller;
-        this.hudView = new HUDView();
         this.viewer = viewer;
+        this.hudView = hudView;
+    }
+    public GameState(Space space, Controller<Space> controller, Viewer<Space> viewer) {
+        this(space, controller, viewer, new HUDView());
     }
 
     @Override

@@ -34,37 +34,20 @@ class StateManagerTest {
     private State gameOverState;
     @Mock
     private State helpState;
+    @Mock
+    private GameSession gameSession;
 
     private StateManager stateManager;
 
     @BeforeEach
     void setUp() throws IOException, URISyntaxException, FontFormatException {
         when(stateFactory.createMenuState()).thenReturn(menuState);
-        stateManager = new StateManager(stateFactory);
-    }
+        stateManager = new StateManager(stateFactory, gameSession);    }
 
     @Test
     void testConstructorInitialization() {
         assertEquals(menuState, stateManager.getState());
         assertNotNull(stateManager.getGameSession());
-    }
-
-    @Test
-    void testInitGame() throws IOException {
-        when(stateFactory.createGameState(anyInt())).thenReturn(gameState);
-        stateManager.initGame();
-
-        verify(stateFactory).createGameState(1); // Assume nível inicial 1
-        assertEquals(gameState, stateManager.getState());
-        assertEquals(0, stateManager.getGameSession().getScore()); // Verifica resetScore
-    }
-
-    @Test
-    void testReturnToMenu() throws IOException {
-        stateManager.returnToMenu();
-        verify(stateFactory, times(2)).createMenuState(); // 1 no construtor + 1 agora
-        assertEquals(menuState, stateManager.getState());
-        assertEquals(0, stateManager.getGameSession().getScore()); // Verifica resetScore
     }
 
     @Test
@@ -128,12 +111,13 @@ class StateManagerTest {
     @Test
     void testAdvanceLevelNotMax() throws IOException {
         when(stateFactory.createGameState(anyInt())).thenReturn(gameState);
-        GameSession session = stateManager.getGameSession();
-        int initialLevel = session.getLevel();
+        when(gameSession.isMaxLevel()).thenReturn(false);
+        when(gameSession.getLevel()).thenReturn(5);
+
         stateManager.advanceLevel();
 
-        assertTrue(session.getLevel() > initialLevel);
-        verify(stateFactory).createGameState(session.getLevel());
+        verify(gameSession).nextLevel();
+        verify(stateFactory).createGameState(5);
         assertEquals(gameState, stateManager.getState());
     }
 
@@ -161,4 +145,40 @@ class StateManagerTest {
         verify(stateFactory).createWinState();
         assertEquals(winState, manager.getState());
     }
+    @Test
+    void testInitGame() throws IOException {
+        when(stateFactory.createGameState(anyInt())).thenReturn(gameState);
+        when(gameSession.getLevel()).thenReturn(1);
+
+        stateManager.initGame();
+
+        verify(gameSession).resetScore();
+        verify(gameSession).resetLevel();
+        verify(stateFactory).createGameState(1);
+        assertEquals(gameState, stateManager.getState());
+    }
+
+    @Test
+    void testReturnToMenu() throws IOException {
+        stateManager.setState(pauseState);
+        stateManager.returnToMenu();
+
+        verify(gameSession).resetLevel();
+        verify(gameSession).resetScore();
+
+
+        assertEquals(menuState, stateManager.getState());
+    }
+    @Test
+    void testConvenienceConstructorCreatesRealSession() throws IOException, URISyntaxException, FontFormatException {
+        when(stateFactory.createMenuState()).thenReturn(menuState);
+        StateManager localManager = new StateManager(stateFactory);
+
+        assertNotNull(localManager.getGameSession(), "O construtor deve criar uma GameSession interna");
+        assertNotEquals(gameSession, localManager.getGameSession(), "A sessão interna deve ser uma nova instância, não o mock injetado no setUp");
+        assertEquals(0, localManager.getGameSession().getScore());
+        assertEquals(1, localManager.getGameSession().getLevel());
+        assertEquals(menuState, localManager.getState());
+    }
+
 }
