@@ -26,10 +26,10 @@ public class StateManager {
      * Convenience constructor for the main game loop.
      * It initializes a default GameSession and delegates to the primary constructor.
      */
+
     public StateManager(StateFactory stateFactory) throws IOException, URISyntaxException, FontFormatException {
         this(stateFactory, new GameSession());
     }
-
     public void initGame() throws IOException {
         gameSession.resetScore();
         gameSession.resetLevel();
