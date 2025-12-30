@@ -41,5 +41,16 @@ public class GameOverTest {
         assertEquals("Restart", gameOver.getEntry(0));
         assertEquals("Exit", gameOver.getEntry(1));
     }
+    @Test
+    public void getBackgroundWorks() {
+        List<String> mockBackground = List.of("line1", "line2");
+        GameOver gameOver = new GameOver(mockBackground);
+
+        List<String> result = gameOver.getBackground();
+
+        assertEquals(mockBackground, result);
+        assertEquals(2, result.size());
+        assertEquals("line1", result.get(0));
+    }
 }
 

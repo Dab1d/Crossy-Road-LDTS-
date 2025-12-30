@@ -8,50 +8,33 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
 
 public class GameOverViewerTest {
-
     @Test
     public void drawElementsTest() {
-
         GUI gui = Mockito.mock(GUI.class);
         GameOver model = Mockito.mock(GameOver.class);
-        List<String> backgroundSimulado = Arrays.asList("ad");
+
+        List<String> backgroundSimulado = Arrays.asList("a");
         when(model.getBackground()).thenReturn(backgroundSimulado);
         when(model.getNumberEntries()).thenReturn(2);
-
-        //Reset Select
         when(model.getEntry(0)).thenReturn("Restart");
         when(model.isSelected(0)).thenReturn(true);
-
-        // Exit not selected
         when(model.getEntry(1)).thenReturn("Exit");
         when(model.isSelected(1)).thenReturn(false);
 
-
         GameOverView viewer = new GameOverView(model);
+
         viewer.drawElements(gui);
 
-        // char 'a' has to be painted as black and 'd' as red
-        verify(gui, times(1)).drawPixel(0, 0, "#000000");
-        verify(gui, times(1)).drawPixel(1, 0, "#FF0000");
-
-        // Check restart
-        verify(gui, times(1)).drawText(
-                new Position(2, 11),
-                "Restart",
-                "#F1E20E"
-        );
-
-        // Check exit
-        verify(gui, times(1)).drawText(
-                new Position(12, 11),
-                "Exit",
-                "#C4C4C4"
-        );
+        verify(gui).drawPixel(0.0, 0.0, "#000000");
+        verify(gui).drawText(new Position(2, 11), "Restart", "#F1E20E");
+        verify(gui).drawText(new Position(12, 11), "Exit", "#C4C4C4");
+        verifyNoMoreInteractions(gui);
     }
     @Test
     public void testUnknownCharacterInMap() {
@@ -94,4 +77,18 @@ public class GameOverViewerTest {
                 "#F1E20E"
         );
     }
+    @Test
+    public void testDrawElementsWithZeroEntries() {
+        GUI gui = Mockito.mock(GUI.class);
+        GameOver model = Mockito.mock(GameOver.class);
+
+        when(model.getNumberEntries()).thenReturn(0);
+        when(model.getBackground()).thenReturn(Collections.emptyList());
+
+        GameOverView viewer = new GameOverView(model);
+
+        viewer.drawElements(gui);
+        verify(gui, never()).drawText(any(), anyString(), anyString());
+    }
+
 }

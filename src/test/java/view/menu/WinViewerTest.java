@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -89,5 +90,26 @@ public class WinViewerTest {
                 "Exit",
                 "#F1E20E"
         );
+    }
+    @Test
+    void testDrawElementsCountStrict() {
+        GUI gui = mock(GUI.class);
+        Win model = mock(Win.class);
+
+        when(model.getNumberEntries()).thenReturn(2);
+        when(model.getEntry(0)).thenReturn("Play Again");
+        when(model.isSelected(0)).thenReturn(true);
+        when(model.getEntry(1)).thenReturn("Menu");
+        when(model.isSelected(1)).thenReturn(false);
+        when(model.getBackground()).thenReturn(Collections.emptyList());
+
+        WinViewer viewer = new WinViewer(model);
+
+        viewer.drawElements(gui);
+
+        verify(gui).drawText(eq(new Position(2, 9)), eq("Play Again"), eq("#F1E20E"));
+        verify(gui).drawText(eq(new Position(12, 9)), eq("Menu"), eq("#C4C4C4"));
+        verify(gui, times(2)).drawText(any(Position.class), anyString(), anyString());
+        verifyNoMoreInteractions(gui);
     }
 }

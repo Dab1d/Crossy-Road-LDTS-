@@ -9,28 +9,32 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MenuTest {
     @Test
     public void testMenu() throws IOException {
-        Loader loader = new Loader(ScreenType.MENU.getFile());
-        Menu menu = new Menu(loader.getLines());
 
+        List<String> expectedLines = new Loader(ScreenType.MENU.getFile()).getLines();
+        Menu menu = new Menu(expectedLines);
 
-        menu.previousEntry();
-        assertEquals(true, menu.isSelected(2));
+        assertEquals(expectedLines, menu.getBackground());
+        assertEquals(0, menu.getCurrentEntry());
+        assertEquals(3, menu.getNumberEntries());
 
-        menu.nextEntry();
-        assertEquals(true, menu.isSelected(0));
+        assertTrue(menu.isSelected(0));
+        assertFalse(menu.isSelected(1));
 
-        menu.nextEntry();
-        assertEquals(true, menu.isSelected(1));
+        menu.previousEntry(); // 0 -> 2
+        assertTrue(menu.isSelected(2));
 
+        menu.nextEntry(); // 2 -> 0
+        assertTrue(menu.isSelected(0));
+
+        menu.nextEntry(); // 0 -> 1
+        assertTrue(menu.isSelected(1));
         assertEquals("Start", menu.getEntry(0));
         assertEquals("Help", menu.getEntry(1));
         assertEquals("Exit", menu.getEntry(2));
-
-        assertEquals(3, menu.getNumberEntries());
     }
 }
