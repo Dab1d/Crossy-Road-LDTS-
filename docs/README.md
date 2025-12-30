@@ -11,21 +11,36 @@ strategy and precision.
 >This project was developed by **Dário Amaral** (up202405681) ,**David Ferreira** (up202406798) and **Gonçalo Pinto** (up202310411) for LDTS 2025-26.
 
 ## Implemented Features
-***
-- **States** - Although not fully implemented we already have the `GameState` that allows us to create our game for now.
-- **Viewers** - All the elements in the game can already be drawn on the screen as characters for now; later, these will be rendered as sprites.
-- **Models** - All the elements already have their models implemented. These will serve as a bridge between our future controllers and viewers.
-- **Levels and Space creation** - The game space is automatically built based on the level the player is in. For now, we just have one level, but more will be added later.
-- **Tests** - For the element viewers and models, we have already implemented tests that cover all the coded lines successfully. We also have tests for the `LanternaGUI` class, which we plan to upgrade soon.
-- **Menu** - Although not full implemented yet we are already implementing the menu model and viewer.
-- **Player Movement** - Move the chicken up, down, left, and right across obstacles.
-- **Obstacle Avoidance** - Avoid cars, trucks, bushes, and other hazards that can end the game.
-- **Water Hazards** - Jump across lakes using safe spots or logs without falling in.
-- **Different Levels** - Roads get busier, lakes get wider, and obstacles appear more frequently as the game progresses.
-- **Goal Achievement** - Reach the final destination to complete a level.
-- **Collisions Detection** - Detect collisions with cars, trucks and water hazards.
-- **Scoring System** - Track progress based on distance traveled or obstacles avoided.
-- **Interactive Menu** - A start menu with options to play, view instructions, or exit the game.
+
+- **Character & Directional Movement**  
+  Move the chicken in four directions (Up, Down, Left, and Right) with full control to navigate the game world.
+
+- **Solid Boundaries**  
+  Movement is constrained by the game window and static elements, preventing the player from leaving the playable area.
+
+- **Dynamic Traffic**  
+  Features two types of hazards: small, fast **Cars** for precise dodging, and longer, slower **Trucks** that act as persistent barriers.
+
+- **Static Obstacles**  
+  Fixed elements (**Bushes**) act as walls, creating strategic *bottlenecks* and limiting the player's path.
+
+- **River Mechanics & Logs**  
+  Rivers are lethal hazards unless the player jumps onto moving logs for safe passage.
+
+- **Edge Lethality**  
+  If the player remains on a log until it exits the map's boundaries, the game is lost.
+
+- **Scoring System**  
+  Collectible **Coins** are placed throughout the map, allowing players to increase their score as they progress.
+
+- **Level Progression**  
+  5 Levels with increasing difficulty, featuring faster vehicles and more frequent hazards as the player advances.
+
+- **Collision Detection**  
+  A precise system monitors overlaps with lethal elements (cars, trucks, or water), triggering a **Game Over** state.
+
+- **State-Based Menus**  
+  A complete UI system to navigate between **Main Menu**, **Help/Instructions**, **Pause**, **Victory**, and **Game Over** screens.
 
 ## Planned Features
 ***
