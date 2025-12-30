@@ -263,6 +263,8 @@ The application depends only on the `GUI` abstraction, not on a concrete UI fram
 <p align="center">
   <b><i>Fig.9 Adapter Pattern</i></b>
 </p>
+
+
 ---
 
 ## 9. Template Method Pattern
