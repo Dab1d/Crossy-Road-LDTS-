@@ -41,6 +41,9 @@ For a more detailed version of this description click [here](./docs/README.md).
     <p>
         <i>Figure 5 - Win Menu</i>
     </p>
+    <p>
+    <img src="docs/gifs/WinGif.gif"  alt="Gameplay" width="500">
+    </p>
 </div>
 
 
