@@ -49,6 +49,10 @@ For a more detailed version of this description click [here](./docs/README.md).
   <img src="docs/gifs/WinGif.gif" alt="Gameplay demonstration" width="500">
   <p><i>Gif 1. Gameplay</i></p>
 </div>
+<div align="center">
+  <img src="docs/gifs/LoseGif.gif" alt="Gameplay demonstration" width="500">
+  <p><i>Gif 2. Gameplay</i></p>
+</div>
 
 
 
