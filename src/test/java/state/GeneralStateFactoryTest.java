@@ -5,7 +5,7 @@ import CrossyRoad.controller.Menu.*;
 import CrossyRoad.model.game.space.Space;
 import CrossyRoad.model.menu.*;
 import CrossyRoad.state.*;
-import CrossyRoad.view.game.GameViewer;
+import CrossyRoad.view.GameViewer;
 import CrossyRoad.view.menu.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

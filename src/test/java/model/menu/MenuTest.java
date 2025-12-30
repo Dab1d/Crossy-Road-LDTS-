@@ -2,7 +2,6 @@ package model.menu;
 
 import CrossyRoad.model.loader.Loader;
 import CrossyRoad.model.loader.ScreenType;
-import CrossyRoad.model.menu.GameOver;
 import CrossyRoad.model.menu.Menu;
 import org.junit.jupiter.api.Test;
 

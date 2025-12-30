@@ -8,7 +8,7 @@ import CrossyRoad.session.GameSession;
 import CrossyRoad.state.GameState;
 import CrossyRoad.state.StateManager;
 import CrossyRoad.view.Viewer;
-import CrossyRoad.view.game.GameViewer;
+import CrossyRoad.view.GameViewer;
 import CrossyRoad.view.menu.HUDView;
 import org.junit.jupiter.api.Test;
 

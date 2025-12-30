@@ -2,9 +2,7 @@ package CrossyRoad.state;
 
 import CrossyRoad.controller.Controller;
 import CrossyRoad.model.menu.GameOver;
-import CrossyRoad.model.menu.Win;
 import CrossyRoad.view.Viewer;
-import CrossyRoad.view.menu.GameOverView;
 
 public class GameOverState extends State<GameOver> {
     private final Controller<GameOver> controller;

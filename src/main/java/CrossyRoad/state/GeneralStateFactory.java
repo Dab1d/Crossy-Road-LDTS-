@@ -7,7 +7,7 @@ import CrossyRoad.model.game.space.Space;
 import CrossyRoad.model.loader.Loader;
 import CrossyRoad.model.loader.ScreenType;
 import CrossyRoad.model.menu.*;
-import CrossyRoad.view.game.GameViewer;
+import CrossyRoad.view.GameViewer;
 import CrossyRoad.view.menu.*;
 
 import java.io.IOException;

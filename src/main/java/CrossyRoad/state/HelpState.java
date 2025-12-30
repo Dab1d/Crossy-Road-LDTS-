@@ -1,11 +1,8 @@
 package CrossyRoad.state;
 
 import CrossyRoad.controller.Controller;
-import CrossyRoad.controller.Menu.HelpController;
 import CrossyRoad.model.menu.Help;
-import CrossyRoad.model.menu.Win;
 import CrossyRoad.view.Viewer;
-import CrossyRoad.view.menu.HelpView;
 
 public class HelpState extends State<Help> {
     private final Controller<Help> controller;
