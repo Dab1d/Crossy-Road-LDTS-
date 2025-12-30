@@ -139,6 +139,28 @@ The use of the Facade Pattern in the current design allows the following benefit
 
 ## Known-code smells
 
+Overuse of Inheritance:
+
+    Smell: Deep inheritance hierarchies for game elements (e.g., Element → Obstacle → Car → Truck). 
+    Why it’s a smell: Inheritance can reduce flexibility.
+    Consequence: Harder to change behavior dynamically.
+    Possible improvement: Prefer composition where possible (e.g., movement or collision components).
+
+Duplicate Collision Logic:
+
+    Smell: Similar collision checks repeated for cars, trucks, water, and logs.
+    Why it’s a smell: Repeating everything.
+    Consequence: Bug fixes must be applied in multiple places.
+    Possible improvement: Centralize collision logic using a common interface or utility class.
+
+Primitive Obsession: 
+
+    Smell: Positions, dimensions, and speeds are represented using raw primitives (int x, int y).
+    Why it’s a smell: Related data lacks semantic meaning and behavior.
+    Consequence: Higher chance of bugs and duplicated logic.
+    Possible improvement: Introduce small value objects like Position, Velocity, Bounds.
+
+
 ## Testing
 ***
 
