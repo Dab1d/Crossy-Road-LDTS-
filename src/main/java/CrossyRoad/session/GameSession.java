@@ -6,7 +6,6 @@ public class GameSession {
     private static final int FINAL_LEVEL = 5;
 
     public GameSession() {
-        resetScore();
         resetLevel();
     }
 
