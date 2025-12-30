@@ -42,13 +42,15 @@ strategy and precision.
 - **State-Based Menus**  
   A complete UI system to navigate between **Main Menu**, **Help/Instructions**, **Pause**, **Victory**, and **Game Over** screens.
 
-## Planned Features
-***
-All the planned features were successfully implemented.
-
 ## Design Patterns
 
 Our architecture relies heavily on well-established software design patterns to ensure **modularity**, **maintainability**, and **scalability**. Below are the specific patterns applied, their location in the codebase, and the architectural problems they solved.
+<p align="center" justify="center">
+<img src="images/UML%20FINAL.png">
+</p>
+<p align="center">
+  <b><i>Fig. 1 MVC - Architectural Pattern  </i></b>
+</p>
 
 ---
 
@@ -75,8 +77,11 @@ We separated the code into three distinct layers:
 **Benefit:**  
 This separation allows us to test game logic (Models and Controllers) without initializing the GUI and makes the codebase easier to understand, maintain, and extend.
 
-<p>
+<p align="center" justify="center">
 <img src="images/MVC.png">
+</p>
+<p align="center">
+  <b><i>Fig. 2 MVC - Architectural Pattern  </i></b>
 </p>
 
 
@@ -99,8 +104,11 @@ We implemented the **State Pattern**, delegating the game logic execution to the
 **Benefit:**  
 New screens (for example, a *High Scores* screen) can be added by introducing a new state class, without modifying the existing game loop logic.
 
-<p>
+<p align="center" justify="center">
 <img src="images/StatePattern.png">
+</p>
+<p align="center">
+  <b><i>Fig. 3 State Pattern </i></b>
 </p>
 
 
@@ -127,8 +135,11 @@ This approach clearly separates concerns:
 
 As a result, the system becomes easier to extend, test, and maintain. New actions or state transitions can be introduced by adding new commands without modifying existing GUI or state management logic.
 
-<p>
+<p align="center" justify="center">
 <img src="images/CommandPattern.png">
+</p>
+<p align="center">
+  <b><i>Fig. 4  Command Pattern </i></b>
 </p>
 
 
@@ -148,8 +159,11 @@ We defined a family of interchangeable movement algorithms using the **Strategy 
 **Benefit:**  
 Movement logic can be changed dynamically (for example, from linear to zigzag motion) by swapping strategy objects, promoting **Composition over Inheritance**.
 
-<p>
-<img src="images/StrategyPattern.png">
+<p align="center" justify="center">
+ <img src="images/StrategyPattern.png" alt="Strategy Pattern">
+</p>
+<p align="center"> 
+<b><i>Fig. 5 Strategy Pattern</i></b>
 </p>
 
 
@@ -169,8 +183,11 @@ We used the **Builder Pattern** to construct the `Space` object step by step. Th
 **Benefit:**  
 This separates the construction process from the final object representation, ensures that all `Space` instances are valid, and allows different level layouts to be created using the same construction process.
 
-<p>
+<p align="center" justify="center">
 <img src="images/BuilderPattern.png">
+</p>
+<p align="center">  
+<b><i>Fig.6 Builder Pattern</i></b>
 </p>
 
 
@@ -190,8 +207,11 @@ We implemented a controlled **Game Loop Pattern** that updates the game state at
 **Benefit:**  
 This guarantees consistent gameplay timing and a smooth experience regardless of the player’s hardware.
 
-<p>
+<p align="center" justify="center">
 <img src="images/GameLoopPattern.png">
+</p>
+<p align="center">
+  <b><i>Fig.7 Game Loop Pattern</i></b>
 </p>
 
 
@@ -213,8 +233,11 @@ The `StateFactory` (and its concrete implementation `GeneralStateFactory`) encap
 **Benefit:**  
 This approach decouples object creation from object usage, promotes consistency across the application, and simplifies the addition of new states or controllers without impacting existing code.
 
-<p>
+<p align="center" justify="center">
 <img src="images/FactoryPattern.png">
+</p>
+<p align="center">
+  <b><i>Fig.8 Factory Pattern</i></b>
 </p>
 
 ---
@@ -234,11 +257,12 @@ We defined a `GUI` interface representing the operations required by the applica
 **Benefit:**  
 The application depends only on the `GUI` abstraction, not on a concrete UI framework. This enables easy replacement or extension of the graphical backend without modifying game logic, reinforcing the **Dependency Inversion Principle**.
 
-<p>
+<p align="center" justify="center">
 <img src="images/AdapterPattern.png">
 </p>
-
-
+<p align="center">
+  <b><i>Fig.9 Adapter Pattern</i></b>
+</p>
 ---
 
 ## 9. Template Method Pattern
@@ -290,8 +314,13 @@ This allows the game engine to operate on individual elements and groups of elem
 **Benefit:**  
 This design simplifies iteration over game objects and enables uniform handling of diverse elements. While not a strict Composite implementation, it exhibits key characteristics of the pattern and improves structural consistency.
 
-<p>
-<img src="images/CompositePattern.png">
+
+
+<p align="center" justify="center">
+  <img src="/docs/images/CompositePattern.png"/>
+</p>
+<p align="center">
+  <b><i>Fig.10 Composite Pattern</i></b>
 </p>
 
 
@@ -323,25 +352,33 @@ Primitive Obsession:
 ***
 
 ### Test with Coverage 
+<p align="center" justify="center">
+  <img src="/docs/images/coverage1.png"/>
+</p>
 <p align="center">
-<img src="/docs/images/cover_1.jpeg">
-<p align="center">
-<b><i>Fig 4. Coverage Testing </i></b>
+  <b><i>Fig. 11 Coverage Testing </i></b>
 </p>
 
 <p align="center" justify="center">
-  <img src="/docs/images/Coverage_2.jpeg"/>
+  <img src="/docs/images/coverage2.png"/>
 </p>
 <p align="center">
-  <b><i>Fig 5. Coverage Testing </i></b>
+  <b><i>Fig. 12 Coverage Testing </i></b>
+</p>
+
+<p align="center" justify="center">
+  <img src="/docs/images/coverage3.png"/>
+</p>
+<p align="center">
+  <b><i>Fig. 13 Coverage Testing </i></b>
 </p>
 
 
 ### Mutation testing
-<p align="center">
-<img src="images/pitest.png">
-</p>
-## Self-evaluation
+
+<p align="center"> <img src="images/pitest.jpeg" alt="Mutation testing results"> </p> <p align="center"> <b><i>Fig. 14. Mutation Tests</i></b> </p>
+
+### Self-evaluation
 ***
 
 The work was divided in a mutual way, and we all contributed with our best. It helped us to enrich our
