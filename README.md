@@ -16,8 +16,50 @@ For a more detailed version of this description click [here](./docs/README.md).
 
 - Simple and intuitive keyboard controls  
 - Increasing difficulty with more obstacles  
-- Clear win/lose conditions  
+- Clear win/lose conditions
 
+## 🚀 How to Run
+
+### ☕ Running Locally (Standard)
+If you have Java installed and want to run the game directly on your machine, use the **Gradle Wrapper**. This is the fastest way to start the game:
+
+**1. Run the game:**
+
+* **Linux / macOS:**
+    ```bash
+    ./gradlew run
+    ```
+    *(If you get a "permission denied" error, run `chmod +x gradlew` first)*
+
+* **Windows:**
+    ```bash
+    gradlew.bat run
+    ```
+
+---
+
+### 🐳 Running with Docker
+To run the game safely inside a container without installing Java dependencies locally, follow these steps:
+
+**1. Enable Display Access (Linux)**
+Since the game requires a Graphical User Interface (GUI), you need to allow the Docker container to access your local screen:
+```
+xhost +
+```
+2. Build the Docker Image Create the game image from the source code:ash
+```
+docker build -t game .
+```
+
+3. Start the Game Run the container using Docker Compose:
+```
+docker compose up
+```
+
+4. Cleanup (After Playing) For security reasons, once you finish playing, disable the external access to your display:
+```
+xhost -
+```
 
 ## Screenshots
 <div align="center">
