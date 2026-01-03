@@ -1,0 +1,25 @@
+services:
+  game:
+    build: .
+    image: crossy_road_game
+    container_name: crossy_road_runner
+
+    network_mode: host
+
+    security_opt:
+      - label=disable
+
+    tty: false
+    stdin_open: false
+
+    environment:
+      - DISPLAY=${DISPLAY}
+      - XAUTHORITY=/root/.Xauthority
+        - _JAVA_OPTIONS=-Dsun.java2d.opengl=false
+
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ${HOME}/.Xauthority:/root/.Xauthority
+
+    devices:
+      - /dev/snd:/dev/snd

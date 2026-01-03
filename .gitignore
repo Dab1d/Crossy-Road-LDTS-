@@ -1,10 +1,29 @@
 .gradle
 .idea/
 build/
+.kotlin
+
+# Java compiled class files
+*.class
+*.log
+*.ctxt
+
+# Archives
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Gradle Wrapper Exception (Keep this jar)
 !gradle/wrapper/gradle-wrapper.jar
+
+# Build specific exclusions
 !**/src/main/**/build/
 !**/src/test/**/build/
-.kotlin
+/libs/
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
@@ -42,3 +61,16 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Windows ###
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+
+### Linux ###
+.fuse_hidden*
+.directory
+
+### Pitest ###
+.pitest-history

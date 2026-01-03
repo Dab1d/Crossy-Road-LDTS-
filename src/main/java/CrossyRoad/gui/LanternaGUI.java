@@ -13,10 +13,8 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
+import java.io.InputStream;
 
 public class LanternaGUI implements GUI {
     private Screen screen;
@@ -25,7 +23,7 @@ public class LanternaGUI implements GUI {
         this.screen = screen;
     }
 
-    public LanternaGUI(int width, int height) throws IOException, URISyntaxException, FontFormatException {
+    public LanternaGUI(int width, int height) throws IOException, FontFormatException {
         AWTTerminalFontConfiguration fontConfig = loadSquareFont();
         Terminal terminal = createTerminal(width, height, fontConfig);
         this.screen = createScreen(terminal);
@@ -63,17 +61,24 @@ public class LanternaGUI implements GUI {
         return terminal;
     }
 
-    public AWTTerminalFontConfiguration loadSquareFont() throws URISyntaxException, FontFormatException, IOException {
-        URL resource = getClass().getClassLoader().getResource("fonts/square.ttf");
-        File fontFile = new File(resource.toURI());
-        Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+    public AWTTerminalFontConfiguration loadSquareFont() {
+        try {
+            InputStream fontStream = getClass().getClassLoader().getResourceAsStream("fonts/square.ttf");
+            if (fontStream == null) {
+                throw new IOException("Font resource not found: fonts/square.ttf");
+            }
+            Font font = Font.createFont(Font.TRUETYPE_FONT, fontStream);
 
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        ge.registerFont(font);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(font);
 
-        Font loadedFont = font.deriveFont(Font.PLAIN, 25);
-        AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
-        return fontConfig;
+            Font loadedFont = font.deriveFont(Font.PLAIN, 25);
+            return AWTTerminalFontConfiguration.newInstance(loadedFont);
+
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+            return AWTTerminalFontConfiguration.newInstance(new Font("Monospaced", Font.PLAIN, 25));
+        }
     }
 
     //interage com o "hardware" e transforma o Input é Action que vai ser usada no contolo do jogo

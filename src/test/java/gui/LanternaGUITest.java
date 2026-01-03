@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.awt.*;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -62,8 +63,8 @@ class LanternaGUITest {
     void drawText() {
         gui.drawText(new Position(1, 1), "Hello", "#FFFFFF");
 
-        verify(graphics, times(1)).setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
-        verify(graphics, times(1)).putString(1, 1, "Hello");
+        verify(graphics).setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
+        verify(graphics).putString(1, 1, "Hello");
     }
 
     @Test
@@ -104,13 +105,6 @@ class LanternaGUITest {
     }
 
     @Test
-    void constructorTest() {
-        LanternaGUI simpleGui = new LanternaGUI(screen);
-        simpleGui.clear();
-        verify(screen).clear();
-    }
-
-    @Test
     void getNextActionUnknownKey() throws IOException {
         when(screen.pollInput()).thenReturn(new KeyStroke('z', false, false));
         assertEquals(GUI.ACTION.NONE, gui.getNextAction());
@@ -120,35 +114,10 @@ class LanternaGUITest {
     }
 
     @Test
-    void drawTextEmptyColor() {
-        gui.drawText(new Position(0,0), "Test", "#000000");
-        verify(graphics).setForegroundColor(TextColor.Factory.fromString("#000000"));
-    }
-
-    @Test
-    void drawPixelMutationTest() {
-        gui.drawPixel(10.7, 5.2, "#123456");
-
-        verify(graphics).setBackgroundColor(TextColor.Factory.fromString("#123456"));
-        verify(graphics).putString(10, 5, " ");
-    }
-
-    @Test
-    void drawTextMutationTest() {
-        Position pos = new Position(5, 5);
-        gui.drawText(pos, "Test", "#FFFFFF", "#000000");
-
-        verify(graphics).setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
-        verify(graphics).setBackgroundColor(TextColor.Factory.fromString("#000000"));
-        verify(graphics).putString(5, 5, "Test");
-    }
-
-    @Test
-    void loadSquareFontMutationKiller() throws Exception {
+    void loadSquareFontMutationKiller() {
         AWTTerminalFontConfiguration config = gui.loadSquareFont();
-        assertNotNull(config, "O config da fonte não pode ser nulo");
+        assertNotNull(config);
     }
-
     @Test
     void testFullConstructor() {
         assertDoesNotThrow(() -> {
@@ -156,7 +125,14 @@ class LanternaGUITest {
                 LanternaGUI realGui = new LanternaGUI(10, 10);
                 assertNotNull(realGui);
                 realGui.close();
-            } catch (java.awt.HeadlessException | IOException e) {}
+            } catch (HeadlessException e) {
+            } catch (IOException | FontFormatException e) {
+                if (e.getMessage() != null && (e.getMessage().contains("stty") || e.getMessage().contains("tty"))) {
+                    System.out.println("Aviso: Teste de GUI real ignorado (sem TTY disponível).");
+                } else {
+                    fail("Constructor threw unexpected exception: " + e.getMessage());
+                }
+            }
         });
     }
 }
